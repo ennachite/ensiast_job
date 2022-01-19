@@ -46,7 +46,8 @@ public class MemberDaoImpl implements MemberDao {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO member(email, password, role, city, picture, inscription_date) VALUES (?,?,?,?,?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO member(email, password, role, city, picture, " +
+                    "inscription_date) VALUES (?,?,?,?,?,?)");
             preparedStatement.setString(1, member.getEmail());
             preparedStatement.setString(2, hashPassword(member.getPassword()));
             preparedStatement.setString(3, member.getRole());
@@ -104,7 +105,9 @@ public class MemberDaoImpl implements MemberDao {
             member.setInscriptionDate(resultSet.getString("inscription_date"));
 
             return member;
-        } else return null;
+        } else {
+            return null;
+        }
     }
 
     @Override
