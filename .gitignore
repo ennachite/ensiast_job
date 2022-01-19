@@ -1,0 +1,4 @@
+.idea/
+target/
+src/main/webapp/node_modules/
+src/main/webapp/package-lock.json
