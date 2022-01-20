@@ -61,6 +61,18 @@ public class CompanyDaoImpl implements CompanyDao{
     }
 
     @Override
+    public Company getCompanyByMemberId(int memberId) {
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM company WHERE member_id=?");
+            preparedStatement.setInt(1,memberId);
+            return getCompany();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Company getCompanyByName(String name) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM company WHERE company_name=?");

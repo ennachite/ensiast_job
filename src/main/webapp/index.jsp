@@ -130,7 +130,7 @@
                     </svg>
                 </div>
                 <div class="mt-3 flex justify-between space-x-3">
-                    <a href="/signup-student">
+                    <a href="${pageContext.request.contextPath}/signup-student">
                         <button class="flex items-center justify-between px-10 py-4 font-medium leading-5 text-white transition-colors duration-150 bg-red-800 border border-transparent rounded-lg hover:bg-ensias-red">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path d="M12 14l9-5-9-5-9 5 9 5z"></path>

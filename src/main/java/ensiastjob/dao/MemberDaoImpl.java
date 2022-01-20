@@ -118,7 +118,9 @@ public class MemberDaoImpl implements MemberDao {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return 1;
-            } else return 0;
+            } else {
+                return 0;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

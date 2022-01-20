@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 20 jan. 2022 à 12:25
+-- Généré le : jeu. 20 jan. 2022 à 16:05
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -30,16 +30,16 @@ USE `ensiast_job`;
 --
 
 CREATE TABLE IF NOT EXISTS `candidacy` (
-  `candidacy_id` int(11) NOT NULL AUTO_INCREMENT,
+  `candidacy_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `company_id` int(11) NOT NULL,
+  `offer_id` int(11) NOT NULL,
   `status` varchar(32) NOT NULL,
   `CV` varchar(64) NOT NULL,
   `date_candidacy` varchar(32) NOT NULL,
   `motivation` text NOT NULL,
   PRIMARY KEY (`candidacy_id`),
   KEY `student_id` (`student_id`),
-  KEY `company_id` (`company_id`)
+  KEY `offer_id` (`offer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 ALTER TABLE `candidacy`
   ADD CONSTRAINT `candidacy_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
-  ADD CONSTRAINT `candidacy_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`);
+  ADD CONSTRAINT `candidacy_ibfk_2` FOREIGN KEY (`offer_id`) REFERENCES `offer` (`offer_id`);
 
 --
 -- Contraintes pour la table `company`
