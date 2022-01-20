@@ -1,6 +1,6 @@
 package ensiastjob.model;
 
-public class Profile {
+public class StudentProfile {
     private int profileId, studentId;
     private boolean active;
     private String summary;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 19 jan. 2022 à 22:10
+-- Généré le : jeu. 20 jan. 2022 à 12:25
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -29,14 +29,17 @@ USE `ensiast_job`;
 -- Structure de la table `candidacy`
 --
 
-CREATE TABLE `candidacy` (
-  `candidacy_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `candidacy` (
+  `candidacy_id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
   `status` varchar(32) NOT NULL,
   `CV` varchar(64) NOT NULL,
   `date_candidacy` varchar(32) NOT NULL,
-  `motivation` text NOT NULL
+  `motivation` text NOT NULL,
+  PRIMARY KEY (`candidacy_id`),
+  KEY `student_id` (`student_id`),
+  KEY `company_id` (`company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -45,8 +48,8 @@ CREATE TABLE `candidacy` (
 -- Structure de la table `company`
 --
 
-CREATE TABLE `company` (
-  `company_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `company` (
+  `company_id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
   `company_name` varchar(64) NOT NULL,
   `ceo_name` varchar(64) DEFAULT NULL,
@@ -54,7 +57,9 @@ CREATE TABLE `company` (
   `company_fix` varchar(16) DEFAULT NULL,
   `company_tif` varchar(32) NOT NULL,
   `founded` int(4) NOT NULL,
-  `description` text DEFAULT NULL
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`company_id`),
+  KEY `member_id` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -63,14 +68,15 @@ CREATE TABLE `company` (
 -- Structure de la table `member`
 --
 
-CREATE TABLE `member` (
-  `member_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `member` (
+  `member_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(64) NOT NULL,
   `password` varchar(64) NOT NULL,
   `role` varchar(10) NOT NULL,
   `city` varchar(64) DEFAULT NULL,
   `picture` varchar(255) DEFAULT NULL,
-  `inscription_date` varchar(64) NOT NULL
+  `inscription_date` varchar(64) NOT NULL,
+  PRIMARY KEY (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -79,8 +85,8 @@ CREATE TABLE `member` (
 -- Structure de la table `offer`
 --
 
-CREATE TABLE `offer` (
-  `offer_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `offer` (
+  `offer_id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` int(11) NOT NULL,
   `offer_name` varchar(64) NOT NULL,
   `offer_type` varchar(16) NOT NULL,
@@ -88,7 +94,9 @@ CREATE TABLE `offer` (
   `offer_location` varchar(64) NOT NULL,
   `offer_domain` varchar(64) NOT NULL,
   `job_type` int(64) DEFAULT NULL,
-  `offer_description` text NOT NULL
+  `offer_description` text NOT NULL,
+  PRIMARY KEY (`offer_id`),
+  KEY `company_id` (`company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -97,11 +105,13 @@ CREATE TABLE `offer` (
 -- Structure de la table `profile`
 --
 
-CREATE TABLE `profile` (
-  `profile_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `profile` (
+  `profile_id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
-  `active` int(2) NOT NULL,
-  `summary` text DEFAULT NULL
+  `active` varchar(10) NOT NULL,
+  `summary` text DEFAULT NULL,
+  PRIMARY KEY (`profile_id`),
+  KEY `student_id` (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -110,8 +120,8 @@ CREATE TABLE `profile` (
 -- Structure de la table `student`
 --
 
-CREATE TABLE `student` (
-  `student_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `student` (
+  `student_id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
   `first_name` varchar(64) NOT NULL,
   `last_name` varchar(64) NOT NULL,
@@ -122,94 +132,10 @@ CREATE TABLE `student` (
   `specialty` varchar(32) NOT NULL,
   `promo` int(4) NOT NULL,
   `year_studies` varchar(10) NOT NULL,
-  `phone` varchar(16) NOT NULL
+  `phone` varchar(16) NOT NULL,
+  PRIMARY KEY (`student_id`),
+  KEY `member_id` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `candidacy`
---
-ALTER TABLE `candidacy`
-  ADD PRIMARY KEY (`candidacy_id`),
-  ADD KEY `student_id` (`student_id`),
-  ADD KEY `company_id` (`company_id`);
-
---
--- Index pour la table `company`
---
-ALTER TABLE `company`
-  ADD PRIMARY KEY (`company_id`),
-  ADD KEY `member_id` (`member_id`);
-
---
--- Index pour la table `member`
---
-ALTER TABLE `member`
-  ADD PRIMARY KEY (`member_id`);
-
---
--- Index pour la table `offer`
---
-ALTER TABLE `offer`
-  ADD PRIMARY KEY (`offer_id`),
-  ADD KEY `company_id` (`company_id`);
-
---
--- Index pour la table `profile`
---
-ALTER TABLE `profile`
-  ADD PRIMARY KEY (`profile_id`),
-  ADD KEY `student_id` (`student_id`);
-
---
--- Index pour la table `student`
---
-ALTER TABLE `student`
-  ADD PRIMARY KEY (`student_id`),
-  ADD KEY `member_id` (`member_id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `candidacy`
---
-ALTER TABLE `candidacy`
-  MODIFY `candidacy_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `company`
---
-ALTER TABLE `company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `member`
---
-ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `offer`
---
-ALTER TABLE `offer`
-  MODIFY `offer_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `profile`
---
-ALTER TABLE `profile`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `student`
---
-ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées

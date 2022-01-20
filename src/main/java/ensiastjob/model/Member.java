@@ -53,8 +53,8 @@ public class Member {
         this.inscriptionDate = inscriptionDate;
     }
 
-    public String getRole() {
-        return role.toString();
+    public Role getRole() {
+        return role;
     }
 
     public void setRole(Role role) {

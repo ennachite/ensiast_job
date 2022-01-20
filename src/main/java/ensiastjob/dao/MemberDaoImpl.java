@@ -50,7 +50,7 @@ public class MemberDaoImpl implements MemberDao {
                     "inscription_date) VALUES (?,?,?,?,?,?)");
             preparedStatement.setString(1, member.getEmail());
             preparedStatement.setString(2, hashPassword(member.getPassword()));
-            preparedStatement.setString(3, member.getRole());
+            preparedStatement.setString(3, String.valueOf(member.getRole()));
             preparedStatement.setString(4, member.getCity());
             preparedStatement.setString(5, member.getPicture());
             preparedStatement.setString(6, dateFormatter.format(now));
