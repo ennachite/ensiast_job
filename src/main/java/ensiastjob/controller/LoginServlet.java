@@ -3,11 +3,12 @@ package ensiastjob.controller;
 import ensiastjob.dao.CompanyDaoImpl;
 import ensiastjob.dao.MemberDaoImpl;
 import ensiastjob.dao.StudentDaoImpl;
-import ensiastjob.extra.DBConnection;
+import ensiastjob.dao.StudentProfileDaoImpl;
 import ensiastjob.extra.Strings;
 import ensiastjob.model.Company;
 import ensiastjob.model.Member;
 import ensiastjob.model.Student;
+import ensiastjob.model.StudentProfile;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,10 +19,9 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DBConnection.getConnected();
         HttpSession session =request.getSession(false);
 
-        if (session.getAttribute("member") != null) {
+        if ((Member) session.getAttribute("member") != null) {
             response.sendRedirect("/");
         } else {
             request.getRequestDispatcher("view/login.jsp").forward(request, response);
@@ -43,13 +43,18 @@ public class LoginServlet extends HttpServlet {
 
             if (role.equals("STUDENT")) {
                 StudentDaoImpl studentDao = new StudentDaoImpl();
+                StudentProfileDaoImpl studentProfileDao = new StudentProfileDaoImpl();
+
                 Student student = studentDao.getStudentByMemberId(member.getMemberId());
+                StudentProfile studentProfile = studentProfileDao.getStudentProfileByStudentId(member.getMemberId());
 
                 HttpSession session = request.getSession();
                 session.setAttribute("member", member);
                 session.setAttribute("student", student);
+                session.setAttribute("profile_student", studentProfile);
+                session.setAttribute("role", role);
 
-                request.getRequestDispatcher("jsp/student").forward(request, response);
+                request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
 
             } else if (role.equals("COMPANY")) {
                 CompanyDaoImpl companyDao = new CompanyDaoImpl();
@@ -58,6 +63,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("member", member);
                 session.setAttribute("company", company);
+                session.setAttribute("role", role);
 
                 request.getRequestDispatcher("jsp/company").forward(request, response);
 

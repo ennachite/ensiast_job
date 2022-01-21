@@ -18,13 +18,13 @@ import java.io.IOException;
 public class SignupStudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        HttpSession session = request.getSession(false);
-//        if (session != null) {
-//            response.sendRedirect("/");
-//        } else {
-//            request.getRequestDispatcher("view/student/signupStudent.jsp").forward(request, response);
-//        }
-        request.getRequestDispatcher("view/student/signupStudent.jsp").forward(request, response);
+        HttpSession session =request.getSession(false);
+
+        if ((Member) session.getAttribute("member") != null) {
+            response.sendRedirect("/");
+        } else {
+            request.getRequestDispatcher("view/student/signupStudent.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -35,11 +35,11 @@ public class SignupStudentServlet extends HttpServlet {
         String lastName = request.getParameter("last-name");
         String birthdate = request.getParameter("birthdate");
         String gender = request.getParameter("gender");
-        String cin = request.getParameter("cne");
+        String cin = request.getParameter("cin");
         String cne = request.getParameter("cne");
         String phone = request.getParameter("phone");
-        String city = request.getParameter("cne");
-        String specialty = request.getParameter("cne");
+        String city = request.getParameter("city");
+        String specialty = request.getParameter("specialty");
         String yearStudies = request.getParameter("year-studies");
         int promo = Integer.parseInt(request.getParameter("promo"));
         String email = request.getParameter("email");
@@ -81,9 +81,10 @@ public class SignupStudentServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("member", member);
             session.setAttribute("student", student);
-            session.setAttribute("profile-student", studentProfile);
+            session.setAttribute("profile_student", studentProfile);
+            session.setAttribute("role", "STUDENT");
 
-            request.getRequestDispatcher("view/student").forward(request, response);
+            request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
 
         } else if (emailExist == 1) {
             String error = Strings.ERROR_EMAIL_EXIST;

@@ -1,5 +1,7 @@
 package ensiastjob.controller;
 
+import ensiastjob.model.Member;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -11,10 +13,10 @@ public class StudentProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if (session == null) {
+        if ( (Member) session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
-            request.getRequestDispatcher("view/student").forward(request, response);
+            request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
         }
     }
 

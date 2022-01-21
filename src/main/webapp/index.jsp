@@ -1,10 +1,10 @@
-<jsp:include page="header.jsp" />
+<jsp:include page="WEB-INF/head.jsp" />
     <!-- Title -->
     <title>ENSIAST JOB: Log In or Sign Up</title>
 </head>
 <body>
 
-<jsp:include page="preloader.jsp" />
+<jsp:include page="WEB-INF/preloader.jsp" />
 
 <!--====== HEADER PART START ======-->
 <section class="header_area">
@@ -501,4 +501,4 @@
 </section>
 <!--====== CONTACT PART ENDS ======-->
 
-<jsp:include page="footer.jsp" />
+<jsp:include page="WEB-INF/footer.jsp" />

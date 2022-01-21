@@ -1,11 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
+<jsp:include page="/WEB-INF/taglibs.jsp" />
+<jsp:include page="/WEB-INF/head.jsp" />
 
 <!-- Title -->
 <title>ENSIAST JOB: Log In</title>
 </head>
 <body>
-<jsp:include page="${pageContext.request.contextPath}/preloader.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/preloader.jsp" />
 
 <section id="login" class="login_area">
     <div class="bg-red-50 h-screen flex flex-col space-y-10 justify-center items-center">
@@ -21,7 +21,7 @@
             <p class="text-sm">Stay updated on your professional world</p>
             <form class="space-y-5 mt-5" method="post" action="/login">
                 <% if (request.getAttribute("error") != null) {%>
-                <div class="text-ensias-red"><% out.println(request.getAttribute("error")); %></div>
+                <div class="text-ensias-red"><c:out value="${ error }" /></div>
                 <% } %>
                 <input name="email" type="text" class="w-full h-12 border border-gray-800 rounded px-3" placeholder="Email" />
                 <div class="w-full flex items-center border border-gray-800 rounded px-3">

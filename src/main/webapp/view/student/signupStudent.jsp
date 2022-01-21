@@ -1,12 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
+<jsp:include page="/WEB-INF/taglibs.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp" />
 
 <!-- Title -->
 <title>ENSIAST JOB: Sign Up For ENSIASTS</title>
 </head>
 <body>
 
-<jsp:include page="${pageContext.request.contextPath}/preloader.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/preloader.jsp" />
 
 <section id="signupStudent" class="login_area">
     <div class="bg-red-50 h-screen flex flex-col justify-center items-center">
@@ -100,15 +101,15 @@
                             <div class="px-1">
                                 <label class="text-gray-600 font-light">Speciality</label>
                                 <select name="specialty" class="w-full mt-1 px-2 py-1 border rounded-lg text-gray-700 hover:border-ensias-red">
-                                    <option value="">IDSIT (IWIM)</option>
-                                    <option value="">GL</option>
-                                    <option value="">BI&A (eMBI)</option>
-                                    <option value="">SSI</option>
-                                    <option value="">SSE (ISEM)</option>
-                                    <option value="">2SCL (IeL)</option>
-                                    <option value="">2IA</option>
-                                    <option value="">IDF</option>
-                                    <option value="">GD</option>
+                                    <option value="IDSIT (IWIM)">IDSIT (IWIM)</option>
+                                    <option value="GL">GL</option>
+                                    <option value="BI&A (eMBI)">BI&A (eMBI)</option>
+                                    <option value="SSI">SSI</option>
+                                    <option value="SSE (ISEM)">SSE (ISEM)</option>
+                                    <option value="2SCL (IeL)">2SCL (IeL)</option>
+                                    <option value="2IA">2IA</option>
+                                    <option value="IDF">IDF</option>
+                                    <option value="GD">GD</option>
                                 </select>
                             </div>
                         </div>
@@ -116,10 +117,10 @@
                             <div class="px-1">
                                 <label class="text-gray-600 font-light">Study year</label>
                                 <select name="year-studies" class="w-full mt-1 px-2 py-1 border rounded-lg text-gray-700 hover:border-ensias-red">
-                                    <option value="">1A</option>
-                                    <option value="">2A</option>
-                                    <option value="">3A</option>
-                                    <option value="">Alumni</option>
+                                    <option value="1A">First Year</option>
+                                    <option value="2A">Second Year</option>
+                                    <option value="3A">Third Year</option>
+                                    <option value="Alumni">Alumni</option>
                                 </select>
                             </div>
                         </div>
