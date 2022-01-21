@@ -29,7 +29,7 @@ public class StudentDaoImpl implements StudentDao{
         student.setMemberId(memberId);
         try {
             preparedStatement = connection.prepareStatement("INSERT INTO student(member_id, first_name, last_name, cne, " +
-                    "cin, birthdate, gender, specialty, promo, year_studies, phone) Values (?,?,?,?,?,?,?,?,?,?,?)");
+                    "cin, birthdate, gender, specialty, promo, year_studies, phone) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             preparedStatement.setInt(1, student.getMemberId());
             preparedStatement.setString(2, student.getFirstName());
             preparedStatement.setString(3, student.getLastName());

@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : jeu. 20 jan. 2022 à 16:05
--- Version du serveur : 10.4.22-MariaDB
--- Version de PHP : 8.1.1
+-- Host: 127.0.0.1
+-- Generation Time: Jan 21, 2022 at 09:20 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,23 +18,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `ensiast_job`
+-- Database: `ensiast_job`
 --
-CREATE DATABASE IF NOT EXISTS `ensiast_job` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `ensiast_job`;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `candidacy`
+-- Table structure for table `candidacy`
 --
 
+DROP TABLE IF EXISTS `candidacy`;
 CREATE TABLE IF NOT EXISTS `candidacy` (
   `candidacy_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `offer_id` int(11) NOT NULL,
   `status` varchar(32) NOT NULL,
   `CV` varchar(64) NOT NULL,
+  `github_username` varchar(64) DEFAULT NULL,
   `date_candidacy` varchar(32) NOT NULL,
   `motivation` text NOT NULL,
   PRIMARY KEY (`candidacy_id`),
@@ -42,18 +42,27 @@ CREATE TABLE IF NOT EXISTS `candidacy` (
   KEY `offer_id` (`offer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- RELATIONSHIPS FOR TABLE `candidacy`:
+--   `student_id`
+--       `student` -> `student_id`
+--   `offer_id`
+--       `offer` -> `offer_id`
+--
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `company`
+-- Table structure for table `company`
 --
 
+DROP TABLE IF EXISTS `company`;
 CREATE TABLE IF NOT EXISTS `company` (
   `company_id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
   `company_name` varchar(64) NOT NULL,
   `ceo_name` varchar(64) DEFAULT NULL,
-  `company_size` varchar(64) NOT NULL,
+  `company_size` int(5) NOT NULL,
   `company_fix` varchar(16) DEFAULT NULL,
   `company_tif` varchar(32) NOT NULL,
   `founded` int(4) NOT NULL,
@@ -62,12 +71,19 @@ CREATE TABLE IF NOT EXISTS `company` (
   KEY `member_id` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- RELATIONSHIPS FOR TABLE `company`:
+--   `member_id`
+--       `member` -> `member_id`
+--
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `member`
+-- Table structure for table `member`
 --
 
+DROP TABLE IF EXISTS `member`;
 CREATE TABLE IF NOT EXISTS `member` (
   `member_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(64) NOT NULL,
@@ -79,12 +95,17 @@ CREATE TABLE IF NOT EXISTS `member` (
   PRIMARY KEY (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- RELATIONSHIPS FOR TABLE `member`:
+--
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `offer`
+-- Table structure for table `offer`
 --
 
+DROP TABLE IF EXISTS `offer`;
 CREATE TABLE IF NOT EXISTS `offer` (
   `offer_id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` int(11) NOT NULL,
@@ -93,18 +114,25 @@ CREATE TABLE IF NOT EXISTS `offer` (
   `offer_salary` int(6) DEFAULT NULL,
   `offer_location` varchar(64) NOT NULL,
   `offer_domain` varchar(64) NOT NULL,
-  `job_type` int(64) DEFAULT NULL,
+  `job_type` varchar(64) DEFAULT NULL,
   `offer_description` text NOT NULL,
   PRIMARY KEY (`offer_id`),
   KEY `company_id` (`company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- RELATIONSHIPS FOR TABLE `offer`:
+--   `company_id`
+--       `company` -> `company_id`
+--
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `profile`
+-- Table structure for table `profile`
 --
 
+DROP TABLE IF EXISTS `profile`;
 CREATE TABLE IF NOT EXISTS `profile` (
   `profile_id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
@@ -114,12 +142,19 @@ CREATE TABLE IF NOT EXISTS `profile` (
   KEY `student_id` (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- RELATIONSHIPS FOR TABLE `profile`:
+--   `student_id`
+--       `student` -> `student_id`
+--
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `student`
+-- Table structure for table `student`
 --
 
+DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
@@ -138,36 +173,42 @@ CREATE TABLE IF NOT EXISTS `student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contraintes pour les tables déchargées
+-- RELATIONSHIPS FOR TABLE `student`:
+--   `member_id`
+--       `member` -> `member_id`
 --
 
 --
--- Contraintes pour la table `candidacy`
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `candidacy`
 --
 ALTER TABLE `candidacy`
   ADD CONSTRAINT `candidacy_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
   ADD CONSTRAINT `candidacy_ibfk_2` FOREIGN KEY (`offer_id`) REFERENCES `offer` (`offer_id`);
 
 --
--- Contraintes pour la table `company`
+-- Constraints for table `company`
 --
 ALTER TABLE `company`
   ADD CONSTRAINT `company_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
 
 --
--- Contraintes pour la table `offer`
+-- Constraints for table `offer`
 --
 ALTER TABLE `offer`
   ADD CONSTRAINT `offer_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`);
 
 --
--- Contraintes pour la table `profile`
+-- Constraints for table `profile`
 --
 ALTER TABLE `profile`
   ADD CONSTRAINT `profile_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
 
 --
--- Contraintes pour la table `student`
+-- Constraints for table `student`
 --
 ALTER TABLE `student`
   ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
