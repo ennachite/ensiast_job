@@ -140,7 +140,7 @@
                             Student
                         </button>
                     </a>
-                    <a href="#?">
+                    <a href="${pageContext.request.contextPath}/signup-company">
                         <button class="flex items-center justify-between px-10 py-4 font-medium leading-5 text-white transition-colors duration-150 bg-red-800 border border-transparent rounded-lg hover:bg-ensias-red">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>

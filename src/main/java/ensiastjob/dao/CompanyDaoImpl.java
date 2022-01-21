@@ -31,7 +31,7 @@ public class CompanyDaoImpl implements CompanyDao{
             preparedStatement.setInt(1, company.getMemberId());
             preparedStatement.setString(2, company.getCompanyName());
             preparedStatement.setString(3, company.getCeoName());
-            preparedStatement.setString(4, company.getCompanySize());
+            preparedStatement.setInt(4, company.getCompanySize());
             preparedStatement.setString(5, company.getCompanyFix());
             preparedStatement.setString(6, company.getCompanyTif());
             preparedStatement.setInt(7, company.getFounded());
@@ -93,9 +93,12 @@ public class CompanyDaoImpl implements CompanyDao{
             company.setCompanyName(resultSet.getString("company_name"));
             company.setCeoName(resultSet.getString("ceo_name"));
             company.setCompanyFix(resultSet.getString("company_fix"));
+            company.setCompanySize(resultSet.getInt("company_size"));
+            company.setCompanySizeWord(resultSet.getInt("company_size"));
             company.setCompanyTif(resultSet.getString("company_tif"));
             company.setFounded(resultSet.getInt("founded"));
             company.setDescription(resultSet.getString("description"));
+
 
             return company;
         } else {

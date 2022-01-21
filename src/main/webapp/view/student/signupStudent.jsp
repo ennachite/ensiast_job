@@ -32,7 +32,9 @@
                         </div>
                     </div>
                     <!-- ============ End add picture ==============-->
-
+                    <c:if  test="${ requestScope.error != null }">
+                        <c:out value="${ requestScope.error }" />
+                    </c:if>
                     <div class="lg:flex mb-1 -mx-1">
                         <div class="lg:w-1/2 mb-3 lg:mb-2 mx-1">
                             <div class="px-1">

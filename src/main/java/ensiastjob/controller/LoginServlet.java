@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("company", company);
                 session.setAttribute("role", role);
 
-                request.getRequestDispatcher("jsp/company").forward(request, response);
+                request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
 
             }
 
