@@ -15,6 +15,7 @@ public class Strings {
     public static String ERROR_EMAIL_EXIST = "This email is already used. Thank you for entering a new one.";
     public static String ERROR_EMAIL_INCORRECT = "Invalid Email";
     public static String ERROR_DB_PROBLEM = "Sorry a technical problem has occurred. Be sure to wake up later.\r\n";
+    public static String ERROR_WRONG =  "Something wrong !";
 
     // Success messages
     public static String SUCCESS_PASSWORD_SENT = "An email confirming your password has been sent to the email address you have given.";

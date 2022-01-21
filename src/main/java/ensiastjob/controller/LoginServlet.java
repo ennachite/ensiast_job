@@ -73,13 +73,13 @@ public class LoginServlet extends HttpServlet {
             String error = Strings.ERROR_LOGIN;
             request.setAttribute("error", error);
 
-            request.getRequestDispatcher("jsp/login.jsp").forward(request, response);
+            request.getRequestDispatcher("view/login.jsp").forward(request, response);
 
         } else {
             String error = Strings.ERROR_DB_PROBLEM;
             request.setAttribute("error", error);
 
-            request.getRequestDispatcher("jsp/login.jsp").forward(request, response);
+            request.getRequestDispatcher("view/login.jsp").forward(request, response);
         }
     }
 }

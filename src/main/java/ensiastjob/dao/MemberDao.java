@@ -8,4 +8,5 @@ public interface MemberDao {
     public Member getMemberById(int id);
     public Member getMemberByEmail(String email);
     public int emailExist(String email);
+    public int updatePassword(String email, String currentPassword, String newPassword);
 }

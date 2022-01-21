@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="/WEB-INF/taglibs.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/taglibs.jsp" />
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp" />
 
 <!-- Title -->

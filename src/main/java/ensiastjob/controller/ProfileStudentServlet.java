@@ -7,8 +7,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "student-profile", value = "/student-profile")
-public class StudentProfileServlet extends HttpServlet {
+@WebServlet(name = "StudentProfile", value = "/student-profile")
+public class ProfileStudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);

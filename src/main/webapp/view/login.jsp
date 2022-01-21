@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/taglibs.jsp" />
 <jsp:include page="/WEB-INF/head.jsp" />
 
@@ -20,9 +21,9 @@
             <h1 class="text-3xl font-medium">Sign in</h1>
             <p class="text-sm">Stay updated on your professional world</p>
             <form class="space-y-5 mt-5" method="post" action="/login">
-                <% if (request.getAttribute("error") != null) {%>
-                <div class="text-ensias-red"><c:out value="${ error }" /></div>
-                <% } %>
+                <c:if  test="${ requestScope.error != null }">
+                    <c:out value="${ requestScope.error }" />
+                </c:if>
                 <input name="email" type="text" class="w-full h-12 border border-gray-800 rounded px-3" placeholder="Email" />
                 <div class="w-full flex items-center border border-gray-800 rounded px-3">
                     <input name="password" type="password" class="w-4/5 h-12 js-password" id="password" placeholder="Password" />

@@ -127,4 +127,28 @@ public class MemberDaoImpl implements MemberDao {
         }
         return -1;
     }
+
+    @Override
+    public int updatePassword(String email, String currentPassword, String newPassword) {
+        try {
+            int correctPassword = verifyLogin(email, currentPassword);
+            if (correctPassword == 1) {
+                preparedStatement = connection.prepareStatement("UPDATE member SET password=? WHERE email=?");
+                preparedStatement.setString(1, hashPassword(newPassword));
+                preparedStatement.setString(2, email);
+
+                if (preparedStatement.executeUpdate() > 0) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            } else if (correctPassword == 0) {
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
 }
