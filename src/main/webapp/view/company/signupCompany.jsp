@@ -58,27 +58,6 @@
                         </div>
                         <div class="lg:w-1/2  mb-3 lg:mb-2 mx-1">
                             <div class="px-1">
-                                <label class="text-gray-600 font-light">Company Size</label>
-                                <select class="w-full mt-1 px-2 py-1 border rounded-lg text-gray-700 hover:text-gray-500 hover:border-ensias-red">
-                                    <option value="Micro">Micro: 1 to 9 employees</option>
-                                    <option value="Small">Small: 10 to 49 employees</option>
-                                    <option value="Medium">Medium: 50 to 249 employees</option>
-                                    <option value="Large">Large: 250 employees or more</option>
-                                </select>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:flex mb-3 -mx-1">
-                        <div class="lg:w-1/2 mb-5 lg:mb-2 mx-1">
-                            <div class="px-1">
-                                <label class="text-gray-600 font-light">Phone number</label>
-                                <input name="fix" type='tel' class="w-full mt-1 px-2 py-1 border rounded-lg text-gray-700 hover:border-ensias-red" placeholder="Enter the phone number" />
-                            </div>
-                        </div>
-                        <div class="lg:w-1/2  mb-3 lg:mb-2 mx-1">
-                            <div class="px-1">
                                 <label class="text-gray-600 font-light">City</label>
                                 <input name="city" type='text' class="w-full mt-1 px-2 py-1 border rounded-lg text-gray-700 hover:border-ensias-red" placeholder="Enter company location" />
                             </div>
@@ -99,10 +78,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" lg:w-2/2  mb-3 lg:mb-2 mx-1">
-                        <div class="w-full  mb-3">
-                            <label class="text-gray-600 font-light">Email address</label>
-                            <input name="email" type='email' class="w-full mb-2 px-2 py-1 border rounded-lg text-gray-700 hover:border-ensias-red" placeholder="Enter email address" />
+
+                    <div class="lg:flex mb-32-mx-1">
+                        <div class="lg:w-1/2 mb-5 lg:mb-2 mx-1">
+                            <div class="px-1">
+                                <label class="text-gray-600 font-light">Phone number</label>
+                                <input name="fix" type='tel' class="w-full mt-1 px-2 py-1 border rounded-lg text-gray-700 hover:border-ensias-red" placeholder="Enter the phone number" />
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 mb-5 lg:mb-2 mx-1">
+                            <div class="px-1">
+                                <label class="text-gray-600 font-light">Email address</label>
+                                <input name="email" type='email' class="w-full mb-2 px-2 py-1 border rounded-lg text-gray-700 hover:border-ensias-red" placeholder="Enter email address" />
+                            </div>
                         </div>
                     </div>
 
@@ -125,6 +113,13 @@
                             </div>
 
                         </div>
+                    </div>
+
+                    <div class="lg:w-2/2 mt-6 lg:mb-2 mx-1">
+                        <label class="block ">
+                            <span class="text-gray-600 font-light">Description about company</span>
+                            <textarea name="description" class="w-full mt-1 px-2 py-1 border rounded-lg text-gray-700 hover:border-ensias-red" rows="5" placeholder="Enter the description of the offer"></textarea>
+                        </label>
                     </div>
 
                 </div>

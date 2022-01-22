@@ -38,6 +38,7 @@ public class SignupCompanyServlet extends HttpServlet {
         int founded = Integer.parseInt(request.getParameter("founded"));
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String description = request.getParameter("description");
 
         int emailExist = memberDao.emailExist(email);
 
@@ -58,6 +59,7 @@ public class SignupCompanyServlet extends HttpServlet {
             company.setCompanySize(companySize);
             company.setCompanyFix(companyFix);
             company.setFounded(founded);
+            company.setDescription(description);
 
             companyDao.addCompany(company, member);
 

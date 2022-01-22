@@ -99,7 +99,7 @@
                         <div class="text-left pt-3 pb-2">
                             <label class="block mt-4">
                                 <span class="text-gray-700">Description about the company</span>
-                                <textarea name="description" value="${ sessionScope.company.description }" class="block w-full mt-1 text-sm focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input p-2 h-260 pb-5" rows="3" placeholder="Enter description here ...."></textarea>
+                                <textarea name="description" class="block w-full mt-1 text-sm focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input p-2 h-260 pb-5" rows="3" placeholder="Enter description here ....">${ sessionScope.company.description }</textarea>
                             </label>
 
                         </div>
