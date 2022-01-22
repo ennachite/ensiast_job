@@ -48,6 +48,34 @@ public class CompanyDaoImpl implements CompanyDao{
         return 0;
     }
 
+    public int updateCompany (Company company, Member member) {
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE member, company SET member.city=?, company.company_name=?, " +
+                    "company.ceo_name=?, company.company_tif=?, company.company_fix=?, company.company_size=?, company.founded=?, " +
+                    "company.description=? WHERE member.member_id=? AND company.company_id=?");
+            preparedStatement.setString(1, member.getCity());
+            preparedStatement.setString(2, company.getCompanyName());
+            preparedStatement.setString(3, company.getCeoName());
+            preparedStatement.setString(4, company.getCompanyTif());
+            preparedStatement.setString(5, company.getCompanyFix());
+            preparedStatement.setInt(6, company.getCompanySize());
+            preparedStatement.setInt(7, company.getFounded());
+            preparedStatement.setString(8, company.getDescription());
+            preparedStatement.setInt(9, member.getMemberId());
+            preparedStatement.setInt(10, company.getCompanyId());
+
+            if (preparedStatement.executeUpdate() > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
     @Override
     public Company getCompanyById(int id) {
         try {

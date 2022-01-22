@@ -18,11 +18,11 @@ public class OfferDaoImpl implements OfferDao {
     }
 
     @Override
-    public int addOffer(Offer offer, int companyId) {
+    public int addOffer(Offer offer) {
         try {
             preparedStatement = connection.prepareStatement("INSERT INTO offer(company_id, offer_name, offer_type, " +
                     "offer_salary, offer_location, offer_domain, job_type, offer_description) VALUES (?,?,?,?,?,?,?,?)");
-            preparedStatement.setInt(1, companyId);
+            preparedStatement.setInt(1, offer.getCompanyId());
             preparedStatement.setString(2, offer.getOfferName());
             preparedStatement.setString(3, offer.getOfferType());
             preparedStatement.setInt(4, offer.getOfferSalary());

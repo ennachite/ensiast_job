@@ -7,8 +7,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ProfileCompany", value = "/company-profile")
-public class ProfileCompanyServlet extends HttpServlet {
+@WebServlet(name = "ProfileServlet", value = "/profile")
+public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -16,7 +16,11 @@ public class ProfileCompanyServlet extends HttpServlet {
         if ( (Member) session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
-            request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
+            if (session.getAttribute("role").equals("STUDENT")) {
+                request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
+            } else if (session.getAttribute("role").equals("COMPANY")) {
+                request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
+            }
         }
     }
 
