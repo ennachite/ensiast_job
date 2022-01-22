@@ -39,7 +39,6 @@ public class AddOfferServlet extends HttpServlet {
 
         offer.setCompanyId(company.getCompanyId());
         offer.setOfferName(offerName);
-        offer.setOfferType(offerType);
         offer.setOfferSalary(offerSalary);
         offer.setOfferLocation(offerLocation);
         offer.setOfferDomain(offerDomain);

@@ -2,7 +2,7 @@ package ensiastjob.model;
 
 public class Offer {
     private int offerId, companyId;
-    private String offerName, offerType, offerLocation, offerDomain, jobType, offerDescription;
+    private String offerName, offerLocation, offerDomain, jobType, offerDescription, postTime;
     private int offerSalary;
 
     public int getOfferId() {
@@ -27,14 +27,6 @@ public class Offer {
 
     public void setOfferName(String offerName) {
         this.offerName = offerName;
-    }
-
-    public String getOfferType() {
-        return offerType;
-    }
-
-    public void setOfferType(String offerType) {
-        this.offerType = offerType;
     }
 
     public String getOfferLocation() {
@@ -67,6 +59,14 @@ public class Offer {
 
     public void setOfferDescription(String offerDescription) {
         this.offerDescription = offerDescription;
+    }
+
+    public String getPostTime() {
+        return postTime;
+    }
+
+    public void setPostTime(String postTime) {
+        this.postTime = postTime;
     }
 
     public int getOfferSalary() {

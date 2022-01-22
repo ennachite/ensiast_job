@@ -39,20 +39,6 @@
                 <input name="offer-name" class="block w-full mt-1 h-8 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input" placeholder="Enter name offer"/>
               </label>
 
-              <div class="my-4">
-                <span class="text-gray-700"> Offer Type </span>
-                <div class="mt-2">
-                  <label class="inline-flex items-center text-gray-600 pl-3">
-                    <input name="offer-type" type="radio" class="" value="Internship offer"/>
-                    <span class="ml-2 text-gray-700">Internship offer</span>
-                  </label>
-                  <label class="inline-flex items-center ml-6 text-gray-600">
-                    <input name="offer-type" type="radio" class="" value="Job offer"/>
-                    <span class="ml-2 text-gray-700">Job offer</span>
-                  </label>
-                </div>
-              </div>
-
               <label class="block  my-4">
                 <span class="text-black">Salary/Month (MAD)</span>
                 <input name="offer-salary" type="number" class="block w-full mt-1 h-8  pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input" placeholder="Ex: 10000"/>
@@ -73,13 +59,14 @@
                 <select name="job-type" class="block w-full mt-1  pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input h-8">
                   <option value="Full-time">Full-time</option>
                   <option value="Part-time">Part-time</option>
+                  <option value="Internship">Internship</option>
                   <option value="Casual">Casual</option>
                   <option value="Fixed term">Fixed term</option>
                   <option value="Shiftworks">Shiftworks</option>
                   <option value="Daily hire and weekly hire">Daily hire and weekly hire</option>
                   <option value="Probation">Probation</option>
                   <option value="Apprentices and trainees">Apprentices and trainees</option>
-                  <option value="Outworkers">Outworkers</option>
+                  <option value="Outworkers">Outworks</option>
                 </select>
               </label>
 

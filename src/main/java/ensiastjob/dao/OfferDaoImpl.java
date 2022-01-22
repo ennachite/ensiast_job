@@ -4,6 +4,8 @@ import ensiastjob.extra.DBConnection;
 import ensiastjob.model.Offer;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,17 +21,19 @@ public class OfferDaoImpl implements OfferDao {
 
     @Override
     public int addOffer(Offer offer) {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO offer(company_id, offer_name, offer_type, " +
-                    "offer_salary, offer_location, offer_domain, job_type, offer_description) VALUES (?,?,?,?,?,?,?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO offer(company_id, offer_name, offer_salary, " +
+                    "offer_location, offer_domain, job_type, offer_description, post_time) VALUES (?,?,?,?,?,?,?,?)");
             preparedStatement.setInt(1, offer.getCompanyId());
             preparedStatement.setString(2, offer.getOfferName());
-            preparedStatement.setString(3, offer.getOfferType());
-            preparedStatement.setInt(4, offer.getOfferSalary());
-            preparedStatement.setString(5, offer.getOfferLocation());
-            preparedStatement.setString(6, offer.getOfferDomain());
-            preparedStatement.setString(7, offer.getJobType());
-            preparedStatement.setString(8, offer.getOfferDescription());
+            preparedStatement.setInt(3, offer.getOfferSalary());
+            preparedStatement.setString(4, offer.getOfferLocation());
+            preparedStatement.setString(5, offer.getOfferDomain());
+            preparedStatement.setString(6, offer.getJobType());
+            preparedStatement.setString(7, offer.getOfferDescription());
+            preparedStatement.setString(8, dateFormatter.format(now));
 
             if (preparedStatement.executeUpdate() > 0) {
                 return 1;
@@ -85,28 +89,27 @@ public class OfferDaoImpl implements OfferDao {
         offer.setOfferId(resultSet.getInt("offer_id"));
         offer.setCompanyId(resultSet.getInt("company_id"));
         offer.setOfferName(resultSet.getString("offer_name"));
-        offer.setOfferType(resultSet.getString("offer_type"));
         offer.setOfferSalary(resultSet.getInt("offer_salary"));
         offer.setOfferLocation(resultSet.getString("offer_location"));
         offer.setOfferDomain(resultSet.getString("offer_domain"));
         offer.setJobType(resultSet.getString("job_type"));
         offer.setOfferDescription(resultSet.getString("offer_description"));
+        offer.setPostTime(resultSet.getString("post_time"));
         return offer;
     }
 
     @Override
     public int updateOffer(Offer offer) {
         try {
-            preparedStatement = connection.prepareStatement("UPDATE offer set offer_name=?, offer_type=?, offer_salary=?, " +
+            preparedStatement = connection.prepareStatement("UPDATE offer set offer_name=?, offer_salary=?, " +
                     "offer_location=?, offer_domain=?, job_type=?, offer_description=? WHERE offer_id=?");
             preparedStatement.setString(1, offer.getOfferName());
-            preparedStatement.setString(2, offer.getOfferType());
-            preparedStatement.setInt(3, offer.getOfferSalary());
-            preparedStatement.setString(4, offer.getOfferLocation());
-            preparedStatement.setString(5, offer.getOfferDomain());
-            preparedStatement.setString(6, offer.getJobType());
-            preparedStatement.setString(7, offer.getOfferDescription());
-            preparedStatement.setInt(8, offer.getOfferId());
+            preparedStatement.setInt(2, offer.getOfferSalary());
+            preparedStatement.setString(3, offer.getOfferLocation());
+            preparedStatement.setString(4, offer.getOfferDomain());
+            preparedStatement.setString(5, offer.getJobType());
+            preparedStatement.setString(6, offer.getOfferDescription());
+            preparedStatement.setInt(7, offer.getOfferId());
 
             if (preparedStatement.executeUpdate() > 0) {
                 return 1;
