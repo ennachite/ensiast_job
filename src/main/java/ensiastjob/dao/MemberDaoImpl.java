@@ -151,4 +151,24 @@ public class MemberDaoImpl implements MemberDao {
 
         return -1;
     }
+
+    @Override
+    public int addPicture(int memberId, String picturePath) {
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE member set picture=? WHERE member_id=?");
+            preparedStatement.setString(1, picturePath);
+            preparedStatement.setInt(2, memberId);
+
+            if (preparedStatement.executeUpdate() > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
 }

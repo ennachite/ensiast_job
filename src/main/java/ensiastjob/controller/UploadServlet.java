@@ -1,5 +1,6 @@
 package ensiastjob.controller;
 
+import ensiastjob.dao.MemberDaoImpl;
 import ensiastjob.dao.StudentDaoImpl;
 import ensiastjob.dao.StudentProfileDao;
 import ensiastjob.model.Member;
@@ -21,7 +22,7 @@ public class UploadServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        StudentDaoImpl studentDao = new StudentDaoImpl();
+        MemberDaoImpl memberDao = new MemberDaoImpl();
         Member member = (Member) session.getAttribute("member");
 
         Part ImgPart = request.getPart("profile-picture");
@@ -31,7 +32,7 @@ public class UploadServlet extends HttpServlet {
         File fileSaveDir = new File(savePath);
         ImgPart.write(savePath + File.separator);
 
-//        studentDao.st
+        memberDao.addPicture(member.getMemberId(), savePath);
     }
 
     private String extractFileName(Part part) {
