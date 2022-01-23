@@ -23,14 +23,14 @@ public class CandidacyDaoImpl implements CandidacyDao{
     }
 
     @Override
-    public int addCandidacy(Candidacy candidacy, int studentId, int offerId) {
+    public int addCandidacy(Candidacy candidacy) {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         try {
             preparedStatement = connection.prepareStatement("INSERT INTO candidacy(student_id, offer_id, status, CV, " +
                     "github_username, date_candidacy, motivation) VALUES (?,?,?,?,?,?,?)");
-            preparedStatement.setInt(1, studentId);
-            preparedStatement.setInt(2, offerId);
+            preparedStatement.setInt(1, candidacy.getStudentId());
+            preparedStatement.setInt(2, candidacy.getOfferId());
             preparedStatement.setString(3, String.valueOf(candidacy.getCandidacyStatus()));
             preparedStatement.setString(4, candidacy.getStudentCV());
             preparedStatement.setString(5, candidacy.getGithubUsername());

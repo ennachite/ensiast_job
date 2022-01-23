@@ -8,6 +8,7 @@ public interface OfferDao {
     public int addOffer(Offer offer);
     public Offer getOfferById(int offerId);
     public List<Offer> getAllOffersByCompany(int companyId);
+    public List<Offer> getAllOffers();
     public int updateOffer(Offer offer);
     public int deleteOffer(int offerId);
 }

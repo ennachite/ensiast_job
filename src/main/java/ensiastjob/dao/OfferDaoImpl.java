@@ -66,13 +66,32 @@ public class OfferDaoImpl implements OfferDao {
 
     @Override
     public List<Offer> getAllOffersByCompany(int companyId) {
-        List<Offer> offers = new ArrayList<Offer>();
+        List<Offer> offers = new ArrayList<>();
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM offer WHERE company_id=?");
             preparedStatement.setInt(1, companyId);
 
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
+                Offer offer = getOffer();
+                offers.add(offer);
+            }
+            return offers;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Offer> getAllOffers() {
+        List<Offer> offers = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM offer");
+
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
                 Offer offer = getOffer();
                 offers.add(offer);
             }

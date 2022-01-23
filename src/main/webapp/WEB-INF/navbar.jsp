@@ -6,7 +6,14 @@
         <div class="row items-center">
             <div class="w-full">
                 <nav class="flex items-center justify-between pt-2 navbar navbar-expand-lg">
-                    <a href="<c:url value="/home-company" />" class="navbar-brand mr-5">
+                    <c:choose>
+                        <c:when test="${ sessionScope.role.equals('STUDENT') }">
+                            <a href="<c:url value="/home-student" />" class="navbar-brand mr-5">
+                        </c:when>
+                        <c:otherwise>
+                            <a href="<c:url value="/home-company" />" class="navbar-brand mr-5">
+                        </c:otherwise>
+                    </c:choose>
                         <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="Logo" />
                     </a>
 
@@ -30,7 +37,7 @@
                             <div class="relative">
                                 <input type="checkbox" id="sortbox" class="hidden absolute" />
                                 <label for="sortbox" class="flex items-center cursor-pointer justify-center">
-                                    <img class="inline rounded-full mr-3 object-cover w-8 h-8" src="${pageContext.request.contextPath}/assets/img/person.jpg" style="width: 30px; height: 30px; object-fit: cover"  alt="pdp"/>
+                                    <img class="inline rounded-full mr-3 object-cover w-8 h-8" src="${pageContext.request.contextPath}/assets/img/${ sessionScope.role.equals('STUDENT') ? 'person.jpg' : 'company.png' }" style="width: 30px; height: 30px; object-fit: cover"  alt="pdp"/>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                                     </svg>

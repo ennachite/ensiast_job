@@ -2,6 +2,7 @@ package ensiastjob.controller;
 
 import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.model.Company;
+import ensiastjob.model.Member;
 import ensiastjob.model.Offer;
 
 import javax.servlet.*;
@@ -15,10 +16,14 @@ public class AddOfferServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Company) session.getAttribute("company") == null) {
+        if ( (Member) session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
-            request.getRequestDispatcher("view/company/addOfferCompany.jsp").forward(request, response);
+            if (session.getAttribute("role").equals("STUDENT")) {
+                response.sendRedirect("/home-student");
+            } else if (session.getAttribute("role").equals("COMPANY")) {
+                request.getRequestDispatcher("view/company/addOfferCompany.jsp").forward(request, response);
+            }
         }
     }
 
