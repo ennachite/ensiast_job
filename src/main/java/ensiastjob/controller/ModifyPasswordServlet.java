@@ -40,9 +40,7 @@ public class ModifyPasswordServlet extends HttpServlet {
 
             String role = String.valueOf(member.getRole());
 
-            if (role.equals("STUDENT")){
-                request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
-            }
+            response.sendRedirect("/profile");
 
         } else if (updatePassword == 0) {
             String error = Strings.ERROR_WRONG;

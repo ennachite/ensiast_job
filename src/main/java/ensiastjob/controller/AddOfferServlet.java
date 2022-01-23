@@ -51,7 +51,7 @@ public class AddOfferServlet extends HttpServlet {
             request.setAttribute("error", "Connection Error");
             request.getRequestDispatcher("view/company/addOfferCompany.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
+            response.sendRedirect("/home-company");
         }
     }
 }

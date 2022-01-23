@@ -11,8 +11,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "HomeCompany", value = "/home-company")
-public class HomeCompanyServlet extends HttpServlet {
+@WebServlet(name = "DeleteOffer", value = "/delete-offer")
+public class DeleteOfferServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -21,17 +21,16 @@ public class HomeCompanyServlet extends HttpServlet {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("STUDENT")) {
-                response.sendRedirect("/profile");
+                request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
             } else if (session.getAttribute("role").equals("COMPANY")) {
 
                 OfferDaoImpl offerDao = new OfferDaoImpl();
 
-                Company company = (Company) session.getAttribute("company");
+                int offerIdDeleted = Integer.parseInt(request.getParameter("offerIdDeleted"));
 
-                List<Offer> offers = offerDao.getAllOffersByCompany(company.getCompanyId());
+                offerDao.deleteOffer(offerIdDeleted);
 
-                request.setAttribute("offers", offers);
-                request.getRequestDispatcher("view/company/homeCompany.jsp").forward(request, response);
+                response.sendRedirect("/home-company");
             }
         }
     }

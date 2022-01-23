@@ -21,7 +21,7 @@ public class ModifyProfileCompanyServlet extends HttpServlet {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("STUDENT")) {
-                request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
+                response.sendRedirect("/profile");
             } else if (session.getAttribute("role").equals("COMPANY")) {
                 request.getRequestDispatcher("view/company/modifyProfileCompany.jsp").forward(request, response);
             }
@@ -65,7 +65,7 @@ public class ModifyProfileCompanyServlet extends HttpServlet {
             session.setAttribute("member", member);
             session.setAttribute("company", company);
 
-            request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
+            response.sendRedirect("/profile");
         } else if (updateProfile == 0) {
             String error = Strings.ERROR_WRONG;
             request.setAttribute("error", error);

@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("profile_student", studentProfile);
                 session.setAttribute("role", role);
 
-                request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
+                response.sendRedirect("/profile");
 
             } else if (role.equals("COMPANY")) {
                 CompanyDaoImpl companyDao = new CompanyDaoImpl();
@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("company", company);
                 session.setAttribute("role", role);
 
-                request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
+                response.sendRedirect("/profile");
 
             }
 

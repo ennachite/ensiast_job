@@ -6,7 +6,7 @@
         <div class="row items-center">
             <div class="w-full">
                 <nav class="flex items-center justify-between pt-2 navbar navbar-expand-lg">
-                    <a href="<c:url value="/profile" />" class="navbar-brand mr-5">
+                    <a href="<c:url value="/home-company" />" class="navbar-brand mr-5">
                         <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="Logo" />
                     </a>
 

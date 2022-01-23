@@ -92,9 +92,11 @@
                                         <button class="px-3 py-1 rounded hover:bg-ensias-red hover:text-white border-2 border-gray-300 close-modal">
                                             Cancel
                                         </button>
-                                        <button class="px-3 py-1 bg-red-800 text-gray-200 hover:bg-ensias-red rounded">
-                                            Delete
-                                        </button>
+                                        <a href="<c:url value="/delete-offer?offerIdDeleted=${ offer.offerId }" />">
+                                            <button class="px-3 py-1 bg-red-800 text-gray-200 hover:bg-ensias-red rounded">
+                                                Delete
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

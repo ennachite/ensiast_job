@@ -73,7 +73,7 @@ public class SignupCompanyServlet extends HttpServlet {
             session.setAttribute("company", company);
             session.setAttribute("role", "COMPANY");
 
-            request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
+            response.sendRedirect("/profile");
 
         } else if (emailExist == 1) {
             String error = Strings.ERROR_EMAIL_EXIST;
