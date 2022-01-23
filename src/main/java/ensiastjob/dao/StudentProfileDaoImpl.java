@@ -34,6 +34,25 @@ public class StudentProfileDaoImpl implements StudentProfileDao{
     }
 
     @Override
+    public int updateStudentProfile(StudentProfile studentProfile) {
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE profile SET summary=? WHERE student_id=?");
+            preparedStatement.setString(1, studentProfile.getSummary());
+            preparedStatement.setInt(2, studentProfile.getStudentId());
+
+            if (preparedStatement.executeUpdate() > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
+    @Override
     public StudentProfile getStudentProfileByStudentId(int studentId) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM profile WHERE student_id=?");

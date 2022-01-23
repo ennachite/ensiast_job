@@ -171,4 +171,24 @@ public class MemberDaoImpl implements MemberDao {
 
         return -1;
     }
+
+    @Override
+    public int updateCity(int memberId, String city) {
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE member set city=? WHERE member_id=?");
+            preparedStatement.setString(1, city);
+            preparedStatement.setInt(2, memberId);
+
+            if (preparedStatement.executeUpdate() > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
 }

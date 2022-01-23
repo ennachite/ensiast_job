@@ -56,6 +56,37 @@ public class StudentDaoImpl implements StudentDao{
     }
 
     @Override
+    public int updateStudent(Student student, Member member) {
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE student SET first_name=?, last_name=?, cin=?, cne=?, " +
+                    "gender=?, birthdate=?, phone=?, promo=?,year_studies=?,specialty=? WHERE student_id=?");
+            preparedStatement.setString(1, student.getFirstName());
+            preparedStatement.setString(2, student.getLastName());
+            preparedStatement.setString(3, student.getCIN());
+            preparedStatement.setString(4, student.getCNE());
+            preparedStatement.setString(5, student.getGender());
+            preparedStatement.setString(6, student.getBirthdate());
+            preparedStatement.setString(7, student.getPhone());
+            preparedStatement.setInt(8, student.getPromo());
+            preparedStatement.setString(9, student.getYearStudies());
+            preparedStatement.setString(10, student.getSpecialty());
+            preparedStatement.setInt(11, student.getStudentId());
+
+            if (preparedStatement.executeUpdate() > 0) {
+                MemberDaoImpl memberDao = new MemberDaoImpl();
+                memberDao.updateCity(member.getMemberId(), member.getCity());
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
+    @Override
     public Student getStudentById(int id) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM student WHERE student_id=?");
