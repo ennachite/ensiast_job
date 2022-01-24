@@ -96,18 +96,21 @@
 // Soumya
 
 window.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.querySelector(".overlay");
-  const delBtn = document.querySelector(".main-modal");
-  const closeBtn = document.querySelector(".close-modal");
+  const overlay = document.querySelectorAll(".overlay");
+  const del = document.querySelectorAll(".main-modal");
+  const close = document.querySelectorAll(".close-modal");
 
-  const toggleModal = () => {
+
+  const toggleModal = (overlay) => {
+    console.log("test")
     overlay.classList.toggle("hidden");
     overlay.classList.toggle("flex");
   };
 
-  delBtn.addEventListener("click", toggleModal);
-
-  closeBtn.addEventListener("click", toggleModal);
+  overlay.forEach((element, index) => {
+    del[index].addEventListener("click", ()=>toggleModal(element));
+    close[index].addEventListener("click", ()=>toggleModal(element));
+  })
 });
 
 // const passwordToggle = document.querySelectorAll(".js-password-label"); // apparently, querySelectorAll(".js-password-toggle") doesn't work
