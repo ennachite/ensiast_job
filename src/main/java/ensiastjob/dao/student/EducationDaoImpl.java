@@ -2,8 +2,11 @@ package ensiastjob.dao.student;
 
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.student.Education;
+import ensiastjob.model.student.Education;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EducationDaoImpl implements EducationDao{
     private final Connection connection;
@@ -60,5 +63,36 @@ public class EducationDaoImpl implements EducationDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Education> getAllEducationsByProfileId(int profileId) {
+        List<Education> educations = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM education WHERE profile_id=?");
+            preparedStatement.setInt(1, profileId);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Education education = new Education();
+                education.setEducationId(resultSet.getInt("education_id"));
+                education.setProfileId(resultSet.getInt("profile_id"));
+                education.setSchoolName(resultSet.getString("school_name"));
+                education.setDegree(resultSet.getString("degree"));
+                education.setFieldStudies(resultSet.getString("field_studies"));
+                education.setStartDate(resultSet.getString("start_date"));
+                education.setEndDate(resultSet.getString("end_date"));
+                education.setEductionDescription(resultSet.getString("description"));
+
+                educations.add(education);
+            }
+
+            return educations;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

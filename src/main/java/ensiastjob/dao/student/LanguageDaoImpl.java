@@ -2,8 +2,11 @@ package ensiastjob.dao.student;
 
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.student.Language;
+import ensiastjob.model.student.Language;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LanguageDaoImpl implements LanguageDao{
     private final Connection connection;
@@ -50,5 +53,32 @@ public class LanguageDaoImpl implements LanguageDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Language> getAllLanguagesByProfileId(int profileId) {
+        List<Language> languages = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM language WHERE profile_id=?");
+            preparedStatement.setInt(1, profileId);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Language language = new Language();
+                language.setLanguageId(resultSet.getInt("language_id"));
+                language.setProfileId(resultSet.getInt("profile_id"));
+                language.setLanguageName(resultSet.getString("language_name"));
+                language.setLevel(resultSet.getString("level"));
+
+                languages.add(language);
+            }
+
+            return languages;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

@@ -2,8 +2,11 @@ package ensiastjob.dao.student;
 
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.student.Experience;
+import ensiastjob.model.student.Experience;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExperienceDaoImpl implements ExperienceDao{
     private final Connection connection;
@@ -19,7 +22,7 @@ public class ExperienceDaoImpl implements ExperienceDao{
     public void addExperience(Experience experience) {
         try {
             preparedStatement = connection.prepareStatement("INSERT INTO experience (profile_id, title, job_type, " +
-                    "comapny_name, location, start_date, end_date, description) VALUES (?,?,?,?,?,?,?,?)");
+                    "company_name, location, start_date, end_date, description) VALUES (?,?,?,?,?,?,?,?)");
             preparedStatement.setInt(1, experience.getProfileId());
             preparedStatement.setString(2, experience.getExperienceTitle());
             preparedStatement.setString(3, experience.getJobType());
@@ -38,7 +41,7 @@ public class ExperienceDaoImpl implements ExperienceDao{
     public void modifyExperience(Experience experience) {
         try {
             preparedStatement = connection.prepareStatement("UPDATE experience SET title=?, job_type=?," +
-                    "comapny_name=?, location=?, start_date=?, end_date=?, description=? WHERE experience_id=?");
+                    "company_name=?, location=?, start_date=?, end_date=?, description=? WHERE experience_id=?");
             preparedStatement.setString(1, experience.getExperienceTitle());
             preparedStatement.setString(2, experience.getJobType());
             preparedStatement.setString(3, experience.getCompanyName());
@@ -62,5 +65,37 @@ public class ExperienceDaoImpl implements ExperienceDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Experience> getAllExperiencesByProfileId(int profileId) {
+        List<Experience> experiences = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM experience WHERE profile_id=?");
+            preparedStatement.setInt(1, profileId);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Experience experience = new Experience();
+                experience.setExperienceId(resultSet.getInt("experience_id"));
+                experience.setProfileId(resultSet.getInt("profile_id"));
+                experience.setExperienceTitle(resultSet.getString("title"));
+                experience.setJobType(resultSet.getString("job_type"));
+                experience.setCompanyName(resultSet.getString("company_name"));
+                experience.setCompanyLocation(resultSet.getString("location"));
+                experience.setStartDate(resultSet.getString("start_date"));
+                experience.setEndDate(resultSet.getString("end_date"));
+                experience.setExperienceDescription(resultSet.getString("description"));
+
+                experiences.add(experience);
+            }
+
+            return experiences;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

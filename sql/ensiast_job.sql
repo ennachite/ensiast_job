@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2022 at 06:31 PM
+-- Generation Time: Jan 24, 2022 at 07:48 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `ensiast_job`
 --
-CREATE DATABASE IF NOT EXISTS `ensiast_job` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `ensiast_job`;
 
 -- --------------------------------------------------------
 
@@ -29,6 +27,7 @@ USE `ensiast_job`;
 -- Table structure for table `candidacy`
 --
 
+DROP TABLE IF EXISTS `candidacy`;
 CREATE TABLE IF NOT EXISTS `candidacy` (
                                            `candidacy_id` int(11) NOT NULL AUTO_INCREMENT,
                                            `student_id` int(11) NOT NULL,
@@ -57,11 +56,12 @@ CREATE TABLE IF NOT EXISTS `candidacy` (
 -- Table structure for table `certification`
 --
 
+DROP TABLE IF EXISTS `certification`;
 CREATE TABLE IF NOT EXISTS `certification` (
                                                `certification_id` int(11) NOT NULL AUTO_INCREMENT,
                                                `profile_id` int(11) NOT NULL,
                                                `certification_name` varchar(64) NOT NULL,
-                                               `issuing_oragnization` varchar(64) NOT NULL,
+                                               `issuing_organization` varchar(64) NOT NULL,
                                                `issue_date` varchar(64) NOT NULL,
                                                `expiration_date` varchar(64) DEFAULT NULL,
                                                `credential_id` varchar(64) DEFAULT NULL,
@@ -82,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `certification` (
 -- Table structure for table `company`
 --
 
+DROP TABLE IF EXISTS `company`;
 CREATE TABLE IF NOT EXISTS `company` (
                                          `company_id` int(11) NOT NULL AUTO_INCREMENT,
                                          `member_id` int(11) NOT NULL,
@@ -108,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- Table structure for table `education`
 --
 
+DROP TABLE IF EXISTS `education`;
 CREATE TABLE IF NOT EXISTS `education` (
                                            `education_id` int(11) NOT NULL AUTO_INCREMENT,
                                            `profile_id` int(11) NOT NULL,
@@ -133,12 +135,13 @@ CREATE TABLE IF NOT EXISTS `education` (
 -- Table structure for table `experience`
 --
 
+DROP TABLE IF EXISTS `experience`;
 CREATE TABLE IF NOT EXISTS `experience` (
                                             `experience_id` int(11) NOT NULL AUTO_INCREMENT,
                                             `profile_id` int(11) NOT NULL,
                                             `title` varchar(64) NOT NULL,
                                             `job_type` varchar(64) NOT NULL,
-                                            `comapny_name` varchar(32) NOT NULL,
+                                            `company_name` varchar(32) NOT NULL,
                                             `location` varchar(64) DEFAULT NULL,
                                             `start_date` varchar(64) NOT NULL,
                                             `end_date` varchar(64) DEFAULT NULL,
@@ -159,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `experience` (
 -- Table structure for table `language`
 --
 
+DROP TABLE IF EXISTS `language`;
 CREATE TABLE IF NOT EXISTS `language` (
                                           `language_id` int(11) NOT NULL AUTO_INCREMENT,
                                           `profile_id` int(11) NOT NULL,
@@ -180,6 +184,7 @@ CREATE TABLE IF NOT EXISTS `language` (
 -- Table structure for table `member`
 --
 
+DROP TABLE IF EXISTS `member`;
 CREATE TABLE IF NOT EXISTS `member` (
                                         `member_id` int(11) NOT NULL AUTO_INCREMENT,
                                         `email` varchar(64) NOT NULL,
@@ -201,6 +206,7 @@ CREATE TABLE IF NOT EXISTS `member` (
 -- Table structure for table `offer`
 --
 
+DROP TABLE IF EXISTS `offer`;
 CREATE TABLE IF NOT EXISTS `offer` (
                                        `offer_id` int(11) NOT NULL AUTO_INCREMENT,
                                        `company_id` int(11) NOT NULL,
@@ -227,6 +233,7 @@ CREATE TABLE IF NOT EXISTS `offer` (
 -- Table structure for table `profile`
 --
 
+DROP TABLE IF EXISTS `profile`;
 CREATE TABLE IF NOT EXISTS `profile` (
                                          `profile_id` int(11) NOT NULL AUTO_INCREMENT,
                                          `student_id` int(11) NOT NULL,
@@ -248,6 +255,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Table structure for table `student`
 --
 
+DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
                                          `student_id` int(11) NOT NULL AUTO_INCREMENT,
                                          `member_id` int(11) NOT NULL,
