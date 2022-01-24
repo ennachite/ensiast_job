@@ -120,7 +120,7 @@
         </div>
         <!-- header image -->
 
-        <!-- =================== Start Modal Type user ====================-->
+        <!-- =================== Start Modal Type user 1 ====================-->
         <div class="bg-black bg-opacity-80 absolute inset-0 hidden justify-center items-center overlay">
             <div class="bg-gray-200 max-w-lg pt-2 pb-5 px-3 rounded shadow-xl text-gray-800">
                 <div class="flex justify-between items-center">
@@ -151,7 +151,42 @@
                 </div>
             </div>
         </div>
-        <!-- =================== End Modal Type user ====================-->
+        <!-- =================== End Modal Type user 1 ====================-->
+
+        <!-- =================== End Modal Type user 1 ====================-->
+
+        <!-- =================== Start Modal Type user 2 ====================-->
+        <div class="bg-black bg-opacity-80 absolute inset-0 hidden justify-center items-center overlay">
+            <div class="bg-gray-200 max-w-lg pt-2 pb-5 px-3 rounded shadow-xl text-gray-800">
+                <div class="flex justify-between items-center">
+                    <h4 class="text-lg font-bold">Are you a?</h4>
+                    <svg class="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full close-modal" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div class="mt-3 flex justify-between space-x-3">
+                    <a href="${pageContext.request.contextPath}/signup-student">
+                        <button class="flex items-center justify-between px-10 py-4 font-medium leading-5 text-white transition-colors duration-150 bg-red-800 border border-transparent rounded-lg hover:bg-ensias-red">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path>
+                            </svg>
+                            Student
+                        </button>
+                    </a>
+                    <a href="${pageContext.request.contextPath}/signup-company">
+                        <button class="flex items-center justify-between px-10 py-4 font-medium leading-5 text-white transition-colors duration-150 bg-red-800 border border-transparent rounded-lg hover:bg-ensias-red">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+                            </svg>
+                            Company
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- =================== End Modal Type user 2 ====================-->
 
     </div>
     <!-- header hero -->
