@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2022 at 09:31 PM
+-- Generation Time: Jan 24, 2022 at 06:31 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -54,6 +54,31 @@ CREATE TABLE IF NOT EXISTS `candidacy` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `certification`
+--
+
+CREATE TABLE IF NOT EXISTS `certification` (
+                                               `certification_id` int(11) NOT NULL AUTO_INCREMENT,
+                                               `profile_id` int(11) NOT NULL,
+                                               `certification_name` varchar(64) NOT NULL,
+                                               `issuing_oragnization` varchar(64) NOT NULL,
+                                               `issue_date` varchar(64) NOT NULL,
+                                               `expiration_date` varchar(64) DEFAULT NULL,
+                                               `credential_id` varchar(64) DEFAULT NULL,
+                                               `credential_url` varchar(64) DEFAULT NULL,
+                                               PRIMARY KEY (`certification_id`),
+                                               KEY `profile_id` (`profile_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `certification`:
+--   `profile_id`
+--       `profile` -> `profile_id`
+--
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `company`
 --
 
@@ -75,6 +100,78 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- RELATIONSHIPS FOR TABLE `company`:
 --   `member_id`
 --       `member` -> `member_id`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `education`
+--
+
+CREATE TABLE IF NOT EXISTS `education` (
+                                           `education_id` int(11) NOT NULL AUTO_INCREMENT,
+                                           `profile_id` int(11) NOT NULL,
+                                           `school_name` varchar(64) NOT NULL,
+                                           `degree` varchar(64) NOT NULL,
+                                           `field_studies` varchar(64) NOT NULL,
+                                           `start_date` varchar(64) NOT NULL,
+                                           `end_date` varchar(64) NOT NULL,
+                                           `description` text DEFAULT NULL,
+                                           PRIMARY KEY (`education_id`),
+                                           KEY `profile_id` (`profile_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `education`:
+--   `profile_id`
+--       `profile` -> `profile_id`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `experience`
+--
+
+CREATE TABLE IF NOT EXISTS `experience` (
+                                            `experience_id` int(11) NOT NULL AUTO_INCREMENT,
+                                            `profile_id` int(11) NOT NULL,
+                                            `title` varchar(64) NOT NULL,
+                                            `job_type` varchar(64) NOT NULL,
+                                            `comapny_name` varchar(32) NOT NULL,
+                                            `location` varchar(64) DEFAULT NULL,
+                                            `start_date` varchar(64) NOT NULL,
+                                            `end_date` varchar(64) DEFAULT NULL,
+                                            `description` text DEFAULT NULL,
+                                            PRIMARY KEY (`experience_id`),
+                                            KEY `profile_id` (`profile_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `experience`:
+--   `profile_id`
+--       `profile` -> `profile_id`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `language`
+--
+
+CREATE TABLE IF NOT EXISTS `language` (
+                                          `language_id` int(11) NOT NULL AUTO_INCREMENT,
+                                          `profile_id` int(11) NOT NULL,
+                                          `language_name` varchar(32) NOT NULL,
+                                          `level` varchar(32) NOT NULL,
+                                          PRIMARY KEY (`language_id`),
+                                          KEY `profile_id` (`profile_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `language`:
+--   `profile_id`
+--       `profile` -> `profile_id`
 --
 
 -- --------------------------------------------------------
@@ -186,10 +283,34 @@ ALTER TABLE `candidacy`
     ADD CONSTRAINT `candidacy_ibfk_2` FOREIGN KEY (`offer_id`) REFERENCES `offer` (`offer_id`);
 
 --
+-- Constraints for table `certification`
+--
+ALTER TABLE `certification`
+    ADD CONSTRAINT `certification_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
+
+--
 -- Constraints for table `company`
 --
 ALTER TABLE `company`
     ADD CONSTRAINT `company_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
+
+--
+-- Constraints for table `education`
+--
+ALTER TABLE `education`
+    ADD CONSTRAINT `education_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
+
+--
+-- Constraints for table `experience`
+--
+ALTER TABLE `experience`
+    ADD CONSTRAINT `experience_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
+
+--
+-- Constraints for table `language`
+--
+ALTER TABLE `language`
+    ADD CONSTRAINT `language_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
 
 --
 -- Constraints for table `offer`

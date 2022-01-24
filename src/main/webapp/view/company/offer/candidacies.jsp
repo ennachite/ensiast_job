@@ -59,7 +59,7 @@
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        <a href="<c:url value="https://github.com/${ candidacy.githubUsername }" />">${ candidacy.githubUsername }</a>
+                                        <a href="<c:url value="https://github.com/${ candidacy.githubUsername }" />" target="_blank">${ candidacy.githubUsername }</a>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         <a href="#" class="main-modal">Click to see more</a>

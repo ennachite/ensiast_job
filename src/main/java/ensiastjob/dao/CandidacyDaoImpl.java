@@ -95,6 +95,18 @@ public class CandidacyDaoImpl implements CandidacyDao{
     }
 
     @Override
+    public void deleteAllCandidaciesByOffer(int offerId) {
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM candidacy WHERE offer_id=?");
+            preparedStatement.setInt(1, offerId);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<Candidacy> getCandidaciesByStudent(int studentId) {
         List<Candidacy> candidacies = new ArrayList<>();
         try {

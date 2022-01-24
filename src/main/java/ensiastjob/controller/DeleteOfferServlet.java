@@ -1,5 +1,6 @@
 package ensiastjob.controller;
 
+import ensiastjob.dao.CandidacyDaoImpl;
 import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.model.Company;
 import ensiastjob.model.Member;
@@ -25,8 +26,11 @@ public class DeleteOfferServlet extends HttpServlet {
             } else if (session.getAttribute("role").equals("COMPANY")) {
 
                 OfferDaoImpl offerDao = new OfferDaoImpl();
+                CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
 
                 int offerIdDeleted = Integer.parseInt(request.getParameter("offerIdDeleted"));
+
+                candidacyDao.deleteAllCandidaciesByOffer(offerIdDeleted);
 
                 offerDao.deleteOffer(offerIdDeleted);
 

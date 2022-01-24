@@ -4,10 +4,7 @@ import ensiastjob.dao.CandidacyDao;
 import ensiastjob.dao.CandidacyDaoImpl;
 import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.extra.Strings;
-import ensiastjob.model.Candidacy;
-import ensiastjob.model.Member;
-import ensiastjob.model.Offer;
-import ensiastjob.model.Student;
+import ensiastjob.model.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -57,6 +54,7 @@ public class ApplyOfferServlet extends HttpServlet {
         candidacy.setOfferId(offerId);
         candidacy.setGithubUsername(githubUsername);
         candidacy.setMotivation(motivation);
+        candidacy.setCandidacyStatus(CandidacyStatus.valueOf("Pending"));
 
         candidacyDao.addCandidacy(candidacy);
 
