@@ -12,7 +12,8 @@ import javax.servlet.annotation.*;
 import java.io.File;
 import java.io.IOException;
 
-@WebServlet(name = "UploadServlet", value = "/upload")
+@MultipartConfig
+@WebServlet(name = "UploadServlet", value = "/upload-pp")
 public class UploadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,12 +28,15 @@ public class UploadServlet extends HttpServlet {
 
         Part ImgPart = request.getPart("profile-picture");
         String imageFileName = extractFileName(ImgPart);
-        String savePath= "C:\\Users\\oenna\\OneDrive\\Desktop\\ENSIAST_JOB\\Project\\files\\pictures"+ File.separator + member.getMemberId() + imageFileName;
-//        String savePath2= "C:\\Users\\user\\IdeaProjects\\recruit-app\\target\\recruit-app-1.0-SNAPSHOT\\img"+ File.separator+idCandidate + imageFileName;
+        String extension = imageFileName.substring(imageFileName.lastIndexOf("."));
+        //Add your home path
+        String savePath= HomePath.HOMEPATH + "files\\pictures"+ File.separator + "pdp" + member.getMemberId() + extension;
+
         File fileSaveDir = new File(savePath);
         ImgPart.write(savePath + File.separator);
 
         memberDao.addPicture(member.getMemberId(), savePath);
+        response.sendRedirect("/profile");
     }
 
     private String extractFileName(Part part) {
