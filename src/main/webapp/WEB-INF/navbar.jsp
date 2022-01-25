@@ -37,7 +37,14 @@
                             <div class="relative">
                                 <input type="checkbox" id="sortbox" class="hidden absolute" />
                                 <label for="sortbox" class="flex items-center cursor-pointer justify-center">
-                                    <img class="inline rounded-full mr-3 object-cover w-8 h-8" src="${pageContext.request.contextPath}/assets/img/${ sessionScope.role.equals('STUDENT') ? 'person.jpg' : 'company.png' }" style="width: 30px; height: 30px; object-fit: cover"  alt="pdp"/>
+                                    <c:choose>
+                                        <c:when test="${ sessionScope.member.picture != null }">
+                                            <img class="inline rounded-full mr-3 object-cover w-8 h-8" src="http://localhost/ensiastjob/${ sessionScope.member.picture }" style="width: 30px; height: 30px; object-fit: cover"  alt="pdp"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img class="inline rounded-full mr-3 object-cover w-8 h-8" src="${pageContext.request.contextPath}/assets/img/${ sessionScope.role.equals('STUDENT') ? 'person.jpg' : 'company.png' }" style="width: 30px; height: 30px; object-fit: cover"  alt="pdp"/>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                                     </svg>

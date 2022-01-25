@@ -21,7 +21,14 @@
             <!-- Profile Card -->
             <div class="single_team mx-3">
                 <div class="team_image overflow-hidden relative">
-                    <img src="${ sessionScope.member.picture == null ? 'assets/img/person.jpg' : sessionScope.member.picture }" alt="Pdp" class="h-auto w-full mx-auto">
+                    <c:choose>
+                        <c:when test="${ sessionScope.member.picture != null }">
+                            <img src="http://localhost/ensiastjob/${ sessionScope.member.picture }" alt="Pdp" class="h-auto w-full mx-auto">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="assets/img/person.jpg" alt="Pdp" class="h-auto w-full mx-auto">
+                        </c:otherwise>
+                    </c:choose>
                     <div class="absolute rounded-full pl-2 pt-1 top-0">
                         <label class=" flex flex-col items-center p-2 rounded-full text-theme-color duration-150 border-1 border-ensias-red hover:bg-red-900 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">

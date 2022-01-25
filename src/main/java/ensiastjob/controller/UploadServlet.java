@@ -3,6 +3,7 @@ package ensiastjob.controller;
 import ensiastjob.dao.MemberDaoImpl;
 import ensiastjob.dao.StudentDaoImpl;
 import ensiastjob.dao.StudentProfileDao;
+import ensiastjob.extra.HomePath;
 import ensiastjob.model.Member;
 import ensiastjob.model.Student;
 
@@ -27,16 +28,25 @@ public class UploadServlet extends HttpServlet {
         Member member = (Member) session.getAttribute("member");
 
         Part ImgPart = request.getPart("profile-picture");
-        String imageFileName = extractFileName(ImgPart);
-        String extension = imageFileName.substring(imageFileName.lastIndexOf("."));
-        //Add your home path
-        String savePath= HomePath.HOMEPATH + "files\\pictures"+ File.separator + "pdp" + member.getMemberId() + extension;
+        if (ImgPart == null) {
+            response.sendRedirect("/profile");
+        } else {
+            String imageFileName = extractFileName(ImgPart);
+            String extension = imageFileName.substring(imageFileName.lastIndexOf("."));
+            //Add your home path
+            String savePath = HomePath.HOMEPATH + "\\pictures" + File.separator + "pdp" + member.getMemberId() + extension;
 
-        File fileSaveDir = new File(savePath);
-        ImgPart.write(savePath + File.separator);
+            File fileSaveDir = new File(savePath);
+            ImgPart.write(savePath + File.separator);
 
-        memberDao.addPicture(member.getMemberId(), savePath);
-        response.sendRedirect("/profile");
+            savePath = savePath.replace("\\", "/");
+            savePath = savePath.substring(savePath.lastIndexOf("files"));
+            memberDao.addPicture(member.getMemberId(), savePath);
+
+            session.setAttribute("member", memberDao.getMemberById(member.getMemberId()));
+
+            response.sendRedirect("/profile");
+        }
     }
 
     private String extractFileName(Part part) {
