@@ -20,10 +20,10 @@
         <div class="w-full md:w-3/12 md:mx-2">
             <!-- Profile Card -->
             <div class="single_team mx-3">
-                <div class="team_image overflow-hidden">
+                <div class="team_image overflow-hidden relative">
                     <c:choose>
                         <c:when test="${ sessionScope.member.picture != null }">
-                            <img src="http://localhost/ensiastjob/${ sessionScope.member.picture }" alt="company-logo" class="h-auto w-full mx-auto">
+                            <img src="http://localhost/${ sessionScope.member.picture }" alt="company-logo" class="h-auto w-full mx-auto">
                         </c:when>
                         <c:otherwise>
                             <img src="${pageContext.request.contextPath}/assets/img/person.jpg" alt="Pdp" class="h-auto w-full mx-auto">

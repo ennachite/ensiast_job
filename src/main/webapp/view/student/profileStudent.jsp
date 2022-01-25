@@ -23,7 +23,7 @@
                 <div class="team_image overflow-hidden relative">
                     <c:choose>
                         <c:when test="${ sessionScope.member.picture != null }">
-                            <img src="http://localhost/ensiastjob/${ sessionScope.member.picture }" alt="Pdp" class="h-auto w-full mx-auto">
+                            <img src="http://localhost/${ sessionScope.member.picture }" alt="Pdp" class="h-auto w-full mx-auto">
                         </c:when>
                         <c:otherwise>
                             <img src="assets/img/person.jpg" alt="Pdp" class="h-auto w-full mx-auto">

@@ -40,7 +40,7 @@ public class UploadServlet extends HttpServlet {
             ImgPart.write(savePath + File.separator);
 
             savePath = savePath.replace("\\", "/");
-            savePath = savePath.substring(savePath.lastIndexOf("files"));
+            savePath = savePath.substring(savePath.lastIndexOf("ensiastjob"));
             memberDao.addPicture(member.getMemberId(), savePath);
 
             session.setAttribute("member", memberDao.getMemberById(member.getMemberId()));

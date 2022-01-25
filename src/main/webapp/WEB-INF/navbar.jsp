@@ -39,7 +39,7 @@
                                 <label for="sortbox" class="flex items-center cursor-pointer justify-center">
                                     <c:choose>
                                         <c:when test="${ sessionScope.member.picture != null }">
-                                            <img class="inline rounded-full mr-3 object-cover w-8 h-8" src="http://localhost/ensiastjob/${ sessionScope.member.picture }" style="width: 30px; height: 30px; object-fit: cover"  alt="pdp"/>
+                                            <img class="inline rounded-full mr-3 object-cover w-8 h-8" src="http://localhost/${ sessionScope.member.picture }" style="width: 30px; height: 30px; object-fit: cover"  alt="pdp"/>
                                         </c:when>
                                         <c:otherwise>
                                             <img class="inline rounded-full mr-3 object-cover w-8 h-8" src="${pageContext.request.contextPath}/assets/img/${ sessionScope.role.equals('STUDENT') ? 'person.jpg' : 'company.png' }" style="width: 30px; height: 30px; object-fit: cover"  alt="pdp"/>
