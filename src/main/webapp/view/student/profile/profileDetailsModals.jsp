@@ -8,51 +8,49 @@
                 </span>
                 <span class="tracking-wide ">Add experience</span>
             </div>
-            <a href="#"
-               class="flex justify-between mt-2 p-1 text-sm text-theme-color duration-15 border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white close-modal"
-               aria-label="Edit">
+            <a href="#" class="flex justify-between mt-2 p-1 text-sm text-theme-color duration-15 border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white close-modal" aria-label="Edit">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </a>
         </div>
         <div class="mt-2 text-sm text-left">
-            <form action="">
+            <form method="post" action="/profile/add-experience">
                 <div class=" lg:w-2/2  mb-3 mt-5 lg:mb-2 mx-1">
-                    <input type='text' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Title: Ex Software Engineer" />
+                    <input name="experience-title" type='text' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Title: Ex Software Engineer" />
                 </div>
-                <div class=" lg:w-2/2  mb-3 mt-5 lg:mb-2 mx-1">
-                    <select class="w-full px-4 py-3 border bg-gray-300 rounded-lg hover:border-ensias-red">
+                <div class="lg:w-2/2  mb-3 mt-5 lg:mb-2 mx-1">
+                    <select name="job-type" class="w-full px-4 py-3 border bg-gray-300 rounded-lg hover:border-ensias-red">
                         <option value="" class="text-gray-300">Employment type</option>
-                        <option value="">Full-time</option>
-                        <option value="">Part-time</option>
-                        <option value="">Freelence</option>
-                        <option value="">Contract</option>
-                        <option value="">Internship</option>
-                        <option value="">Apprenticeship</option>
-                        <option value="">Seasonal</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Apprenticeship">Apprenticeship</option>
+                        <option value="Seasonal">Seasonal</option>
                     </select>
                 </div>
                 <div class=" lg:w-2/2 mt-5  mb-3 lg:mb-2 mx-1">
-                    <input type='text' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Company name" />
+                    <input name="company-name" type='text' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Company name" />
                 </div>
                 <div class=" lg:w-2/2 mt-5 mb-3 lg:mb-2 mx-1">
-                    <input type='city' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Location: Ex Kenitra, Morocco" />
+                    <input name="company-location" type='text' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Location: Ex Rabat, Morocco" />
                 </div>
                 <div class=" lg:w-2/2 mt-5 lg:mb-2 mx-1 flex items-center">
-                    <input type='checkbox' class=" mr-3 px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" />
+                    <input name="still-working" value="now" type='checkbox' class=" mr-3 px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" />
                     <label class="text-gray-600 font-light text-sm">I'm currently working in this role</label>
                 </div>
                 <div class=" lg:w-2/2 mt-5 lg:mb-2 mx-1">
                     <label class="text-gray-600 font-light text-sm">Start date</label>
-                    <input type='date' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Location: Ex Kenitra, Morocco" />
+                    <input name="start-date" type='date' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Location: Ex Kenitra, Morocco" />
                 </div>
                 <div class=" lg:w-2/2 mt-5 lg:mb-2 mx-1">
                     <label class="text-gray-600 font-light text-sm">End date</label>
-                    <input type='date' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Location: Ex Kenitra, Morocco" />
+                    <input name="end-date" type='date' class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" placeholder="Location: Ex Kenitra, Morocco" />
                 </div>
                 <div class=" lg:w-2/2 mt-5 mb-3 lg:mb-2 mx-1">
-                        <textarea class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" rows="4" placeholder="Description"></textarea>
+                    <textarea name="experience-description" class="w-full px-4 py-3 border bg-gray-300 rounded-lg text-gray-800 hover:border-ensias-red" rows="4" placeholder="Description"></textarea>
                 </div>
                 <button type="submit" class="w-full p-3 text-sm font-light text-white bg-theme-color rounded-lg shadow-md hover:bg-ensias-red mb-3">Submit</button>
             </form>

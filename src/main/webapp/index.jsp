@@ -99,7 +99,7 @@
             <div class="row">
                 <div class="w-full lg:w-1/2">
                     <div class="header_hero_content pt-150 lg:pt-0">
-                        <h2 class="hero_title text-2xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-extrabold">Welcome to your professional community with <span class="text-theme-color">ENSIAS JOB</span></h2>
+                        <h2 class="hero_title text-2xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-extrabold">Welcome to your professional community with <span class="text-theme-color">ENSIAST JOB</span></h2>
                         <h4 class="mt-8 lg:mr-8">Post your job or internship for hundreds of ENSIASTS</h4>
                         <div class="hero-btn mt-10">
                             <a class="main-btn main-modal" href="#">Signup</a>
