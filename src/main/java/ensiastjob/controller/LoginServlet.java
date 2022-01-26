@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
                 StudentProfileDaoImpl studentProfileDao = new StudentProfileDaoImpl();
 
                 Student student = studentDao.getStudentByMemberId(member.getMemberId());
-                StudentProfile studentProfile = studentProfileDao.getStudentProfileByStudentId(member.getMemberId());
+                StudentProfile studentProfile = studentProfileDao.getStudentProfileByStudentId(student.getStudentId());
 
                 HttpSession session = request.getSession();
                 session.setAttribute("member", member);

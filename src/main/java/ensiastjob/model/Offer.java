@@ -2,7 +2,7 @@ package ensiastjob.model;
 
 public class Offer {
     private int offerId, companyId;
-    private String offerName, offerLocation, offerDomain, jobType, offerDescription, postTime;
+    private String offerName, offerLocation, offerDomain, jobType, offerDescription, postTime, companyPicture;
     private int offerSalary;
 
     public int getOfferId() {
@@ -67,6 +67,14 @@ public class Offer {
 
     public void setPostTime(String postTime) {
         this.postTime = postTime;
+    }
+
+    public String getCompanyPicture() {
+        return companyPicture;
+    }
+
+    public void setCompanyPicture(String companyPicture) {
+        this.companyPicture = companyPicture;
     }
 
     public int getOfferSalary() {

@@ -30,7 +30,15 @@
             <div class="py-6 bg-gray-50 border-b-2 border-b-gray-200 shadow-md focus:outline-none">
                 <div class="flex justify-between m-2 mr-0 pl-3">
                     <div class="flex justify-items-center">
-                        <img src="assets/img/microsoft-logo.jpg" alt="" class="border-gray-200 border-2 rounded-lg mr-4 text-center" width="130px" height="100px">
+                        <c:choose>
+                            <c:when test="${ requestScope.offer.companyPicture != null }">
+                                <img src="http://localhost/${ requestScope.offer.companyPicture }" alt="company-logo" class="border-gray-200 border-2 rounded-lg mr-4 text-center" width="130px" height="100px">
+                            </c:when>
+                            <c:otherwise>
+                                <img src="${pageContext.request.contextPath}/assets/img/company.png" alt="company-logo" class="border-gray-200 border-2 rounded-lg mr-4 text-center" width="130px" height="100px">
+                            </c:otherwise>
+                        </c:choose>
+<%--                        <img src="${  }" alt="" class="border-gray-200 border-2 rounded-lg mr-4 text-center" width="130px" height="100px">--%>
                         <div class=" grid grid-cols-1 justify-center">
                             <h2 class="text-red-900 font-semibold pt-6 pb-0 ">${ requestScope.offer.offerName }</h2>
                             <div class="flex justify-center text-gray-400 text-lg pb-3">
@@ -39,13 +47,13 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                                     </svg>
-                                    <p class="">${ requestScope.offer.offerLocation }</p>
+                                    <p>${ requestScope.offer.offerLocation }</p>
                                 </div>
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
-                                    <p> ${ requestScope.offer.jobType }</p>
+                                    <p>${ requestScope.offer.jobType }</p>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +77,7 @@
             <!-- ============ Start Card 3 ============== -->
             <div class="p-6 bg-gray-50 mt-8 shadow-md focus:outline-none">
                 <h4>Apply for the offer</h4>
-                <form method="post">
+                <form method="post" action="/apply-offer" enctype="multipart/form-data">
                     <div class=" lg:w-2/2  mb-3 mt-5 lg:mb-2 mx-1">
                         <input name="github-username" type='text' class="w-full mb-2 px-4 py-3 border rounded-lg text-gray-700 hover:border-ensias-red" placeholder="Github Username" />
                     </div>
@@ -79,7 +87,7 @@
                                 <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"></path>
                             </svg>
                             <span class=" text-base leading-normal">Upload CV</span>
-<%--                            <input type='file' class="hidden" accept="image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />--%>
+                            <input name="cv-file" type='file' class="hidden" accept="image/*,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
                         </label>
 
                     </div>

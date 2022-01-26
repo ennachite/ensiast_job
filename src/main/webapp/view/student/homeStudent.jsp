@@ -3,7 +3,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp" />
 
 <!-- Title -->
-<title> ${ sessionScope.student.firstName }'s Profile</title>
+<title> ${ sessionScope.student.firstName }'s Home</title>
 </head>
 <body>
 <%--Preloader--%>
@@ -32,17 +32,27 @@
                             <div class="py-6 bg-gray-50 rounded-lg mb-4 shadow-md focus:outline-none hover:shadow-red-200">
                                 <div class="flex justify-between m-2 mr-0 pl-3">
                                     <div class="flex justify-items-center">
-                                        <img src="${pageContext.request.contextPath}/assets/img/company.png" alt="" class="border-gray-200 border-2 rounded-lg mr-4 text-center" width="130px" height="100px">
-                                        <div class=" grid grid-cols-1 justify-center">
+                                        <c:choose>
+                                            <c:when test="${ offer.companyPicture != null }">
+                                                <img src="http://localhost/${ offer.companyPicture }" alt="company-logo" class="border-gray-200 border-2 rounded-lg mr-4 text-center" width="130px" height="100px">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${pageContext.request.contextPath}/assets/img/company.png" alt="company-logo" class="border-gray-200 border-2 rounded-lg mr-4 text-center" width="130px" height="100px">
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <div class="grid grid-cols-1 justify-center">
                                             <a href="<c:url value="/apply-offer?offerId=${ offer.offerId }" />" class="pb-0">
                                                 <h2 class="text-red-900 font-semibold pt-6 pb-0 ">${ offer.offerName }</h2>
                                             </a>
-                                            <div class="flex justify-center text-gray-400 text-lg pb-3">
+                                            <a href="#" class="pb-2">
+                                                <h4 class="text-gray-500 font-medium">Steps</h4>
+                                            </a>
+                                            <div class="flex justify-center text-gray-400 text-lg">
                                                 <div class="flex items-center mr-12 ">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                                                     </svg>
-                                                    <p class="">${ offer.offerLocation }</p>
+                                                    <p>${ offer.offerLocation }</p>
                                                 </div>
                                                 <div class="flex items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -9,4 +9,5 @@ public interface CompanyDao {
     public Company getCompanyById (int id);
     public Company getCompanyByMemberId(int memberId);
     public Company getCompanyByName(String name);
+    public String getCompanyProfilePicture(int companyId);
 }

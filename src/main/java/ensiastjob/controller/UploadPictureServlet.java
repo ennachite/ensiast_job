@@ -1,11 +1,8 @@
 package ensiastjob.controller;
 
 import ensiastjob.dao.MemberDaoImpl;
-import ensiastjob.dao.StudentDaoImpl;
-import ensiastjob.dao.StudentProfileDao;
 import ensiastjob.extra.HomePath;
 import ensiastjob.model.Member;
-import ensiastjob.model.Student;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,7 +12,7 @@ import java.io.IOException;
 
 @MultipartConfig
 @WebServlet(name = "UploadServlet", value = "/upload-pp")
-public class UploadServlet extends HttpServlet {
+public class UploadPictureServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -49,7 +46,7 @@ public class UploadServlet extends HttpServlet {
         }
     }
 
-    private String extractFileName(Part part) {
+    protected static String extractFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] items = contentDisp.split(";");
         for (String s : items) {

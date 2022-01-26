@@ -133,4 +133,23 @@ public class CompanyDaoImpl implements CompanyDao{
             return null;
         }
     }
+
+    public String getCompanyProfilePicture(int companyId) {
+        Company company = getCompanyById(companyId);
+        try {
+            preparedStatement = connection.prepareStatement("SELECT picture FROM member WHERE member_id=?");
+            preparedStatement.setInt(1, company.getMemberId());
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                return resultSet.getString("picture");
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
