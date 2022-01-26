@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2022 at 07:48 PM
+-- Generation Time: Jan 26, 2022 at 09:40 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `ensiast_job`
 --
+CREATE DATABASE IF NOT EXISTS `ensiast_job` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `ensiast_job`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+                                       `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+                                       `member_id` int(11) NOT NULL,
+                                       `name` varchar(64) NOT NULL,
+                                       `gender` varchar(32) NOT NULL,
+                                       `cin` varchar(32) NOT NULL,
+                                       `birthdate` varchar(32) NOT NULL,
+                                       `phone` varchar(32) NOT NULL,
+                                       PRIMARY KEY (`admin_id`),
+                                       KEY `member_id` (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- RELATIONSHIPS FOR TABLE `admin`:
+--   `member_id`
+--       `member` -> `member_id`
+--
 
 -- --------------------------------------------------------
 
@@ -27,7 +53,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `candidacy`
 --
 
-DROP TABLE IF EXISTS `candidacy`;
 CREATE TABLE IF NOT EXISTS `candidacy` (
                                            `candidacy_id` int(11) NOT NULL AUTO_INCREMENT,
                                            `student_id` int(11) NOT NULL,
@@ -56,7 +81,6 @@ CREATE TABLE IF NOT EXISTS `candidacy` (
 -- Table structure for table `certification`
 --
 
-DROP TABLE IF EXISTS `certification`;
 CREATE TABLE IF NOT EXISTS `certification` (
                                                `certification_id` int(11) NOT NULL AUTO_INCREMENT,
                                                `profile_id` int(11) NOT NULL,
@@ -82,7 +106,6 @@ CREATE TABLE IF NOT EXISTS `certification` (
 -- Table structure for table `company`
 --
 
-DROP TABLE IF EXISTS `company`;
 CREATE TABLE IF NOT EXISTS `company` (
                                          `company_id` int(11) NOT NULL AUTO_INCREMENT,
                                          `member_id` int(11) NOT NULL,
@@ -109,7 +132,6 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- Table structure for table `education`
 --
 
-DROP TABLE IF EXISTS `education`;
 CREATE TABLE IF NOT EXISTS `education` (
                                            `education_id` int(11) NOT NULL AUTO_INCREMENT,
                                            `profile_id` int(11) NOT NULL,
@@ -135,7 +157,6 @@ CREATE TABLE IF NOT EXISTS `education` (
 -- Table structure for table `experience`
 --
 
-DROP TABLE IF EXISTS `experience`;
 CREATE TABLE IF NOT EXISTS `experience` (
                                             `experience_id` int(11) NOT NULL AUTO_INCREMENT,
                                             `profile_id` int(11) NOT NULL,
@@ -162,7 +183,6 @@ CREATE TABLE IF NOT EXISTS `experience` (
 -- Table structure for table `language`
 --
 
-DROP TABLE IF EXISTS `language`;
 CREATE TABLE IF NOT EXISTS `language` (
                                           `language_id` int(11) NOT NULL AUTO_INCREMENT,
                                           `profile_id` int(11) NOT NULL,
@@ -184,7 +204,6 @@ CREATE TABLE IF NOT EXISTS `language` (
 -- Table structure for table `member`
 --
 
-DROP TABLE IF EXISTS `member`;
 CREATE TABLE IF NOT EXISTS `member` (
                                         `member_id` int(11) NOT NULL AUTO_INCREMENT,
                                         `email` varchar(64) NOT NULL,
@@ -206,7 +225,6 @@ CREATE TABLE IF NOT EXISTS `member` (
 -- Table structure for table `offer`
 --
 
-DROP TABLE IF EXISTS `offer`;
 CREATE TABLE IF NOT EXISTS `offer` (
                                        `offer_id` int(11) NOT NULL AUTO_INCREMENT,
                                        `company_id` int(11) NOT NULL,
@@ -233,7 +251,6 @@ CREATE TABLE IF NOT EXISTS `offer` (
 -- Table structure for table `profile`
 --
 
-DROP TABLE IF EXISTS `profile`;
 CREATE TABLE IF NOT EXISTS `profile` (
                                          `profile_id` int(11) NOT NULL AUTO_INCREMENT,
                                          `student_id` int(11) NOT NULL,
@@ -255,7 +272,6 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Table structure for table `student`
 --
 
-DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
                                          `student_id` int(11) NOT NULL AUTO_INCREMENT,
                                          `member_id` int(11) NOT NULL,
@@ -282,6 +298,12 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `admin`
+--
+ALTER TABLE `admin`
+    ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
 
 --
 -- Constraints for table `candidacy`
