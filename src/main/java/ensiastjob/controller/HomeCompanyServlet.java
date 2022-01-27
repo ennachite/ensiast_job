@@ -21,7 +21,7 @@ public class HomeCompanyServlet extends HttpServlet {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("STUDENT")) {
-                response.sendRedirect("/profile");
+                response.sendRedirect("/home-student");
             } else if (session.getAttribute("role").equals("COMPANY")) {
 
                 OfferDaoImpl offerDao = new OfferDaoImpl();
@@ -36,8 +36,4 @@ public class HomeCompanyServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

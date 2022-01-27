@@ -19,7 +19,7 @@ public class SignupCompanyServlet extends HttpServlet {
         HttpSession session =request.getSession(false);
 
         if ((Member) session.getAttribute("member") != null) {
-            response.sendRedirect("/");
+            response.sendRedirect("/profile");
         } else {
             request.getRequestDispatcher("view/company/signupCompany.jsp").forward(request, response);
         }

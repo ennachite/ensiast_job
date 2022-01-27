@@ -22,8 +22,4 @@ public class OfferDetailsServlet extends HttpServlet {
         request.getRequestDispatcher("view/company/offer/offerDetails.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

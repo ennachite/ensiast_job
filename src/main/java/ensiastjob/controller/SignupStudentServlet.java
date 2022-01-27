@@ -21,7 +21,7 @@ public class SignupStudentServlet extends HttpServlet {
         HttpSession session =request.getSession(false);
 
         if ((Member) session.getAttribute("member") != null) {
-            response.sendRedirect("/");
+            response.sendRedirect("/profile");
         } else {
             request.getRequestDispatcher("view/student/signupStudent.jsp").forward(request, response);
         }

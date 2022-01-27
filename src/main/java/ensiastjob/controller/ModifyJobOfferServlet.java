@@ -18,7 +18,7 @@ public class ModifyJobOfferServlet extends HttpServlet {
         if ( (Member) session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else if (session.getAttribute("role").equals("STUDENT")){
-            response.sendRedirect("/profile");
+            response.sendRedirect("/home-student");
         } else {
             int offerId = Integer.parseInt(request.getParameter("offerId"));
             OfferDaoImpl offerDao = new OfferDaoImpl();

@@ -14,11 +14,6 @@ import java.io.IOException;
 @WebServlet(name = "UploadServlet", value = "/upload-pp")
 public class UploadPictureServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         MemberDaoImpl memberDao = new MemberDaoImpl();
