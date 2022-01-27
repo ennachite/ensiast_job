@@ -2,7 +2,7 @@ package ensiastjob.model;
 
 public class Candidacy {
     private int candidacyId, studentId, offerId;
-    private String studentName, studentCV, githubUsername, dateCandidacy, motivation;
+    private String studentName, studentPicture, companyName, companyPicture, offerName,offerLocation, offerJobType, offerDescription,studentCV, githubUsername, dateCandidacy, motivation;
     private CandidacyStatus candidacyStatus;
 
     public int getCandidacyId() {
@@ -35,6 +35,62 @@ public class Candidacy {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getStudentPicture() {
+        return studentPicture;
+    }
+
+    public void setStudentPicture(String studentPicture) {
+        this.studentPicture = studentPicture;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyPicture() {
+        return companyPicture;
+    }
+
+    public void setCompanyPicture(String companyPicture) {
+        this.companyPicture = companyPicture;
+    }
+
+    public String getOfferName() {
+        return offerName;
+    }
+
+    public void setOfferName(String offerName) {
+        this.offerName = offerName;
+    }
+
+    public String getOfferLocation() {
+        return offerLocation;
+    }
+
+    public void setOfferLocation(String offerLocation) {
+        this.offerLocation = offerLocation;
+    }
+
+    public String getOfferJobType() {
+        return offerJobType;
+    }
+
+    public void setOfferJobType(String offerJobType) {
+        this.offerJobType = offerJobType;
+    }
+
+    public String getOfferDescription() {
+        return offerDescription;
+    }
+
+    public void setOfferDescription(String offerDescription) {
+        this.offerDescription = offerDescription;
     }
 
     public String getStudentCV() {

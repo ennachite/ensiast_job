@@ -1,10 +1,7 @@
 package ensiastjob.dao;
 
 import ensiastjob.extra.DBConnection;
-import ensiastjob.model.Candidacy;
-import ensiastjob.model.CandidacyStatus;
-import ensiastjob.model.Offer;
-import ensiastjob.model.Student;
+import ensiastjob.model.*;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -83,6 +80,10 @@ public class CandidacyDaoImpl implements CandidacyDao{
                 StudentDaoImpl studentDao = new StudentDaoImpl();
                 Student student = studentDao.getStudentById(candidacy.getStudentId());
                 candidacy.setStudentName(student.getFirstName() + student.getLastName());
+                //We implement Member to get his picture
+                MemberDaoImpl memberDao = new MemberDaoImpl();
+                Member member = memberDao.getMemberById(student.getMemberId());
+                candidacy.setStudentPicture(member.getPicture());
 
                 candidacies.add(candidacy);
             }
@@ -116,6 +117,18 @@ public class CandidacyDaoImpl implements CandidacyDao{
 
             while (resultSet.next()) {
                 Candidacy candidacy = getCandidacy();
+                OfferDaoImpl offerDao = new OfferDaoImpl();
+                Offer offer = offerDao.getOfferById(candidacy.getOfferId());
+                CompanyDaoImpl companyDao = new CompanyDaoImpl();
+                Company company = companyDao.getCompanyById(offer.getCompanyId());
+                candidacy.setCompanyName(company.getCompanyName());
+                MemberDaoImpl memberDao = new MemberDaoImpl();
+                candidacy.setCompanyPicture(memberDao.getMemberById(company.getMemberId()).getPicture());
+                candidacy.setOfferName(offer.getOfferName());
+                candidacy.setOfferLocation(offer.getOfferLocation());
+                candidacy.setOfferJobType(offer.getJobType());
+                candidacy.setOfferDescription(offer.getOfferDescription());
+
                 candidacies.add(candidacy);
             }
             return candidacies;
