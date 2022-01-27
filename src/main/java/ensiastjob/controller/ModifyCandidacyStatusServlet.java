@@ -2,18 +2,17 @@ package ensiastjob.controller;
 
 import ensiastjob.dao.CandidacyDaoImpl;
 import ensiastjob.dao.OfferDaoImpl;
-import ensiastjob.model.Company;
+import ensiastjob.model.Candidacy;
 import ensiastjob.model.Member;
-import ensiastjob.model.Offer;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.List;
+import java.util.Arrays;
 
-@WebServlet(name = "DeleteOffer", value = "/delete-offer")
-public class DeleteOfferServlet extends HttpServlet {
+@WebServlet(name = "ModifyCandidacyStatus", value = "/modify-candidacy-status")
+public class ModifyCandidacyStatusServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -25,16 +24,18 @@ public class DeleteOfferServlet extends HttpServlet {
                 response.sendRedirect("/home-student");
             } else if (session.getAttribute("role").equals("COMPANY")) {
 
-                OfferDaoImpl offerDao = new OfferDaoImpl();
                 CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
 
-                int offerIdDeleted = Integer.parseInt(request.getParameter("offerIdDeleted"));
+                int candidacyId = Integer.parseInt(request.getParameter("candidacyId"));
+                int candidacyStatus = Integer.parseInt(request.getParameter("candidacyStatus"));
 
-                candidacyDao.deleteAllCandidaciesByOffer(offerIdDeleted);
+                String status = candidacyStatus == 1 ? "Accepted" : "Rejected";
 
-                offerDao.deleteOffer(offerIdDeleted);
 
-                response.sendRedirect("/home-company");
+                candidacyDao.modifyCandidacyStatus(candidacyId, status);
+                Candidacy candidacy = candidacyDao.getCandidacyById(candidacyId);
+
+                response.sendRedirect("/offer-candidacies?offerId=" + candidacy.getOfferId());
             }
         }
     }

@@ -35,7 +35,6 @@ public class AddOfferServlet extends HttpServlet {
         Offer offer = new Offer();
 
         String offerName = request.getParameter("offer-name");
-        String offerType = request.getParameter("offer-type");
         int offerSalary = Integer.parseInt(request.getParameter("offer-salary"));
         String offerLocation = request.getParameter("offer-location");
         String offerDomain = request.getParameter("offer-domain");

@@ -54,7 +54,7 @@
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                             </div>
                                             <div>
-                                                <p class="font-semibold">${ candidacy.studentName }</p>
+                                                <a class="font-semibold" href="<c:url value="/other-profile?studentId=${candidacy.studentId}" />">${ candidacy.studentName }</a>
                                             </div>
                                         </div>
                                     </td>
@@ -84,46 +84,60 @@
                                     <td class="px-4 py-3 text-sm"><a href="http://localhost/${ candidacy.studentCV }" class="underline" target="_blank">${candidacy.studentName}_CV</a></td>
                                     <td class="px-4 py-3 text-sm">${ candidacy.dateCandidacy }</td>
                                     <td class="px-4 py-3">
-                                        <div class="flex justify-center text-sm">
-                                            <button class="flex items-center justify-between mr-4 px-2 py-2 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:border-green-700 hover:border-2 " aria-label="Edit">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                                </svg>
-                                            </button>
+                                        <c:choose>
+                                            <c:when test="${ candidacy.candidacyStatus.equals('Accepted') }">
+                                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full ">Approved</span>
+                                            </c:when>
+                                            <c:when test="${ candidacy.candidacyStatus.equals('Rejected') }">
+                                                <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full ">Rejected</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="flex justify-center text-sm">
+                                                    <a href="<c:url value="/modify-candidacy-status?candidacyId=${ candidacy.candidacyId }&candidacyStatus=1" />">
+                                                        <button class="flex items-center justify-between mr-4 px-2 py-2 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:border-green-700 hover:border-2 " aria-label="Edit">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </a>
 
-                                            <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:border-red-700 hover:border-2 main-modal" aria-label="Delete">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                </svg>
-                                            </button>
-
-                                            <!--===========Start Modal==============-->
-                                            <div class="bg-black bg-opacity-70 absolute inset-0 hidden justify-center items-center overlay">
-                                                <div class="bg-gray-200 max-w-sm max-h-lg py-2 px-3 rounded-xl shadow-xl text-gray-800">
-                                                    <div class="justify-center items-center">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-11 h-11 flex items-center text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                                    <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:border-red-700 hover:border-2 main-modal" aria-label="Delete">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                         </svg>
-                                                        <h4 class="text-lg font-bold">Are you sure?</h4>
+                                                    </button>
+
+                                                    <!--===========Start Modal==============-->
+                                                    <div class="bg-black bg-opacity-70 absolute inset-0 hidden justify-center items-center overlay">
+                                                        <div class="bg-gray-200 max-w-sm max-h-lg py-2 px-3 rounded-xl shadow-xl text-gray-800">
+                                                            <div class="justify-center items-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-11 h-11 flex items-center text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                                                </svg>
+                                                                <h4 class="text-lg font-bold">Are you sure?</h4>
+                                                            </div>
+                                                            <div class="mt-2 text-sm">
+                                                                <p>
+                                                                    Do you really want to decline this candidate? This process
+                                                                    cannot be undone
+                                                                </p>
+                                                            </div>
+                                                            <div class="mt-3 flex justify-center space-x-3">
+                                                                <button class="px-3 py-1 rounded hover:bg-ensias-red hover:text-white border-2 border-gray-300 close-modal">
+                                                                    Cancel
+                                                                </button>
+                                                                <a href="<c:url value="/modify-candidacy-status?candidacyId=${ candidacy.candidacyId }&candidacyStatus=0" />">
+                                                                    <button class="px-3 py-1 bg-red-800 text-gray-200 hover:bg-ensias-red rounded">
+                                                                        Decline
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="mt-2 text-sm">
-                                                        <p>
-                                                            Do you really want to decline this candidate? This process
-                                                            cannot be undone
-                                                        </p>
-                                                    </div>
-                                                    <div class="mt-3 flex justify-center space-x-3">
-                                                        <button class="px-3 py-1 rounded hover:bg-ensias-red hover:text-white border-2 border-gray-300 close-modal">
-                                                            Cancel
-                                                        </button>
-                                                        <button class="px-3 py-1 bg-red-800 text-gray-200 hover:bg-ensias-red rounded">
-                                                            Decline
-                                                        </button>
-                                                    </div>
+                                                    <!--===========End Modal==============-->
                                                 </div>
-                                            </div>
-                                            <!--===========End Modal==============-->
-                                        </div>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                 </tr>
                                 <!-- =============== Start Line ===============-->

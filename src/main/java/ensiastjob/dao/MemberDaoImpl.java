@@ -80,6 +80,31 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     @Override
+    public Member getMemberByIdForGuest(int id) {
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM member WHERE member_id=?");
+            preparedStatement.setInt(1, id);
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Member member = new Member();
+                member.setMemberId(resultSet.getInt("member_id"));
+                member.setEmail(resultSet.getString("email"));
+                member.setRole(Role.valueOf(resultSet.getString("role")));
+                member.setCity(resultSet.getString("city"));
+                member.setPicture(resultSet.getString("picture"));
+
+                return member;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Member getMemberByEmail(String email) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM member WHERE email=?");

@@ -36,7 +36,7 @@
                         <table class="w-full whitespace-no-wrap">
                             <thead>
                             <tr class="text-xs font-semibold tracking-wide text-red-700 uppercase border-b  bg-gray-50 text-center ">
-                                <th class="px-4 py-3">Offer name</th>
+                                <th class="px-4 py-3">Company name</th>
                                 <th class="px-4 py-3">Details</th>
                                 <th class="px-4 py-3">My motivation</th>
                                 <th class="px-4 py-3">Date of candidacy</th>
@@ -48,16 +48,18 @@
                                 <!-- =============== Line START ===============-->
                                 <tr class="text-gray-700">
                                     <td class="px-4 py-3">
-                                        <div class="flex items-center text-sm">
-                                            <!-- Avatar with inset shadow -->
-                                            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                <img class="object-cover w-full h-full rounded-full" src="http://localhost/${ candidacy.companyPicture }" alt="" loading="lazy" />
-                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                                        <a href="<c:url value="/other-profile?companyId=${ candidacy.companyId }" />">
+                                            <div class="flex items-center text-sm">
+                                                <!-- Avatar with inset shadow -->
+                                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                                    <img class="object-cover w-full h-full rounded-full" src="http://localhost/${ candidacy.companyPicture }" alt="" loading="lazy" />
+                                                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                                                </div>
+                                                <div>
+                                                    <p class="font-semibold">${ candidacy.companyName }</p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <p class="font-semibold">${ candidacy.offerName }</p>
-                                            </div>
-                                        </div>
+                                        </a>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         <a href="#" class="main-modal">Click to see more</a>
@@ -119,7 +121,17 @@
                                     </td>
                                     <td class="px-4 py-3 text-sm">${ candidacy.dateCandidacy }</td>
                                     <td class="px-4 py-3 text-sm">
-                                        <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full ">${ candidacy.candidacyStatus }</span>
+                                        <c:choose>
+                                            <c:when test="${ candidacy.candidacyStatus.equals('Accepted') }">
+                                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full ">Approved</span>
+                                            </c:when>
+                                            <c:when test="${ candidacy.candidacyStatus.equals('Rejected') }">
+                                                <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full ">Rejected</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full ">Pending</span>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                 </tr>
                                 <!-- =============== Line END ===============-->

@@ -127,7 +127,6 @@ public class CompanyDaoImpl implements CompanyDao{
             company.setFounded(resultSet.getInt("founded"));
             company.setDescription(resultSet.getString("description"));
 
-
             return company;
         } else {
             return null;

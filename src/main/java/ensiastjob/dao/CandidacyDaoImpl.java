@@ -28,7 +28,7 @@ public class CandidacyDaoImpl implements CandidacyDao{
                     "github_username, date_candidacy, motivation) VALUES (?,?,?,?,?,?,?)");
             preparedStatement.setInt(1, candidacy.getStudentId());
             preparedStatement.setInt(2, candidacy.getOfferId());
-            preparedStatement.setString(3, String.valueOf(candidacy.getCandidacyStatus()));
+            preparedStatement.setString(3, candidacy.getCandidacyStatus());
             preparedStatement.setString(4, candidacy.getStudentCV());
             preparedStatement.setString(5, candidacy.getGithubUsername());
             preparedStatement.setString(6, dateFormatter.format(now));
@@ -79,7 +79,7 @@ public class CandidacyDaoImpl implements CandidacyDao{
                 //We implement Student to get his name
                 StudentDaoImpl studentDao = new StudentDaoImpl();
                 Student student = studentDao.getStudentById(candidacy.getStudentId());
-                candidacy.setStudentName(student.getFirstName() + student.getLastName());
+                candidacy.setStudentName(student.getFirstName() + " " + student.getLastName());
                 //We implement Member to get his picture
                 MemberDaoImpl memberDao = new MemberDaoImpl();
                 Member member = memberDao.getMemberById(student.getMemberId());
@@ -121,6 +121,7 @@ public class CandidacyDaoImpl implements CandidacyDao{
                 Offer offer = offerDao.getOfferById(candidacy.getOfferId());
                 CompanyDaoImpl companyDao = new CompanyDaoImpl();
                 Company company = companyDao.getCompanyById(offer.getCompanyId());
+                candidacy.setCompanyId(company.getCompanyId());
                 candidacy.setCompanyName(company.getCompanyName());
                 MemberDaoImpl memberDao = new MemberDaoImpl();
                 candidacy.setCompanyPicture(memberDao.getMemberById(company.getMemberId()).getPicture());

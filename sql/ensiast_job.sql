@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2022 at 09:40 PM
+-- Generation Time: Jan 27, 2022 at 05:52 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
                                        `birthdate` varchar(32) NOT NULL,
                                        `phone` varchar(32) NOT NULL,
                                        PRIMARY KEY (`admin_id`),
-                                       KEY `member_id` (`member_id`)
+                                       KEY `admin_ibfk_1` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -63,8 +63,8 @@ CREATE TABLE IF NOT EXISTS `candidacy` (
                                            `date_candidacy` varchar(32) NOT NULL,
                                            `motivation` text DEFAULT NULL,
                                            PRIMARY KEY (`candidacy_id`),
-                                           KEY `student_id` (`student_id`),
-                                           KEY `offer_id` (`offer_id`)
+                                           KEY `candidacy_ibfk_1` (`student_id`),
+                                           KEY `candidacy_ibfk_2` (`offer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `certification` (
                                                `credential_id` varchar(64) DEFAULT NULL,
                                                `credential_url` varchar(64) DEFAULT NULL,
                                                PRIMARY KEY (`certification_id`),
-                                               KEY `profile_id` (`profile_id`)
+                                               KEY `certification_ibfk_1` (`profile_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `education` (
                                            `end_date` varchar(64) NOT NULL,
                                            `description` text DEFAULT NULL,
                                            PRIMARY KEY (`education_id`),
-                                           KEY `profile_id` (`profile_id`)
+                                           KEY `education_ibfk_1` (`profile_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `experience` (
                                             `end_date` varchar(64) DEFAULT NULL,
                                             `description` text DEFAULT NULL,
                                             PRIMARY KEY (`experience_id`),
-                                            KEY `profile_id` (`profile_id`)
+                                            KEY `experience_ibfk_1` (`profile_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `language` (
                                           `language_name` varchar(32) NOT NULL,
                                           `level` varchar(32) NOT NULL,
                                           PRIMARY KEY (`language_id`),
-                                          KEY `profile_id` (`profile_id`)
+                                          KEY `language_ibfk_1` (`profile_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -236,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `offer` (
                                        `offer_description` text NOT NULL,
                                        `post_time` varchar(60) NOT NULL,
                                        PRIMARY KEY (`offer_id`),
-                                       KEY `company_id` (`company_id`)
+                                       KEY `offer_ibfk_1` (`company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
                                          `active` varchar(10) NOT NULL,
                                          `summary` text DEFAULT NULL,
                                          PRIMARY KEY (`profile_id`),
-                                         KEY `student_id` (`student_id`)
+                                         KEY `profile_ibfk_1` (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `student` (
                                          `year_studies` varchar(10) NOT NULL,
                                          `phone` varchar(16) NOT NULL,
                                          PRIMARY KEY (`student_id`),
-                                         KEY `member_id` (`member_id`)
+                                         KEY `student_ibfk_1` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -303,20 +303,20 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Constraints for table `admin`
 --
 ALTER TABLE `admin`
-    ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
+    ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `candidacy`
 --
 ALTER TABLE `candidacy`
-    ADD CONSTRAINT `candidacy_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
-    ADD CONSTRAINT `candidacy_ibfk_2` FOREIGN KEY (`offer_id`) REFERENCES `offer` (`offer_id`);
+    ADD CONSTRAINT `candidacy_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `candidacy_ibfk_2` FOREIGN KEY (`offer_id`) REFERENCES `offer` (`offer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `certification`
 --
 ALTER TABLE `certification`
-    ADD CONSTRAINT `certification_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
+    ADD CONSTRAINT `certification_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `company`
@@ -328,37 +328,37 @@ ALTER TABLE `company`
 -- Constraints for table `education`
 --
 ALTER TABLE `education`
-    ADD CONSTRAINT `education_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
+    ADD CONSTRAINT `education_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `experience`
 --
 ALTER TABLE `experience`
-    ADD CONSTRAINT `experience_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
+    ADD CONSTRAINT `experience_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `language`
 --
 ALTER TABLE `language`
-    ADD CONSTRAINT `language_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
+    ADD CONSTRAINT `language_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `offer`
 --
 ALTER TABLE `offer`
-    ADD CONSTRAINT `offer_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`);
+    ADD CONSTRAINT `offer_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `profile`
 --
 ALTER TABLE `profile`
-    ADD CONSTRAINT `profile_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
+    ADD CONSTRAINT `profile_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
-    ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
+    ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

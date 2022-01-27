@@ -8,11 +8,13 @@
             </span>
             <span class="tracking-wide ">Experience</span>
         </div>
-        <a href="#" class="main-modal flex justify-between p-2 text-sm text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-            </svg>
-        </a>
+        <c:if test="${ sessionScope.role.equals('STUDENT') }">
+            <a href="#" class="main-modal flex justify-between p-2 text-sm text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+            </a>
+        </c:if>
     </div>
     <div class="text-zinc-700">
         <ul class="list-inside text-xl">
@@ -21,18 +23,20 @@
                 <li class="mb-3 border-b-2">
                     <div class="flex justify-between">
                         <div class="text-teal-600">${ experience.experienceTitle }</div>
-                        <div class="flex items-center ">
-                            <a href="${pageContext.request.contextPath}/profile/delete-experience?experienceIdDeleted=${ experience.experienceId }" class="main-modal p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                </svg>
-                            </a>
-                            <a href="" class="p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                </svg>
-                            </a>
-                        </div>
+                        <c:if test="${ sessionScope.role.equals('STUDENT') }">
+                            <div class="flex items-center ">
+                                <a href="${pageContext.request.contextPath}/profile/delete-experience?experienceIdDeleted=${ experience.experienceId }" class="main-modal p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </a>
+                                <a href="" class="p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </c:if>
                     </div>
                     <div class="text-zinc-500 text-sm">${ experience.companyName }, ${ experience.jobType }</div>
                     <div class="text-zinc-500 text-sm">${ experience.startDate } - ${ experience.endDate }, 2 months</div>
@@ -55,11 +59,13 @@
             </span>
             <span class="tracking-wide ">Education</span>
         </div>
-        <a href="#" class="main-modal flex justify-between p-2 text-sm text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-            </svg>
-        </a>
+        <c:if test="${ sessionScope.role.equals('STUDENT') }">
+            <a href="#" class="main-modal flex justify-between p-2 text-sm text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+            </a>
+        </c:if>
     </div>
     <div class="text-zinc-700">
         <ul class="list-inside text-xl">
@@ -68,18 +74,20 @@
                 <li class="mb-3 border-b-2 pb-3">
                     <div class="flex justify-between">
                         <div class="text-teal-600">${ education.schoolName }</div>
-                        <div class="flex items-center ">
-                            <a href="${pageContext.request.contextPath}/profile/delete-education?educationIdDeleted=${ education.educationId }" class="main-modal p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Delete">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                </svg>
-                            </a>
-                            <a href="#" class="p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                </svg>
-                            </a>
-                        </div>
+                        <c:if test="${ sessionScope.role.equals('STUDENT') }">
+                            <div class="flex items-center ">
+                                <a href="${pageContext.request.contextPath}/profile/delete-education?educationIdDeleted=${ education.educationId }" class="main-modal p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </c:if>
                     </div>
                     <div class="text-zinc-500 text-sm">${ education.fieldStudies }</div>
                     <div class="text-zinc-500 text-sm">${ education.startDate } - ${ education.endDate }</div>
@@ -103,11 +111,13 @@
             </span>
             <span class="tracking-wide ">Certification</span>
         </div>
-        <a href="#" class="main-modal flex justify-between p-2 text-sm text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-            </svg>
-        </a>
+        <c:if test="${ sessionScope.role.equals('STUDENT') }">
+            <a href="#" class="main-modal flex justify-between p-2 text-sm text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+            </a>
+        </c:if>
     </div>
     <div class="text-zinc-700">
         <ul class="list-inside text-xl">
@@ -116,18 +126,20 @@
                 <li class="mb-3 border-b-2 pb-3">
                     <div class="flex justify-between">
                         <div class="text-teal-600">${ certification.certificationName }</div>
-                        <div class="flex items-center ">
-                            <a href="${pageContext.request.contextPath}/profile/delete-certification?certificationIdDeleted=${ certification.certificationId }" class="main-modal p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Delete">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                </svg>
-                            </a>
-                            <a href="#" class="p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                </svg>
-                            </a>
-                        </div>
+                        <c:if test="${ sessionScope.role.equals('STUDENT') }">
+                            <div class="flex items-center ">
+                                <a href="${pageContext.request.contextPath}/profile/delete-certification?certificationIdDeleted=${ certification.certificationId }" class="main-modal p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </c:if>
                     </div>
                     <div class="text-zinc-500 text-sm">${ certification.issuingOrganization }</div>
                     <div class="text-zinc-500 text-sm">Issued ${ certification.issueDate } - ${ certification.expirationDate }</div>
@@ -152,11 +164,13 @@
             </span>
             <span class="tracking-wide ">Languages</span>
         </div>
-        <a href="#" class="main-modal flex justify-between p-2 text-sm text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-            </svg>
-        </a>
+        <c:if test="${ sessionScope.role.equals('STUDENT') }">
+            <a href="#" class="main-modal flex justify-between p-2 text-sm text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+            </a>
+        </c:if>
     </div>
     <div class="text-zinc-700">
         <ul class="list-inside text-xl">
@@ -165,19 +179,20 @@
                 <li class="mb-3 border-b-2 pb-3">
                     <div class="flex justify-between">
                         <div class="text-teal-600">${ language.languageName }</div>
-                        <div class="flex items-center ">
-                            <a href="${pageContext.request.contextPath}/profile/delete-language?languageIdDeleted=${ language.languageId }" class="main-modal p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Delete">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                </svg>
-                            </a>
-                            <a href="#" class="p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                </svg>
-                            </a>
-                        </div>
-
+                        <c:if test="${ sessionScope.role.equals('STUDENT') }">
+                            <div class="flex items-center ">
+                                <a href="${pageContext.request.contextPath}/profile/delete-language?languageIdDeleted=${ language.languageId }" class="main-modal p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="p-2 text-theme-color duration-150 bg-white border-1 border-ensias-red rounded-full hover:bg-red-900 hover:text-white" aria-label="Edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </c:if>
                     </div>
                     <div class="text-zinc-500 text-sm">${ language.level }</div>
                 </li>
