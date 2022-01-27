@@ -77,7 +77,7 @@
             <!-- ============ Start Card 3 ============== -->
             <div class="p-6 bg-gray-50 mt-8 shadow-md focus:outline-none">
                 <h4>Apply for the offer</h4>
-                <form method="post" action="/apply-offer" enctype="multipart/form-data">
+                <form method="post" action="/apply-offer?offerId=${ requestScope.offer.offerId }" enctype="multipart/form-data">
                     <div class=" lg:w-2/2  mb-3 mt-5 lg:mb-2 mx-1">
                         <input name="github-username" type='text' class="w-full mb-2 px-4 py-3 border rounded-lg text-gray-700 hover:border-ensias-red" placeholder="Github Username" />
                     </div>

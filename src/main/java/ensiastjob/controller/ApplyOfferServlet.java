@@ -50,11 +50,10 @@ public class ApplyOfferServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         Student student = (Student) session.getAttribute("student");
-        Offer Offer = (Offer) request.getAttribute("offer");
 
         CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
 
-        int offerId = Offer.getOfferId();
+        int offerId = Integer.parseInt(request.getParameter("offerId"));
 
         String githubUsername = request.getParameter("github-username");
         String motivation = request.getParameter("motivation");
@@ -67,7 +66,7 @@ public class ApplyOfferServlet extends HttpServlet {
         candidacy.setStudentId(studentId);
         candidacy.setOfferId(offerId);
         candidacy.setGithubUsername(githubUsername);
-        candidacy.setStudentCV(uploadCV(cvPart, studentId));
+        candidacy.setStudentCV(uploadCV(cvPart, studentId, offerId));
         candidacy.setMotivation(motivation);
         candidacy.setCandidacyStatus(CandidacyStatus.valueOf("Pending"));
 
@@ -77,11 +76,11 @@ public class ApplyOfferServlet extends HttpServlet {
 
     }
 
-    private String uploadCV (Part cv, int studentId) throws IOException {
+    private String uploadCV (Part cv, int studentId, int offerId) throws IOException {
         String imageFileName = UploadPictureServlet.extractFileName(cv);
         String extension = imageFileName.substring(imageFileName.lastIndexOf("."));
         //Add your home path
-        String savePath = HomePath.HOMEPATH + "\\CVs" + File.separator + "pdp" + studentId + extension;
+        String savePath = HomePath.HOMEPATH + "\\CVs" + File.separator + "cv" + studentId +"_" + offerId + extension;
 
         File fileSaveDir = new File(savePath);
         cv.write(savePath + File.separator);
