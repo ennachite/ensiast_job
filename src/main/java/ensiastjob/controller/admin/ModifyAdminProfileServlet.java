@@ -16,11 +16,13 @@ import java.io.IOException;
 
 @WebServlet(name = "ModifyAdminProfile", value = "/modify-admin-profile")
 public class ModifyAdminProfileServlet extends HttpServlet {
+    private static final String MEMBER = "member";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if (session.getAttribute("member") == null) {
+        if (session.getAttribute(MEMBER) == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("STUDENT") || session.getAttribute("role").equals("COMPANY")) {
@@ -43,7 +45,7 @@ public class ModifyAdminProfileServlet extends HttpServlet {
         String adminPhone = request.getParameter("admin-phone");
 
         HttpSession session = request.getSession(false);
-        Member member = (Member) session.getAttribute("member");
+        Member member = (Member) session.getAttribute(MEMBER);
         Admin admin = (Admin) session.getAttribute("admin");
 
         member.setCity(city);
@@ -61,7 +63,7 @@ public class ModifyAdminProfileServlet extends HttpServlet {
             member = memberDao.getMemberById(member.getMemberId());
             admin = adminDao.getAdminById(admin.getAdminId());
 
-            session.setAttribute("member", member);
+            session.setAttribute(MEMBER, member);
             session.setAttribute("admin", admin);
 
             response.sendRedirect("/profile");

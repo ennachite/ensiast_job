@@ -14,11 +14,13 @@ import java.io.IOException;
 
 @WebServlet(name = "Login", value = "/login")
 public class LoginServlet extends HttpServlet {
+    private static final String MEMBER = "member";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if (session.getAttribute("member") != null) {
+        if (session.getAttribute(MEMBER) != null) {
             response.sendRedirect("/");
         } else {
             request.getRequestDispatcher("view/login.jsp").forward(request, response);
@@ -47,7 +49,7 @@ public class LoginServlet extends HttpServlet {
                     StudentProfile studentProfile = studentProfileDao.getStudentProfileByStudentId(student.getStudentId());
 
                     HttpSession session = request.getSession();
-                    session.setAttribute("member", member);
+                    session.setAttribute(MEMBER, member);
                     session.setAttribute("student", student);
                     session.setAttribute("profile_student", studentProfile);
                     session.setAttribute("role", role);
@@ -61,7 +63,7 @@ public class LoginServlet extends HttpServlet {
                     Company company = companyDao.getCompanyByMemberId(member.getMemberId());
 
                     HttpSession session = request.getSession();
-                    session.setAttribute("member", member);
+                    session.setAttribute(MEMBER, member);
                     session.setAttribute("company", company);
                     session.setAttribute("role", role);
 
@@ -74,7 +76,7 @@ public class LoginServlet extends HttpServlet {
                     Admin admin = adminDao.getAdminByMemberId(member.getMemberId());
 
                     HttpSession session = request.getSession();
-                    session.setAttribute("member", member);
+                    session.setAttribute(MEMBER, member);
                     session.setAttribute("admin", admin);
                     session.setAttribute("role", role);
 
@@ -82,6 +84,9 @@ public class LoginServlet extends HttpServlet {
 
                     break;
                 }
+
+                default:
+                    break;
             }
 
 

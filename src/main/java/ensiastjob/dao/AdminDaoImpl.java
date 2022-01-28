@@ -79,7 +79,7 @@ public class AdminDaoImpl implements AdminDao {
     public Admin getAdminById(int id) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM admin WHERE admin_id=?");
-            return getAdmin(id);
+            return getAdmin(preparedStatement ,id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -91,7 +91,7 @@ public class AdminDaoImpl implements AdminDao {
     public Admin getAdminByMemberId(int memberId) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM admin WHERE member_id=?");
-            return getAdmin(memberId);
+            return getAdmin(preparedStatement ,memberId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -125,7 +125,7 @@ public class AdminDaoImpl implements AdminDao {
     }
 
 
-    private Admin getAdmin(int memberId) throws SQLException {
+    private Admin getAdmin(PreparedStatement preparedStatement ,int memberId) throws SQLException {
         preparedStatement.setInt(1, memberId);
         resultSet = preparedStatement.executeQuery();
 

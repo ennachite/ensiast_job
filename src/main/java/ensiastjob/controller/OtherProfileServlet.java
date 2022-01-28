@@ -23,11 +23,13 @@ import java.io.IOException;
 
 @WebServlet(name = "OtherProfile", value = "/other-profile")
 public class OtherProfileServlet extends HttpServlet {
+    private static final String MEMBER = "member";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if (session.getAttribute("member") == null) {
+        if (session.getAttribute(MEMBER) == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("STUDENT")) {
@@ -39,7 +41,7 @@ public class OtherProfileServlet extends HttpServlet {
                 MemberDaoImpl memberDao = new MemberDaoImpl();
                 Member member = memberDao.getMemberByIdForGuest(company.getMemberId());
 
-                request.setAttribute("member", member);
+                request.setAttribute(MEMBER, member);
                 request.setAttribute("company", company);
 
                 request.getRequestDispatcher("view/company/profileCompanyForGuest.jsp").forward(request, response);
@@ -62,7 +64,7 @@ public class OtherProfileServlet extends HttpServlet {
                 ExperienceDaoImpl experienceDao = new ExperienceDaoImpl();
                 LanguageDaoImpl languageDao = new LanguageDaoImpl();
 
-                request.setAttribute("member", member);
+                request.setAttribute(MEMBER, member);
                 request.setAttribute("student", student);
                 request.setAttribute("profile_student", studentProfile);
                 request.setAttribute("certifications", certificationDao.getAllCertificationsByProfileId(studentProfileId));
