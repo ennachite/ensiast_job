@@ -119,14 +119,14 @@
                                                     </p>
                                                 </div>
                                                 <div class="mt-3 flex justify-center space-x-3">
-                                                    <button
-                                                            class="px-3 py-1 rounded hover:bg-ensias-red hover:text-white border-2 border-gray-300 close-modal">
+                                                    <button class="px-3 py-1 rounded hover:bg-ensias-red hover:text-white border-2 border-gray-300 close-modal">
                                                         Cancel
                                                     </button>
-                                                    <button
-                                                            class="px-3 py-1 bg-red-800 text-gray-200 hover:bg-ensias-red rounded">
-                                                        Delete
-                                                    </button>
+                                                    <a href="<c:url value="/delete-student?studentId=${ student.studentId }" />">
+                                                        <button class="px-3 py-1 bg-red-800 text-gray-200 hover:bg-ensias-red rounded">
+                                                            Delete
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

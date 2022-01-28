@@ -76,7 +76,7 @@ public class SignupCompanyServlet extends HttpServlet {
             session.setAttribute("company", company);
             session.setAttribute("role", "COMPANY");
 
-            response.sendRedirect("/profile");
+            response.sendRedirect("/home_company");
 
         } else if (emailExist == 1) {
             String error = Strings.ERROR_EMAIL_EXIST;

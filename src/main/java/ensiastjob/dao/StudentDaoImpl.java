@@ -59,6 +59,15 @@ public class StudentDaoImpl implements StudentDao {
         return -1;
     }
 
+    private void createStudentProfile(int memberId) {
+        StudentProfile studentProfile = new StudentProfile();
+        studentProfile.setActive(true);
+        //getting studentId by using memberId
+        int studentId = getStudentByMemberId(memberId).getStudentId();
+        StudentProfileDaoImpl studentProfileDao = new StudentProfileDaoImpl();
+        studentProfileDao.addStudentProfile(studentProfile, studentId);
+    }
+
     @Override
     public int updateStudent(Student student, Member member) {
         try {
@@ -110,15 +119,6 @@ public class StudentDaoImpl implements StudentDao {
             e.printStackTrace();
         }
         return null;
-    }
-
-    private void createStudentProfile(int memberId) {
-        StudentProfile studentProfile = new StudentProfile();
-        studentProfile.setActive(true);
-        //getting studentId by using memberId
-        int studentId = getStudentByMemberId(memberId).getStudentId();
-        StudentProfileDaoImpl studentProfileDao = new StudentProfileDaoImpl();
-        studentProfileDao.addStudentProfile(studentProfile, studentId);
     }
 
     @Override

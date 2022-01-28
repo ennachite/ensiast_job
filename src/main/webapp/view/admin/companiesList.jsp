@@ -94,18 +94,14 @@
                                 <a href="#" class="main-modal modal-field">Click to see more</a>
 
                                 <!--===========Start Modal==============-->
-                                <div
-                                        class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center overlay">
-                                    <div
-                                            class="bg-gray-200  w-11/12 lg:w-full max-w-xl z-20 py-2 px-3 rounded-xl shadow-xl text-gray-800">
+                                <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center overlay">
+                                    <div class="bg-gray-200  w-11/12 lg:w-full max-w-xl z-20 py-2 px-3 rounded-xl shadow-xl text-gray-800">
                                         <div class="flex justify-between items-center">
                                             <h4 class="text-lg font-bold text-red-900 pl-1">
                                                 About the company</h4>
                                             <svg class="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full text-red-900 close-modal"
                                                  fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                      clip-rule="evenodd"></path>
+                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                             </svg>
                                         </div>
                                         <div class="mt-2 text-sm text-left">
@@ -117,19 +113,15 @@
 
                             </td>
                             <td class="px-4 py-3">
-                                <button
-                                        class="px-2 py-2 text-sm font-medium leading-5 text-red-900 rounded-lg hover:border-red-700 hover:border-2 main-modal"
-                                        aria-label="Delete">
+                                <button class="px-2 py-2 text-sm font-medium leading-5 text-red-900 rounded-lg hover:border-red-700 hover:border-2 main-modal" aria-label="Delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" ></path>
                                     </svg>
                                 </button>
 
                                 <!--===========Start Modal==============-->
-                                <div
-                                        class="bg-black bg-opacity-70 absolute inset-0 hidden justify-center items-center overlay modal-field">
-                                    <div
-                                            class="bg-gray-200 max-w-sm max-h-lg py-2 px-3 rounded-xl shadow-xl text-gray-800">
+                                <div class="bg-black bg-opacity-70 absolute inset-0 hidden justify-center items-center overlay modal-field">
+                                    <div class="bg-gray-200 max-w-sm max-h-lg py-2 px-3 rounded-xl shadow-xl text-gray-800">
                                         <div class="justify-center items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 -m-1 flex items-center text-red-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -147,14 +139,14 @@
                                             </p>
                                         </div>
                                         <div class="mt-3 flex justify-center space-x-3">
-                                            <button
-                                                    class="px-3 py-1 rounded hover:bg-ensias-red hover:text-white border-2 border-gray-300 close-modal">
+                                            <button class="px-3 py-1 rounded hover:bg-ensias-red hover:text-white border-2 border-gray-300 close-modal">
                                                 Cancel
                                             </button>
-                                            <button
-                                                    class="px-3 py-1 bg-red-800 text-gray-200 hover:bg-ensias-red rounded">
-                                                Delete
-                                            </button>
+                                            <a href="<c:url value="/delete-company?companyId=${ company.companyId }" />">
+                                                <button class="px-3 py-1 bg-red-800 text-gray-200 hover:bg-ensias-red rounded">
+                                                    Delete
+                                                </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

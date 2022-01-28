@@ -22,4 +22,6 @@ public interface MemberDao {
     int updateCity(int memberId, String city);
 
     int getTotalMembers();
+
+    int deleteMember(int memberId);
 }

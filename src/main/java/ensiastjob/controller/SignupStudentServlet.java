@@ -87,7 +87,7 @@ public class SignupStudentServlet extends HttpServlet {
             session.setAttribute("profile_student", studentProfile);
             session.setAttribute("role", "STUDENT");
 
-            response.sendRedirect("/profile");
+            response.sendRedirect("/home-student");
 
         } else if (emailExist == 1) {
             String error = Strings.ERROR_EMAIL_EXIST;

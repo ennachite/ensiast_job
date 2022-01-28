@@ -232,4 +232,21 @@ public class MemberDaoImpl implements MemberDao {
         }
         return 0;
     }
+
+    @Override
+    public int deleteMember(int memberId) {
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM member WHERE member_id=?");
+            preparedStatement.setInt(1, memberId);
+
+            if (preparedStatement.executeUpdate() > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }
