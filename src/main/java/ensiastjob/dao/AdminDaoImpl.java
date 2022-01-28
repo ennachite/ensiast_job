@@ -2,7 +2,6 @@ package ensiastjob.dao;
 
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.Admin;
-import ensiastjob.model.Company;
 import ensiastjob.model.Member;
 import ensiastjob.model.Role;
 
@@ -97,26 +96,6 @@ public class AdminDaoImpl implements AdminDao{
         return null;
     }
 
-    private Admin getAdmin(int memberId) throws SQLException {
-        preparedStatement.setInt(1, memberId);
-        resultSet = preparedStatement.executeQuery();
-
-        if (resultSet.next()) {
-            Admin admin = new Admin();
-            admin.setAdminId(resultSet.getInt("admin_id"));
-            admin.setMemberId(resultSet.getInt("member_id"));
-            admin.setAdminName(resultSet.getString("name"));
-            admin.setAdminGender(resultSet.getString("gender"));
-            admin.setAdminCIN(resultSet.getString("cin"));
-            admin.setAdminBirthdate(resultSet.getString("birthdate"));
-            admin.setAdminPhone(resultSet.getString("phone"));
-
-            return admin;
-        } else {
-            return null;
-        }
-    }
-
     @Override
     public List<Admin> getAllAdmins() {
         List<Admin> admins = new ArrayList<>();
@@ -125,14 +104,7 @@ public class AdminDaoImpl implements AdminDao{
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Admin admin = new Admin();
-                admin.setAdminId(resultSet.getInt("admin_id"));
-                admin.setMemberId(resultSet.getInt("member_id"));
-                admin.setAdminName(resultSet.getString("name"));
-                admin.setAdminGender(resultSet.getString("gender"));
-                admin.setAdminCIN(resultSet.getString("cin"));
-                admin.setAdminBirthdate(resultSet.getString("birthdate"));
-                admin.setAdminPhone(resultSet.getString("phone"));
+                Admin admin = getAdminAttributes();
 
                 //We implement Member to get his picture
                 MemberDaoImpl memberDao = new MemberDaoImpl();
@@ -147,5 +119,29 @@ public class AdminDaoImpl implements AdminDao{
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    private Admin getAdmin(int memberId) throws SQLException {
+        preparedStatement.setInt(1, memberId);
+        resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            return getAdminAttributes();
+        } else {
+            return null;
+        }
+    }
+
+    private Admin getAdminAttributes() throws SQLException {
+        Admin admin = new Admin();
+        admin.setAdminId(resultSet.getInt("admin_id"));
+        admin.setMemberId(resultSet.getInt("member_id"));
+        admin.setAdminName(resultSet.getString("name"));
+        admin.setAdminGender(resultSet.getString("gender"));
+        admin.setAdminCIN(resultSet.getString("cin"));
+        admin.setAdminBirthdate(resultSet.getString("birthdate"));
+        admin.setAdminPhone(resultSet.getString("phone"));
+        return admin;
     }
 }

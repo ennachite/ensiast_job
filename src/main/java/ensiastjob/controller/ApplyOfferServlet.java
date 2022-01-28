@@ -2,7 +2,6 @@ package ensiastjob.controller;
 
 import ensiastjob.dao.CandidacyDaoImpl;
 import ensiastjob.dao.CompanyDaoImpl;
-import ensiastjob.dao.MemberDaoImpl;
 import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.extra.HomePath;
 import ensiastjob.model.*;
@@ -20,7 +19,7 @@ public class ApplyOfferServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("COMPANY")) {

@@ -4,14 +4,11 @@ import ensiastjob.dao.CompanyDaoImpl;
 import ensiastjob.dao.MemberDaoImpl;
 import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.dao.StudentDaoImpl;
-import ensiastjob.model.Member;
-import ensiastjob.model.Offer;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "HomeAdmin", value = "/home-admin")
 public class HomeAdminServlet extends HttpServlet {
@@ -19,7 +16,7 @@ public class HomeAdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("COMPANY")) {
@@ -36,7 +33,7 @@ public class HomeAdminServlet extends HttpServlet {
                 int totalStudents = studentDao.getTotalStudents();
                 int totalCompanies = companyDao.getTotalCompanies();
                 int totalOffers = offerDao.getTotalOffers();
-                int totalInternships = offerDao.getTotalInterships();
+                int totalInternships = offerDao.getTotalInternships();
                 int totalJobOffers = totalOffers - totalInternships;
 
                 request.setAttribute("totalMembers",totalMembers);
@@ -51,8 +48,4 @@ public class HomeAdminServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

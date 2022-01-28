@@ -12,5 +12,5 @@ public interface OfferDao {
     public int updateOffer(Offer offer);
     public int deleteOffer(int offerId);
     public int getTotalOffers();
-    public int getTotalInterships();
+    public int getTotalInternships();
 }

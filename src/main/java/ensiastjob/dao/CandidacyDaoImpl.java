@@ -11,7 +11,6 @@ import java.util.List;
 
 public class CandidacyDaoImpl implements CandidacyDao{
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -68,7 +67,7 @@ public class CandidacyDaoImpl implements CandidacyDao{
 
     @Override
     public List<Candidacy> getCandidaciesByOffer(int offerId) {
-        List<Candidacy> candidacies = new ArrayList<Candidacy>();
+        List<Candidacy> candidacies = new ArrayList<>();
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM candidacy WHERE offer_id=?");
             preparedStatement.setInt(1, offerId);
@@ -140,19 +139,6 @@ public class CandidacyDaoImpl implements CandidacyDao{
         return null;
     }
 
-    private Candidacy getCandidacy() throws SQLException {
-        Candidacy candidacy = new Candidacy();
-        candidacy.setCandidacyId(resultSet.getInt("candidacy_id"));
-        candidacy.setStudentId(resultSet.getInt("student_id"));
-        candidacy.setOfferId(resultSet.getInt("offer_id"));
-        candidacy.setCandidacyStatus(CandidacyStatus.valueOf(resultSet.getString("status")));
-        candidacy.setStudentCV(resultSet.getString("CV"));
-        candidacy.setGithubUsername(resultSet.getString("github_username"));
-        candidacy.setDateCandidacy(resultSet.getString("date_candidacy"));
-        candidacy.setMotivation(resultSet.getString("motivation"));
-        return candidacy;
-    }
-
     @Override
     public void modifyCandidacyStatus(int candidacyId, String candidacyStatus) {
         try {
@@ -166,4 +152,16 @@ public class CandidacyDaoImpl implements CandidacyDao{
         }
     }
 
+    private Candidacy getCandidacy() throws SQLException {
+        Candidacy candidacy = new Candidacy();
+        candidacy.setCandidacyId(resultSet.getInt("candidacy_id"));
+        candidacy.setStudentId(resultSet.getInt("student_id"));
+        candidacy.setOfferId(resultSet.getInt("offer_id"));
+        candidacy.setCandidacyStatus(CandidacyStatus.valueOf(resultSet.getString("status")));
+        candidacy.setStudentCV(resultSet.getString("CV"));
+        candidacy.setGithubUsername(resultSet.getString("github_username"));
+        candidacy.setDateCandidacy(resultSet.getString("date_candidacy"));
+        candidacy.setMotivation(resultSet.getString("motivation"));
+        return candidacy;
+    }
 }

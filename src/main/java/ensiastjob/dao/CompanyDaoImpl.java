@@ -9,7 +9,6 @@ import java.util.List;
 
 public class CompanyDaoImpl implements CompanyDao{
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -112,27 +111,6 @@ public class CompanyDaoImpl implements CompanyDao{
         return null;
     }
 
-    private Company getCompany() throws SQLException {
-        resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-            Company company = new Company();
-            company.setCompanyId(resultSet.getInt("company_id"));
-            company.setMemberId(resultSet.getInt("member_id"));
-            company.setCompanyName(resultSet.getString("company_name"));
-            company.setCeoName(resultSet.getString("ceo_name"));
-            company.setCompanyFix(resultSet.getString("company_fix"));
-            company.setCompanySize(resultSet.getInt("company_size"));
-            company.setCompanySizeWord(resultSet.getInt("company_size"));
-            company.setCompanyTif(resultSet.getString("company_tif"));
-            company.setFounded(resultSet.getInt("founded"));
-            company.setDescription(resultSet.getString("description"));
-
-            return company;
-        } else {
-            return null;
-        }
-    }
-
     public String getCompanyProfilePicture(int companyId) {
         Company company = getCompanyById(companyId);
         try {
@@ -174,17 +152,7 @@ public class CompanyDaoImpl implements CompanyDao{
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Company company = new Company();
-                company.setCompanyId(resultSet.getInt("company_id"));
-                company.setMemberId(resultSet.getInt("member_id"));
-                company.setCompanyName(resultSet.getString("company_name"));
-                company.setCeoName(resultSet.getString("ceo_name"));
-                company.setCompanyFix(resultSet.getString("company_fix"));
-                company.setCompanySize(resultSet.getInt("company_size"));
-                company.setCompanySizeWord(resultSet.getInt("company_size"));
-                company.setCompanyTif(resultSet.getString("company_tif"));
-                company.setFounded(resultSet.getInt("founded"));
-                company.setDescription(resultSet.getString("description"));
+                Company company = getCompanyAttributes();
 
                 //We implement Member to get his picture
                 MemberDaoImpl memberDao = new MemberDaoImpl();
@@ -198,5 +166,29 @@ public class CompanyDaoImpl implements CompanyDao{
             e.printStackTrace();
         }
         return null;
+    }
+
+    private Company getCompany() throws SQLException {
+        resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            return getCompanyAttributes();
+        } else {
+            return null;
+        }
+    }
+
+    private Company getCompanyAttributes() throws SQLException {
+        Company company = new Company();
+        company.setCompanyId(resultSet.getInt("company_id"));
+        company.setMemberId(resultSet.getInt("member_id"));
+        company.setCompanyName(resultSet.getString("company_name"));
+        company.setCeoName(resultSet.getString("ceo_name"));
+        company.setCompanyFix(resultSet.getString("company_fix"));
+        company.setCompanySize(resultSet.getInt("company_size"));
+        company.setCompanySizeWord(resultSet.getInt("company_size"));
+        company.setCompanyTif(resultSet.getString("company_tif"));
+        company.setFounded(resultSet.getInt("founded"));
+        company.setDescription(resultSet.getString("description"));
+        return company;
     }
 }

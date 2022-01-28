@@ -7,7 +7,6 @@ import java.sql.*;
 
 public class StudentProfileDaoImpl implements StudentProfileDao{
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 

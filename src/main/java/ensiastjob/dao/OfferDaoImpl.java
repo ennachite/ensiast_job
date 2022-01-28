@@ -11,7 +11,6 @@ import java.util.List;
 
 public class OfferDaoImpl implements OfferDao {
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -177,7 +176,7 @@ public class OfferDaoImpl implements OfferDao {
     }
 
     @Override
-    public int getTotalInterships() {
+    public int getTotalInternships() {
         try{
             preparedStatement = connection.prepareStatement("SELECT count(*) as total from offer where job_type ='Internship'");
             resultSet = preparedStatement.executeQuery();

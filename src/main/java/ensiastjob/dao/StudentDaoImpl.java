@@ -9,7 +9,6 @@ import java.util.List;
 
 public class StudentDaoImpl implements StudentDao{
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -107,30 +106,6 @@ public class StudentDaoImpl implements StudentDao{
         return null;
     }
 
-    private Student getStudent(int id) throws SQLException {
-        preparedStatement.setInt(1, id);
-        resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-            Student student = new Student();
-            student.setStudentId(resultSet.getInt("student_id"));
-            student.setMemberId(resultSet.getInt("member_id"));
-            student.setFirstName(resultSet.getString("first_name"));
-            student.setLastName(resultSet.getString("last_name"));
-            student.setCNE(resultSet.getString("cne"));
-            student.setCIN(resultSet.getString("cin"));
-            student.setBirthdate(resultSet.getString("birthdate"));
-            student.setGender(resultSet.getString("gender"));
-            student.setSpecialty(resultSet.getString("specialty"));
-            student.setPromo(resultSet.getInt("promo"));
-            student.setYearStudies(resultSet.getString("year_studies"));
-            student.setPhone(resultSet.getString("phone"));
-
-            return student;
-        } else {
-            return null;
-        }
-    }
-
     private void createStudentProfile (int memberId) {
         StudentProfile studentProfile = new StudentProfile();
         studentProfile.setActive(true);
@@ -162,19 +137,7 @@ public class StudentDaoImpl implements StudentDao{
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Student student = new Student();
-                student.setStudentId(resultSet.getInt("student_id"));
-                student.setMemberId(resultSet.getInt("member_id"));
-                student.setFirstName(resultSet.getString("first_name"));
-                student.setLastName(resultSet.getString("last_name"));
-                student.setCNE(resultSet.getString("cne"));
-                student.setCIN(resultSet.getString("cin"));
-                student.setBirthdate(resultSet.getString("birthdate"));
-                student.setGender(resultSet.getString("gender"));
-                student.setSpecialty(resultSet.getString("specialty"));
-                student.setPromo(resultSet.getInt("promo"));
-                student.setYearStudies(resultSet.getString("year_studies"));
-                student.setPhone(resultSet.getString("phone"));
+                Student student = getStudentAttributes();
 
                 MemberDaoImpl memberDao = new MemberDaoImpl();
                 Member member = memberDao.getMemberById(student.getMemberId());
@@ -189,5 +152,32 @@ public class StudentDaoImpl implements StudentDao{
             e.printStackTrace();
         }
         return null;
+    }
+
+    private Student getStudent(int id) throws SQLException {
+        preparedStatement.setInt(1, id);
+        resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            return getStudentAttributes();
+        } else {
+            return null;
+        }
+    }
+
+    private Student getStudentAttributes() throws SQLException {
+        Student student = new Student();
+        student.setStudentId(resultSet.getInt("student_id"));
+        student.setMemberId(resultSet.getInt("member_id"));
+        student.setFirstName(resultSet.getString("first_name"));
+        student.setLastName(resultSet.getString("last_name"));
+        student.setCNE(resultSet.getString("cne"));
+        student.setCIN(resultSet.getString("cin"));
+        student.setBirthdate(resultSet.getString("birthdate"));
+        student.setGender(resultSet.getString("gender"));
+        student.setSpecialty(resultSet.getString("specialty"));
+        student.setPromo(resultSet.getInt("promo"));
+        student.setYearStudies(resultSet.getString("year_studies"));
+        student.setPhone(resultSet.getString("phone"));
+        return student;
     }
 }

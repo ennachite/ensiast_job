@@ -1,15 +1,12 @@
 package ensiastjob.controller;
 
 import ensiastjob.dao.CandidacyDaoImpl;
-import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.model.Candidacy;
-import ensiastjob.model.Member;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.Arrays;
 
 @WebServlet(name = "ModifyCandidacyStatus", value = "/modify-candidacy-status")
 public class ModifyCandidacyStatusServlet extends HttpServlet {
@@ -17,7 +14,7 @@ public class ModifyCandidacyStatusServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("STUDENT")) {

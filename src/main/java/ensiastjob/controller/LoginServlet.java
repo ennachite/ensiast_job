@@ -15,7 +15,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session =request.getSession(false);
 
-        if ((Member) session.getAttribute("member") != null) {
+        if (session.getAttribute("member") != null) {
             response.sendRedirect("/");
         } else {
             request.getRequestDispatcher("view/login.jsp").forward(request, response);
@@ -35,43 +35,50 @@ public class LoginServlet extends HttpServlet {
             Member member = memberDao.getMemberByEmail(email);
             String role = String.valueOf(member.getRole());
 
-            if (role.equals("STUDENT")) {
-                StudentDaoImpl studentDao = new StudentDaoImpl();
-                StudentProfileDaoImpl studentProfileDao = new StudentProfileDaoImpl();
+            switch (role) {
+                case "STUDENT": {
+                    StudentDaoImpl studentDao = new StudentDaoImpl();
+                    StudentProfileDaoImpl studentProfileDao = new StudentProfileDaoImpl();
 
-                Student student = studentDao.getStudentByMemberId(member.getMemberId());
-                StudentProfile studentProfile = studentProfileDao.getStudentProfileByStudentId(student.getStudentId());
+                    Student student = studentDao.getStudentByMemberId(member.getMemberId());
+                    StudentProfile studentProfile = studentProfileDao.getStudentProfileByStudentId(student.getStudentId());
 
-                HttpSession session = request.getSession();
-                session.setAttribute("member", member);
-                session.setAttribute("student", student);
-                session.setAttribute("profile_student", studentProfile);
-                session.setAttribute("role", role);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("member", member);
+                    session.setAttribute("student", student);
+                    session.setAttribute("profile_student", studentProfile);
+                    session.setAttribute("role", role);
 
-                response.sendRedirect("/home-student");
+                    response.sendRedirect("/home-student");
 
-            } else if (role.equals("COMPANY")) {
-                CompanyDaoImpl companyDao = new CompanyDaoImpl();
-                Company company = companyDao.getCompanyByMemberId(member.getMemberId());
+                    break;
+                }
+                case "COMPANY": {
+                    CompanyDaoImpl companyDao = new CompanyDaoImpl();
+                    Company company = companyDao.getCompanyByMemberId(member.getMemberId());
 
-                HttpSession session = request.getSession();
-                session.setAttribute("member", member);
-                session.setAttribute("company", company);
-                session.setAttribute("role", role);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("member", member);
+                    session.setAttribute("company", company);
+                    session.setAttribute("role", role);
 
-                response.sendRedirect("/home-company");
+                    response.sendRedirect("/home-company");
 
-            }else if (role.equals("ADMIN")) {
-                AdminDaoImpl adminDao = new AdminDaoImpl();
-                Admin admin = adminDao.getAdminByMemberId(member.getMemberId());
+                    break;
+                }
+                case "ADMIN": {
+                    AdminDaoImpl adminDao = new AdminDaoImpl();
+                    Admin admin = adminDao.getAdminByMemberId(member.getMemberId());
 
-                HttpSession session = request.getSession();
-                session.setAttribute("member", member);
-                session.setAttribute("admin", admin);
-                session.setAttribute("role", role);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("member", member);
+                    session.setAttribute("admin", admin);
+                    session.setAttribute("role", role);
 
-                response.sendRedirect("/home-admin");
+                    response.sendRedirect("/home-admin");
 
+                    break;
+                }
             }
 
 

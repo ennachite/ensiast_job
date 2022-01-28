@@ -19,7 +19,7 @@ public class ModifyProfileStudentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("COMPANY")) {

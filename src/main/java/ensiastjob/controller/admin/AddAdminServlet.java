@@ -1,8 +1,6 @@
 package ensiastjob.controller.admin;
 
 import ensiastjob.dao.AdminDaoImpl;
-import ensiastjob.dao.MemberDaoImpl;
-import ensiastjob.extra.Strings;
 import ensiastjob.model.Admin;
 import ensiastjob.model.Member;
 
@@ -17,7 +15,7 @@ public class AddAdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("STUDENT")  ) {
@@ -33,7 +31,6 @@ public class AddAdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        MemberDaoImpl memberDao = new MemberDaoImpl();
         AdminDaoImpl adminDao = new AdminDaoImpl();
         String adminName = request.getParameter("admin-name");
         String adminGender = request.getParameter("admin-gender");

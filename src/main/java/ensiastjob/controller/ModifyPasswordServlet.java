@@ -15,7 +15,7 @@ public class ModifyPasswordServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
             request.getRequestDispatcher("view/modifyPassword.jsp").forward(request, response);
@@ -37,8 +37,6 @@ public class ModifyPasswordServlet extends HttpServlet {
         if (updatePassword == 1) {
             member = memberDao.getMemberByEmail(email);
             session.setAttribute("member", member);
-
-            String role = String.valueOf(member.getRole());
 
             response.sendRedirect("/profile");
 

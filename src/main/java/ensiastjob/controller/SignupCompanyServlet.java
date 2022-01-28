@@ -18,7 +18,7 @@ public class SignupCompanyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session =request.getSession(false);
 
-        if ((Member) session.getAttribute("member") != null) {
+        if (session.getAttribute("member") != null) {
             response.sendRedirect("/profile");
         } else {
             request.getRequestDispatcher("view/company/signupCompany.jsp").forward(request, response);

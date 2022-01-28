@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 
 public class MemberDaoImpl implements MemberDao {
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 

@@ -1,10 +1,7 @@
 package ensiastjob.controller.admin;
 
 import ensiastjob.dao.AdminDaoImpl;
-import ensiastjob.dao.CompanyDaoImpl;
-import ensiastjob.dao.MemberDaoImpl;
 import ensiastjob.model.Admin;
-import ensiastjob.model.Company;
 import ensiastjob.model.Member;
 
 import javax.servlet.*;
@@ -19,7 +16,7 @@ public class AdminsListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("COMPANY")) {
@@ -35,9 +32,4 @@ public class AdminsListServlet extends HttpServlet {
         }
     }
 
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

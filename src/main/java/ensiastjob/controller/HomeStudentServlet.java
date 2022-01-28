@@ -2,10 +2,7 @@ package ensiastjob.controller;
 
 import ensiastjob.dao.CompanyDaoImpl;
 import ensiastjob.dao.OfferDaoImpl;
-import ensiastjob.model.Company;
-import ensiastjob.model.Member;
 import ensiastjob.model.Offer;
-import ensiastjob.model.Student;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -19,7 +16,7 @@ public class HomeStudentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("COMPANY")) {

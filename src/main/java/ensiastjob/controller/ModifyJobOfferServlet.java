@@ -1,7 +1,6 @@
 package ensiastjob.controller;
 
 import ensiastjob.dao.OfferDaoImpl;
-import ensiastjob.model.Member;
 import ensiastjob.model.Offer;
 
 import javax.servlet.*;
@@ -15,7 +14,7 @@ public class ModifyJobOfferServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else if (session.getAttribute("role").equals("STUDENT")){
             response.sendRedirect("/home-student");
