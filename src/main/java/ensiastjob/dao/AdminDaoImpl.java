@@ -2,10 +2,13 @@ package ensiastjob.dao;
 
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.Admin;
+import ensiastjob.model.Company;
 import ensiastjob.model.Member;
 import ensiastjob.model.Role;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDaoImpl implements AdminDao{
     private final Connection connection;
@@ -112,5 +115,37 @@ public class AdminDaoImpl implements AdminDao{
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<Admin> getAllAdmins() {
+        List<Admin> admins = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM admin ");
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Admin admin = new Admin();
+                admin.setAdminId(resultSet.getInt("admin_id"));
+                admin.setMemberId(resultSet.getInt("member_id"));
+                admin.setAdminName(resultSet.getString("name"));
+                admin.setAdminGender(resultSet.getString("gender"));
+                admin.setAdminCIN(resultSet.getString("cin"));
+                admin.setAdminBirthdate(resultSet.getString("birthdate"));
+                admin.setAdminPhone(resultSet.getString("phone"));
+
+                //We implement Member to get his picture
+                MemberDaoImpl memberDao = new MemberDaoImpl();
+                Member member = memberDao.getMemberById(admin.getMemberId());
+                admin.setEmailAdmin(member.getEmail());
+                admin.setCityAdmin(member.getCity());
+                admin.setPictureAdmin(member.getPicture());
+                admins.add(admin);
+            }
+            return admins;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

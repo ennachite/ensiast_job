@@ -36,6 +36,8 @@ public class ProfileServlet extends HttpServlet {
                 request.setAttribute("languages", languageDao.getAllLanguagesByProfileId(studentProfileId));
 
                 request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
+            }else if (session.getAttribute("role").equals("ADMIN")){
+                request.getRequestDispatcher("view/admin/profileAdmin.jsp").forward(request, response);
             }
         }
     }

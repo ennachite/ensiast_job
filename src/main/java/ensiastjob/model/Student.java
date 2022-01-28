@@ -2,7 +2,7 @@ package ensiastjob.model;
 
 public class Student {
     private int studentId, memberId;
-    private String firstName, lastName, CNE, CIN, birthdate, gender, specialty, yearStudies, phone;
+    private String firstName, lastName, CNE, CIN, birthdate, gender, specialty, yearStudies, phone, emailStudent,picture, cityStudent;
     private int promo;
 
     public int getStudentId() {
@@ -99,5 +99,29 @@ public class Student {
 
     public void setPromo(int promo) {
         this.promo = promo;
+    }
+
+    public String getEmailStudent() {
+        return emailStudent;
+    }
+
+    public void setEmailStudent(String emailStudent) {
+        this.emailStudent = emailStudent;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getCityStudent() {
+        return cityStudent;
+    }
+
+    public void setCityStudent(String cityStudent) {
+        this.cityStudent = cityStudent;
     }
 }

@@ -216,4 +216,18 @@ public class MemberDaoImpl implements MemberDao {
 
         return -1;
     }
+
+    @Override
+    public int getTotalMembers() {
+        try{
+            preparedStatement = connection.prepareStatement("SELECT count(*) as total from member");
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

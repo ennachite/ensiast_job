@@ -1,12 +1,11 @@
 package ensiastjob.dao;
 
 import ensiastjob.extra.DBConnection;
-import ensiastjob.model.Member;
-import ensiastjob.model.Role;
-import ensiastjob.model.Student;
-import ensiastjob.model.StudentProfile;
+import ensiastjob.model.*;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDaoImpl implements StudentDao{
     private final Connection connection;
@@ -139,5 +138,56 @@ public class StudentDaoImpl implements StudentDao{
         int studentId = getStudentByMemberId(memberId).getStudentId();
         StudentProfileDaoImpl studentProfileDao = new StudentProfileDaoImpl();
         studentProfileDao.addStudentProfile(studentProfile, studentId);
+    }
+
+    @Override
+    public int getTotalStudents() {
+        try{
+            preparedStatement = connection.prepareStatement("SELECT count(*) as total from student");
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        List<Student> students = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM student ");
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Student student = new Student();
+                student.setStudentId(resultSet.getInt("student_id"));
+                student.setMemberId(resultSet.getInt("member_id"));
+                student.setFirstName(resultSet.getString("first_name"));
+                student.setLastName(resultSet.getString("last_name"));
+                student.setCNE(resultSet.getString("cne"));
+                student.setCIN(resultSet.getString("cin"));
+                student.setBirthdate(resultSet.getString("birthdate"));
+                student.setGender(resultSet.getString("gender"));
+                student.setSpecialty(resultSet.getString("specialty"));
+                student.setPromo(resultSet.getInt("promo"));
+                student.setYearStudies(resultSet.getString("year_studies"));
+                student.setPhone(resultSet.getString("phone"));
+
+                MemberDaoImpl memberDao = new MemberDaoImpl();
+                Member member = memberDao.getMemberById(student.getMemberId());
+                student.setEmailStudent(member.getEmail());
+                student.setPicture(member.getPicture());
+                student.setCityStudent(member.getCity());
+                students.add(student);
+
+            }
+            return students;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

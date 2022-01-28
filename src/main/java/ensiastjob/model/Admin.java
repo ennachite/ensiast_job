@@ -2,7 +2,7 @@ package ensiastjob.model;
 
 public class Admin {
     int adminId, memberId;
-    String adminName, adminGender, adminCIN, adminBirthdate, adminPhone;
+    String adminName, adminGender, adminCIN, adminBirthdate, adminPhone, emailAdmin, pictureAdmin,cityAdmin;
 
     public int getAdminId() {
         return adminId;
@@ -58,5 +58,29 @@ public class Admin {
 
     public void setAdminPhone(String adminPhone) {
         this.adminPhone = adminPhone;
+    }
+
+    public String getEmailAdmin() {
+        return emailAdmin;
+    }
+
+    public void setEmailAdmin(String emailAdmin) {
+        this.emailAdmin = emailAdmin;
+    }
+
+    public String getPictureAdmin() {
+        return pictureAdmin;
+    }
+
+    public void setPictureAdmin(String pictureAdmin) {
+        this.pictureAdmin = pictureAdmin;
+    }
+
+    public String getCityAdmin() {
+        return cityAdmin;
+    }
+
+    public void setCityAdmin(String cityAdmin) {
+        this.cityAdmin = cityAdmin;
     }
 }
