@@ -6,14 +6,21 @@
 <title> ${ sessionScope.student.firstName }'s Profile</title>
 </head>
 <body>
-<%--Preloader--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/preloader.jsp" />
+<c:choose>
+    <c:when test="${ sessionScope.role.equals('ADMIN') }">
+        <jsp:include page="${pageContext.request.contextPath}/view/admin/sidebareAdmin.jsp" />
+    </c:when>
+    <c:otherwise>
+        <%--Preloader--%>
+        <jsp:include page="${pageContext.request.contextPath}/WEB-INF/preloader.jsp" />
 
-<%--Navbar--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/navbar.jsp" />
+        <%--Navbar--%>
+        <jsp:include page="${pageContext.request.contextPath}/WEB-INF/navbar.jsp" />
+    </c:otherwise>
+</c:choose>
 
 <!--====== JOB POSTS PART STARTS ======-->
-<section class="pt-120 pb-120">
+<section class="pt-120 pb-120 h-full">
     <div class="">
         <div class="row justify-center">
             <div class="w-fully lg:w-1/2">

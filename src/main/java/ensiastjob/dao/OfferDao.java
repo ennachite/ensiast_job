@@ -11,4 +11,6 @@ public interface OfferDao {
     public List<Offer> getAllOffers();
     public int updateOffer(Offer offer);
     public int deleteOffer(int offerId);
+    public int getTotalOffers();
+    public int getTotalInterships();
 }

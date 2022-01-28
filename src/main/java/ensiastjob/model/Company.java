@@ -2,7 +2,7 @@ package ensiastjob.model;
 
 public class Company {
     private int companyId, memberId;
-    private String companyName, ceoName, companyFix, companyTif, description, companySizeWord;
+    private String companyName, ceoName, companyFix, companyTif, description, companySizeWord, emailCompany, pictureCompany;
     private int companySize, founded;
 
     public int getCompanyId() {
@@ -87,5 +87,21 @@ public class Company {
         else if (companySize < 50) this.companySizeWord = "Small";
         else if (companySize < 250) this.companySizeWord = "Medium";
         else this.companySizeWord = "Large";
+    }
+
+    public String getEmailCompany() {
+        return emailCompany;
+    }
+
+    public void setEmailCompany(String emailCompany) {
+        this.emailCompany = emailCompany;
+    }
+
+    public String getPictureCompany() {
+        return pictureCompany;
+    }
+
+    public void setPictureCompany(String pictureCompany) {
+        this.pictureCompany = pictureCompany;
     }
 }

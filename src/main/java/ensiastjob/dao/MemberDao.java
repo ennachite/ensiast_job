@@ -11,4 +11,5 @@ public interface MemberDao {
     public int updatePassword(String email, String currentPassword, String newPassword);
     public int addPicture(int memberId, String picturePath);
     public int updateCity(int memberId, String city);
+    public int getTotalMembers();
 }

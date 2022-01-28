@@ -1,14 +1,8 @@
 package ensiastjob.controller;
 
-import ensiastjob.dao.CompanyDaoImpl;
-import ensiastjob.dao.MemberDaoImpl;
-import ensiastjob.dao.StudentDaoImpl;
-import ensiastjob.dao.StudentProfileDaoImpl;
+import ensiastjob.dao.*;
 import ensiastjob.extra.Strings;
-import ensiastjob.model.Company;
-import ensiastjob.model.Member;
-import ensiastjob.model.Student;
-import ensiastjob.model.StudentProfile;
+import ensiastjob.model.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -67,7 +61,19 @@ public class LoginServlet extends HttpServlet {
 
                 response.sendRedirect("/home-company");
 
+            }else if (role.equals("ADMIN")) {
+                AdminDaoImpl adminDao = new AdminDaoImpl();
+                Admin admin = adminDao.getAdminByMemberId(member.getMemberId());
+
+                HttpSession session = request.getSession();
+                session.setAttribute("member", member);
+                session.setAttribute("admin", admin);
+                session.setAttribute("role", role);
+
+                response.sendRedirect("/home-admin");
+
             }
+
 
         } else if (verifyLogin == 0) {
             String error = Strings.ERROR_LOGIN;

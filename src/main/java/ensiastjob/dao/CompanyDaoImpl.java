@@ -1,11 +1,11 @@
 package ensiastjob.dao;
 
 import ensiastjob.extra.DBConnection;
-import ensiastjob.model.Company;
-import ensiastjob.model.Member;
-import ensiastjob.model.Role;
+import ensiastjob.model.*;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CompanyDaoImpl implements CompanyDao{
     private final Connection connection;
@@ -150,6 +150,54 @@ public class CompanyDaoImpl implements CompanyDao{
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    @Override
+    public int getTotalCompanies() {
+        try{
+            preparedStatement = connection.prepareStatement("SELECT count(*) as total from company");
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Company> getAllCompanies() {
+        List<Company> companies = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM company ");
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Company company = new Company();
+                company.setCompanyId(resultSet.getInt("company_id"));
+                company.setMemberId(resultSet.getInt("member_id"));
+                company.setCompanyName(resultSet.getString("company_name"));
+                company.setCeoName(resultSet.getString("ceo_name"));
+                company.setCompanyFix(resultSet.getString("company_fix"));
+                company.setCompanySize(resultSet.getInt("company_size"));
+                company.setCompanySizeWord(resultSet.getInt("company_size"));
+                company.setCompanyTif(resultSet.getString("company_tif"));
+                company.setFounded(resultSet.getInt("founded"));
+                company.setDescription(resultSet.getString("description"));
+
+                //We implement Member to get his picture
+                MemberDaoImpl memberDao = new MemberDaoImpl();
+                Member member = memberDao.getMemberById(company.getMemberId());
+                company.setEmailCompany(member.getEmail());
+                company.setPictureCompany(member.getPicture());
+                companies.add(company);
+            }
+            return companies;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

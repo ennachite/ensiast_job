@@ -161,4 +161,32 @@ public class OfferDaoImpl implements OfferDao {
 
         return -1;
     }
+
+    @Override
+    public int getTotalOffers() {
+        try{
+            preparedStatement = connection.prepareStatement("SELECT count(*) as total from offer");
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int getTotalInterships() {
+        try{
+            preparedStatement = connection.prepareStatement("SELECT count(*) as total from offer where job_type ='Internship'");
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
