@@ -6,9 +6,12 @@ import ensiastjob.extra.Strings;
 import ensiastjob.model.Admin;
 import ensiastjob.model.Member;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ModifyAdminProfile", value = "/modify-admin-profile")
@@ -20,7 +23,7 @@ public class ModifyAdminProfileServlet extends HttpServlet {
         if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
-            if (session.getAttribute("role").equals("STUDENT") || session.getAttribute("role").equals("COMPANY") ) {
+            if (session.getAttribute("role").equals("STUDENT") || session.getAttribute("role").equals("COMPANY")) {
                 response.sendRedirect("/profile");
             } else if (session.getAttribute("role").equals("ADMIN")) {
                 request.getRequestDispatcher("view/admin/modifyProfileAdmin.jsp").forward(request, response);

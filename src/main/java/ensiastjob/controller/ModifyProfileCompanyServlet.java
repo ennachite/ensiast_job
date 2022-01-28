@@ -6,9 +6,12 @@ import ensiastjob.extra.Strings;
 import ensiastjob.model.Company;
 import ensiastjob.model.Member;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ModifyProfileCompany", value = "/modify-company-profile")

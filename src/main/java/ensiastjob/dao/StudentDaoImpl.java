@@ -1,13 +1,19 @@
 package ensiastjob.dao;
 
 import ensiastjob.extra.DBConnection;
-import ensiastjob.model.*;
+import ensiastjob.model.Member;
+import ensiastjob.model.Role;
+import ensiastjob.model.Student;
+import ensiastjob.model.StudentProfile;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDaoImpl implements StudentDao{
+public class StudentDaoImpl implements StudentDao {
     private final Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
@@ -106,7 +112,7 @@ public class StudentDaoImpl implements StudentDao{
         return null;
     }
 
-    private void createStudentProfile (int memberId) {
+    private void createStudentProfile(int memberId) {
         StudentProfile studentProfile = new StudentProfile();
         studentProfile.setActive(true);
         //getting studentId by using memberId
@@ -117,10 +123,10 @@ public class StudentDaoImpl implements StudentDao{
 
     @Override
     public int getTotalStudents() {
-        try{
+        try {
             preparedStatement = connection.prepareStatement("SELECT count(*) as total from student");
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getInt("total");
             }
         } catch (SQLException e) {

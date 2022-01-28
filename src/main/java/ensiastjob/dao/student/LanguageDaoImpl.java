@@ -2,15 +2,16 @@ package ensiastjob.dao.student;
 
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.student.Language;
-import ensiastjob.model.student.Language;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LanguageDaoImpl implements LanguageDao{
+public class LanguageDaoImpl implements LanguageDao {
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -37,7 +38,7 @@ public class LanguageDaoImpl implements LanguageDao{
             preparedStatement = connection.prepareStatement("UPDATE language SET language_name=?, level=? WHERE language_id=?");
             preparedStatement.setString(1, language.getLanguageName());
             preparedStatement.setString(2, language.getLevel());
-            preparedStatement.setInt(3,language.getLanguageId());
+            preparedStatement.setInt(3, language.getLanguageId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

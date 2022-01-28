@@ -3,9 +3,12 @@ package ensiastjob.dao;
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.StudentProfile;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class StudentProfileDaoImpl implements StudentProfileDao{
+public class StudentProfileDaoImpl implements StudentProfileDao {
     private final Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;

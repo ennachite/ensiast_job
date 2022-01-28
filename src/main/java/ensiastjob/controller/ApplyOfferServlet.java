@@ -4,11 +4,15 @@ import ensiastjob.dao.CandidacyDaoImpl;
 import ensiastjob.dao.CompanyDaoImpl;
 import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.extra.HomePath;
-import ensiastjob.model.*;
+import ensiastjob.model.Candidacy;
+import ensiastjob.model.CandidacyStatus;
+import ensiastjob.model.Offer;
+import ensiastjob.model.Student;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -75,11 +79,11 @@ public class ApplyOfferServlet extends HttpServlet {
 
     }
 
-    private String uploadCV (Part cv, int studentId, int offerId) throws IOException {
+    private String uploadCV(Part cv, int studentId, int offerId) throws IOException {
         String imageFileName = UploadPictureServlet.extractFileName(cv);
         String extension = imageFileName.substring(imageFileName.lastIndexOf("."));
         //Add your home path
-        String savePath = HomePath.HOMEPATH + "\\CVs" + File.separator + "cv" + studentId +"_" + offerId + extension;
+        String savePath = HomePath.HOMEPATH + "\\CVs" + File.separator + "cv" + studentId + "_" + offerId + extension;
 
         File fileSaveDir = new File(savePath);
         cv.write(savePath + File.separator);

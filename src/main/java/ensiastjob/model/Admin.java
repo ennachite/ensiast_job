@@ -2,7 +2,7 @@ package ensiastjob.model;
 
 public class Admin {
     int adminId, memberId;
-    String adminName, adminGender, adminCIN, adminBirthdate, adminPhone, emailAdmin, pictureAdmin,cityAdmin;
+    String adminName, adminGender, adminCIN, adminBirthdate, adminPhone, emailAdmin, pictureAdmin, cityAdmin;
 
     public int getAdminId() {
         return adminId;

@@ -4,15 +4,27 @@ import ensiastjob.dao.MemberDaoImpl;
 import ensiastjob.extra.HomePath;
 import ensiastjob.model.Member;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.File;
 import java.io.IOException;
 
 @MultipartConfig
 @WebServlet(name = "UploadServlet", value = "/upload-pp")
 public class UploadPictureServlet extends HttpServlet {
+    protected static String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+            }
+        }
+        return "";
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -39,16 +51,5 @@ public class UploadPictureServlet extends HttpServlet {
 
             response.sendRedirect("/profile");
         }
-    }
-
-    protected static String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length() - 1);
-            }
-        }
-        return "";
     }
 }

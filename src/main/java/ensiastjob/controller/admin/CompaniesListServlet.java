@@ -2,11 +2,13 @@ package ensiastjob.controller.admin;
 
 import ensiastjob.dao.CompanyDaoImpl;
 import ensiastjob.model.Company;
-import ensiastjob.model.Member;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,12 +25,12 @@ public class CompaniesListServlet extends HttpServlet {
                 response.sendRedirect("/home-company");
             } else if (session.getAttribute("role").equals("STUDENT")) {
                 response.sendRedirect("/home-student");
-            }else if(session.getAttribute("role").equals("ADMIN")){
-        CompanyDaoImpl companyDao = new CompanyDaoImpl();
-        List<Company> companies = companyDao.getAllCompanies();
-        request.setAttribute("companies",companies);
-        request.getRequestDispatcher("/view/admin/companiesList.jsp").forward(request,response);
-    }
+            } else if (session.getAttribute("role").equals("ADMIN")) {
+                CompanyDaoImpl companyDao = new CompanyDaoImpl();
+                List<Company> companies = companyDao.getAllCompanies();
+                request.setAttribute("companies", companies);
+                request.getRequestDispatcher("/view/admin/companiesList.jsp").forward(request, response);
+            }
         }
     }
 

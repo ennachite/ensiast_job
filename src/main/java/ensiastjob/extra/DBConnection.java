@@ -19,17 +19,17 @@ public class DBConnection {
 
     /**
      * Returns the connection to our database
+     *
      * @return connection
      */
-    public static Connection getConnected()   {
-        try{
-            url = "jdbc:mysql://"+dataBaseHost+":"+dataBasePort+"/"+dataBaseName;
+    public static Connection getConnected() {
+        try {
+            url = "jdbc:mysql://" + dataBaseHost + ":" + dataBasePort + "/" + dataBaseName;
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, dataBaseUser, dataBasePassword);
-        }
-        catch(Exception e){
-            System.out.println("Connection failed : "+e);
+        } catch (Exception e) {
+            System.out.println("Connection failed : " + e);
             return null;
         }
 
@@ -39,7 +39,7 @@ public class DBConnection {
     /**
      * Allows disconnecting from the database
      */
-    public static void releaseConnection()  {
+    public static void releaseConnection() {
         try {
             connection.close();
         } catch (SQLException e) {

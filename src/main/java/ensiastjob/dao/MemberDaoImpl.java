@@ -5,7 +5,10 @@ import ensiastjob.model.Member;
 import ensiastjob.model.Role;
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -29,7 +32,7 @@ public class MemberDaoImpl implements MemberDao {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, hashPassword(password));
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return 1;
             } else {
                 return 0;
@@ -218,10 +221,10 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public int getTotalMembers() {
-        try{
+        try {
             preparedStatement = connection.prepareStatement("SELECT count(*) as total from member");
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getInt("total");
             }
         } catch (SQLException e) {

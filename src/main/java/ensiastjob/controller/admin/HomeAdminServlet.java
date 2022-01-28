@@ -5,9 +5,12 @@ import ensiastjob.dao.MemberDaoImpl;
 import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.dao.StudentDaoImpl;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "HomeAdmin", value = "/home-admin")
@@ -23,7 +26,7 @@ public class HomeAdminServlet extends HttpServlet {
                 response.sendRedirect("/home-company");
             } else if (session.getAttribute("role").equals("STUDENT")) {
                 response.sendRedirect("/home-student");
-            }else if(session.getAttribute("role").equals("ADMIN")){
+            } else if (session.getAttribute("role").equals("ADMIN")) {
                 MemberDaoImpl memberDao = new MemberDaoImpl();
                 StudentDaoImpl studentDao = new StudentDaoImpl();
                 CompanyDaoImpl companyDao = new CompanyDaoImpl();
@@ -36,14 +39,14 @@ public class HomeAdminServlet extends HttpServlet {
                 int totalInternships = offerDao.getTotalInternships();
                 int totalJobOffers = totalOffers - totalInternships;
 
-                request.setAttribute("totalMembers",totalMembers);
-                request.setAttribute("totalStudents",totalStudents);
-                request.setAttribute("totalCompanies",totalCompanies);
-                request.setAttribute("totalOffers",totalOffers);
-                request.setAttribute("totalInternships",totalInternships);
-                request.setAttribute("totalJobOffers",totalJobOffers);
+                request.setAttribute("totalMembers", totalMembers);
+                request.setAttribute("totalStudents", totalStudents);
+                request.setAttribute("totalCompanies", totalCompanies);
+                request.setAttribute("totalOffers", totalOffers);
+                request.setAttribute("totalInternships", totalInternships);
+                request.setAttribute("totalJobOffers", totalJobOffers);
 
-                request.getRequestDispatcher("/view/admin/homeAdmin.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/admin/homeAdmin.jsp").forward(request, response);
             }
         }
     }

@@ -2,15 +2,16 @@ package ensiastjob.dao.student;
 
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.student.Education;
-import ensiastjob.model.student.Education;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EducationDaoImpl implements EducationDao{
+public class EducationDaoImpl implements EducationDao {
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -47,7 +48,7 @@ public class EducationDaoImpl implements EducationDao{
             preparedStatement.setString(4, education.getStartDate());
             preparedStatement.setString(5, education.getEndDate());
             preparedStatement.setString(6, education.getEductionDescription());
-            preparedStatement.setInt(7,education.getEducationId());
+            preparedStatement.setInt(7, education.getEducationId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

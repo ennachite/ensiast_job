@@ -1,13 +1,18 @@
 package ensiastjob.dao;
 
 import ensiastjob.extra.DBConnection;
-import ensiastjob.model.*;
+import ensiastjob.model.Company;
+import ensiastjob.model.Member;
+import ensiastjob.model.Role;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompanyDaoImpl implements CompanyDao{
+public class CompanyDaoImpl implements CompanyDao {
     private final Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
@@ -36,7 +41,7 @@ public class CompanyDaoImpl implements CompanyDao{
             preparedStatement.setInt(7, company.getFounded());
             preparedStatement.setString(8, company.getDescription());
 
-            if (preparedStatement.executeUpdate() > 0 ) {
+            if (preparedStatement.executeUpdate() > 0) {
                 return 1;
             } else {
                 return 0;
@@ -47,7 +52,7 @@ public class CompanyDaoImpl implements CompanyDao{
         return 0;
     }
 
-    public int updateCompany (Company company, Member member) {
+    public int updateCompany(Company company, Member member) {
         try {
             preparedStatement = connection.prepareStatement("UPDATE member, company SET member.city=?, company.company_name=?, " +
                     "company.ceo_name=?, company.company_tif=?, company.company_fix=?, company.company_size=?, company.founded=?, " +
@@ -91,7 +96,7 @@ public class CompanyDaoImpl implements CompanyDao{
     public Company getCompanyByMemberId(int memberId) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM company WHERE member_id=?");
-            preparedStatement.setInt(1,memberId);
+            preparedStatement.setInt(1, memberId);
             return getCompany();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -118,7 +123,7 @@ public class CompanyDaoImpl implements CompanyDao{
             preparedStatement.setInt(1, company.getMemberId());
             resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getString("picture");
             } else {
                 return null;
@@ -132,10 +137,10 @@ public class CompanyDaoImpl implements CompanyDao{
 
     @Override
     public int getTotalCompanies() {
-        try{
+        try {
             preparedStatement = connection.prepareStatement("SELECT count(*) as total from company");
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getInt("total");
             }
         } catch (SQLException e) {

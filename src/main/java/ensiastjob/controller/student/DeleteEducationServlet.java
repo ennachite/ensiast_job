@@ -1,12 +1,13 @@
 package ensiastjob.controller.student;
 
 import ensiastjob.dao.student.EducationDaoImpl;
-import ensiastjob.dao.student.ExperienceDaoImpl;
-import ensiastjob.model.Member;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "DeleteEducation", value = "/profile/delete-education")
@@ -15,7 +16,7 @@ public class DeleteEducationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        if ( (Member) session.getAttribute("member") == null) {
+        if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("COMPANY")) {
@@ -33,8 +34,4 @@ public class DeleteEducationServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

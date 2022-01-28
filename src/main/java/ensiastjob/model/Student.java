@@ -2,7 +2,7 @@ package ensiastjob.model;
 
 public class Student {
     private int studentId, memberId;
-    private String firstName, lastName, CNE, CIN, birthdate, gender, specialty, yearStudies, phone, emailStudent,picture, cityStudent;
+    private String firstName, lastName, CNE, CIN, birthdate, gender, specialty, yearStudies, phone, emailStudent, picture, cityStudent;
     private int promo;
 
     public int getStudentId() {

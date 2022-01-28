@@ -3,9 +3,12 @@ package ensiastjob.controller;
 import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.model.Offer;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ModifyJobOffer", value = "/modify-job-offer")
@@ -16,7 +19,7 @@ public class ModifyJobOfferServlet extends HttpServlet {
 
         if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
-        } else if (session.getAttribute("role").equals("STUDENT")){
+        } else if (session.getAttribute("role").equals("STUDENT")) {
             response.sendRedirect("/home-student");
         } else {
             int offerId = Integer.parseInt(request.getParameter("offerId"));

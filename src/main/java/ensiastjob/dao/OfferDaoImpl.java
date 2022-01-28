@@ -3,7 +3,10 @@ package ensiastjob.dao;
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.Offer;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -71,7 +74,7 @@ public class OfferDaoImpl implements OfferDao {
             preparedStatement.setInt(1, companyId);
 
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Offer offer = getOffer();
                 offers.add(offer);
             }
@@ -163,10 +166,10 @@ public class OfferDaoImpl implements OfferDao {
 
     @Override
     public int getTotalOffers() {
-        try{
+        try {
             preparedStatement = connection.prepareStatement("SELECT count(*) as total from offer");
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getInt("total");
             }
         } catch (SQLException e) {
@@ -177,10 +180,10 @@ public class OfferDaoImpl implements OfferDao {
 
     @Override
     public int getTotalInternships() {
-        try{
+        try {
             preparedStatement = connection.prepareStatement("SELECT count(*) as total from offer where job_type ='Internship'");
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getInt("total");
             }
         } catch (SQLException e) {

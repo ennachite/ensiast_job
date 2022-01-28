@@ -4,9 +4,12 @@ import ensiastjob.dao.AdminDaoImpl;
 import ensiastjob.model.Admin;
 import ensiastjob.model.Member;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "AddAdmin", value = "/add-admin")
@@ -18,12 +21,11 @@ public class AddAdminServlet extends HttpServlet {
         if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
-            if (session.getAttribute("role").equals("STUDENT")  ) {
+            if (session.getAttribute("role").equals("STUDENT")) {
                 response.sendRedirect("/home-student");
-            }
-            else if (session.getAttribute("role").equals("COMPANY")){
+            } else if (session.getAttribute("role").equals("COMPANY")) {
                 response.sendRedirect("/home-company");
-            }else if (session.getAttribute("role").equals("ADMIN")) {
+            } else if (session.getAttribute("role").equals("ADMIN")) {
                 request.getRequestDispatcher("view/admin/addAdmin.jsp").forward(request, response);
             }
         }
@@ -55,7 +57,7 @@ public class AddAdminServlet extends HttpServlet {
         admin.setAdminBirthdate(adminBirthdate);
         admin.setAdminPhone(adminPhone);
 
-        int status = adminDao.addAdmin(admin,member);
+        int status = adminDao.addAdmin(admin, member);
 
         if (status == -1) {
             request.setAttribute("error", "Connection Error");

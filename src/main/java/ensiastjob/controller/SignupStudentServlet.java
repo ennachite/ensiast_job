@@ -9,16 +9,19 @@ import ensiastjob.model.Role;
 import ensiastjob.model.Student;
 import ensiastjob.model.StudentProfile;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "SignupStudent", value = "/signup-student")
 public class SignupStudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session =request.getSession(false);
+        HttpSession session = request.getSession(false);
 
         if (session.getAttribute("member") != null) {
             response.sendRedirect("/profile");

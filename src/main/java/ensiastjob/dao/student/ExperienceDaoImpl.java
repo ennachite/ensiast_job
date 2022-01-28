@@ -2,15 +2,16 @@ package ensiastjob.dao.student;
 
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.student.Experience;
-import ensiastjob.model.student.Experience;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExperienceDaoImpl implements ExperienceDao{
+public class ExperienceDaoImpl implements ExperienceDao {
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -49,7 +50,7 @@ public class ExperienceDaoImpl implements ExperienceDao{
             preparedStatement.setString(5, experience.getStartDate());
             preparedStatement.setString(6, experience.getEndDate());
             preparedStatement.setString(7, experience.getExperienceDescription());
-            preparedStatement.setInt(8,experience.getExperienceId());
+            preparedStatement.setInt(8, experience.getExperienceId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

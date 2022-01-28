@@ -5,8 +5,11 @@ import ensiastjob.model.student.Certification;
 import java.util.List;
 
 public interface CertificationDao {
-    public void addCertification(Certification certification);
-    public void modifyCertification(Certification certification);
-    public void deleteCertification(int certificationId);
-    public List<Certification> getAllCertificationsByProfileId(int profileId);
+    void addCertification(Certification certification);
+
+    void modifyCertification(Certification certification);
+
+    void deleteCertification(int certificationId);
+
+    List<Certification> getAllCertificationsByProfileId(int profileId);
 }

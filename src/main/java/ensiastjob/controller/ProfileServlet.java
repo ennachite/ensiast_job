@@ -1,12 +1,17 @@
 package ensiastjob.controller;
 
-import ensiastjob.dao.student.*;
-import ensiastjob.model.Member;
+import ensiastjob.dao.student.CertificationDaoImpl;
+import ensiastjob.dao.student.EducationDaoImpl;
+import ensiastjob.dao.student.ExperienceDaoImpl;
+import ensiastjob.dao.student.LanguageDaoImpl;
 import ensiastjob.model.StudentProfile;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ProfileServlet", value = "/profile")
@@ -36,7 +41,7 @@ public class ProfileServlet extends HttpServlet {
                 request.setAttribute("languages", languageDao.getAllLanguagesByProfileId(studentProfileId));
 
                 request.getRequestDispatcher("view/student/profileStudent.jsp").forward(request, response);
-            }else if (session.getAttribute("role").equals("ADMIN")){
+            } else if (session.getAttribute("role").equals("ADMIN")) {
                 request.getRequestDispatcher("view/admin/profileAdmin.jsp").forward(request, response);
             }
         }

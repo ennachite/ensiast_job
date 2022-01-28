@@ -2,7 +2,7 @@ package ensiastjob.model;
 
 public class Candidacy {
     private int candidacyId, studentId, offerId, companyId;
-    private String studentName, studentPicture, companyName, companyPicture, offerName,offerLocation, offerJobType, offerDescription,studentCV, githubUsername, dateCandidacy, motivation;
+    private String studentName, studentPicture, companyName, companyPicture, offerName, offerLocation, offerJobType, offerDescription, studentCV, githubUsername, dateCandidacy, motivation;
     private CandidacyStatus candidacyStatus;
 
     public int getCandidacyId() {

@@ -3,13 +3,15 @@ package ensiastjob.dao.student;
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.student.Certification;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CertificationDaoImpl implements CertificationDao{
+public class CertificationDaoImpl implements CertificationDao {
     private final Connection connection;
-    private Statement statement;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -46,7 +48,7 @@ public class CertificationDaoImpl implements CertificationDao{
             preparedStatement.setString(4, certification.getExpirationDate());
             preparedStatement.setString(5, certification.getCredentialId());
             preparedStatement.setString(6, certification.getCredentialUrl());
-            preparedStatement.setInt(7,certification.getCertificationId());
+            preparedStatement.setInt(7, certification.getCertificationId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +90,7 @@ public class CertificationDaoImpl implements CertificationDao{
 
             return certifications;
 
-         } catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

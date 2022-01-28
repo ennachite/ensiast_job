@@ -5,16 +5,19 @@ import ensiastjob.model.Admin;
 import ensiastjob.model.Member;
 import ensiastjob.model.Role;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminDaoImpl implements AdminDao{
+public class AdminDaoImpl implements AdminDao {
     private final Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-    public AdminDaoImpl(){
+    public AdminDaoImpl() {
         connection = DBConnection.getConnected();
     }
 
@@ -74,7 +77,7 @@ public class AdminDaoImpl implements AdminDao{
 
     @Override
     public Admin getAdminById(int id) {
-        try{
+        try {
             preparedStatement = connection.prepareStatement("SELECT * FROM admin WHERE admin_id=?");
             return getAdmin(id);
         } catch (SQLException e) {
@@ -86,7 +89,7 @@ public class AdminDaoImpl implements AdminDao{
 
     @Override
     public Admin getAdminByMemberId(int memberId) {
-        try{
+        try {
             preparedStatement = connection.prepareStatement("SELECT * FROM admin WHERE member_id=?");
             return getAdmin(memberId);
         } catch (SQLException e) {

@@ -3,18 +3,21 @@ package ensiastjob.dao;
 import ensiastjob.extra.DBConnection;
 import ensiastjob.model.*;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CandidacyDaoImpl implements CandidacyDao{
+public class CandidacyDaoImpl implements CandidacyDao {
     private final Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-    public CandidacyDaoImpl () {
+    public CandidacyDaoImpl() {
         connection = DBConnection.getConnected();
     }
 

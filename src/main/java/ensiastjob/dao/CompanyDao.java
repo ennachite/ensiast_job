@@ -6,12 +6,19 @@ import ensiastjob.model.Member;
 import java.util.List;
 
 public interface CompanyDao {
-    public int addCompany(Company company, Member member);
-    public int updateCompany(Company company, Member member);
-    public Company getCompanyById (int id);
-    public Company getCompanyByMemberId(int memberId);
-    public Company getCompanyByName(String name);
-    public String getCompanyProfilePicture(int companyId);
-    public int getTotalCompanies();
-    public List<Company> getAllCompanies();
+    int addCompany(Company company, Member member);
+
+    int updateCompany(Company company, Member member);
+
+    Company getCompanyById(int id);
+
+    Company getCompanyByMemberId(int memberId);
+
+    Company getCompanyByName(String name);
+
+    String getCompanyProfilePicture(int companyId);
+
+    int getTotalCompanies();
+
+    List<Company> getAllCompanies();
 }
