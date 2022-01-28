@@ -44,8 +44,8 @@
                                             <a href="<c:url value="/apply-offer?offerId=${ offer.offerId }" />" class="pb-0">
                                                 <h2 class="text-red-900 font-semibold pt-6 pb-0 ">${ offer.offerName }</h2>
                                             </a>
-                                            <a href="#" class="pb-2">
-                                                <h4 class="text-gray-500 font-medium">Steps</h4>
+                                            <a href="<c:url value="/other-profile?companyId=${ offer.companyId }" />" class="pb-2">
+                                                <h4 class="text-gray-500 font-medium">${ offer.companyName }</h4>
                                             </a>
                                             <div class="flex justify-center text-gray-400 text-lg">
                                                 <div class="flex items-center mr-12 ">

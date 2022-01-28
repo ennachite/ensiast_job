@@ -3,7 +3,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp" />
 
 <!-- Title -->
-<title> ${ sessionScope.student.firstName }'s Home</title>
+<title> ${ sessionScope.student.firstName }'s Candidacies</title>
 </head>
 <body>
 <%--Preloader--%>

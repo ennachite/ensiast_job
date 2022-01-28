@@ -3,7 +3,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp" />
 
 <!-- Title -->
-<title> ${ sessionScope.student.firstName }'s Profile</title>
+<title>Modify Password</title>
 </head>
 <body>
 <c:choose>

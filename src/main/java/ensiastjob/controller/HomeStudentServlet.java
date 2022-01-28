@@ -32,6 +32,7 @@ public class HomeStudentServlet extends HttpServlet {
                 List<Offer> offers = offerDao.getAllOffers();
 
                 for (Offer offer : offers) {
+                    offer.setCompanyName(companyDao.getCompanyById(offer.getCompanyId()).getCompanyName());
                     offer.setCompanyPicture(companyDao.getCompanyProfilePicture(offer.getCompanyId()));
                 }
 
