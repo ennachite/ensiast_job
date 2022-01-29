@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2022 at 04:47 AM
+-- Generation Time: Jan 29, 2022 at 06:11 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -236,6 +236,7 @@ CREATE TABLE IF NOT EXISTS `offer` (
                                        `job_type` varchar(64) DEFAULT NULL,
                                        `offer_description` text NOT NULL,
                                        `post_time` varchar(60) NOT NULL,
+                                       `approvedOffer` varchar(8) NOT NULL,
                                        PRIMARY KEY (`offer_id`),
                                        KEY `offer_ibfk_1` (`company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

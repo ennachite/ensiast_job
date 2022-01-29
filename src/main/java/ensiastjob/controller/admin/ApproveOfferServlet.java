@@ -1,0 +1,35 @@
+package ensiastjob.controller.admin;
+
+import ensiastjob.dao.OfferDaoImpl;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+
+@WebServlet(name = "ApproveOffer", value = "/approve-offer")
+public class ApproveOfferServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+
+        if (session.getAttribute("member") == null) {
+            response.sendRedirect("/");
+        } else {
+            if (session.getAttribute("role").equals("STUDENT")) {
+                response.sendRedirect("/home-student");
+            } else if (session.getAttribute("role").equals("COMPANY")) {
+                response.sendRedirect("/home-company");
+            } else if (session.getAttribute("role").equals("ADMIN")) {
+                int offerId = Integer.parseInt(request.getParameter("offerId"));
+                OfferDaoImpl offerDao = new OfferDaoImpl();
+                offerDao.approveOffer(offerId);
+
+                response.sendRedirect("/not-approved-offers");
+            }
+        }
+    }
+}

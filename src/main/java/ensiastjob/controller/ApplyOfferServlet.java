@@ -55,28 +55,29 @@ public class ApplyOfferServlet extends HttpServlet {
         Student student = (Student) session.getAttribute("student");
 
         CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
+        OfferDaoImpl offerDao = new OfferDaoImpl();
 
         int offerId = Integer.parseInt(request.getParameter("offerId"));
+        if (offerDao.getOfferById(offerId).isApprovedOffer()) {
+            String githubUsername = request.getParameter("github-username");
+            String motivation = request.getParameter("motivation");
+            Part cvPart = request.getPart("cv-file");
 
-        String githubUsername = request.getParameter("github-username");
-        String motivation = request.getParameter("motivation");
-        Part cvPart = request.getPart("cv-file");
+            Candidacy candidacy = new Candidacy();
 
-        Candidacy candidacy = new Candidacy();
+            int studentId = student.getStudentId();
 
-        int studentId = student.getStudentId();
+            candidacy.setStudentId(studentId);
+            candidacy.setOfferId(offerId);
+            candidacy.setGithubUsername(githubUsername);
+            candidacy.setStudentCV(uploadCV(cvPart, studentId, offerId));
+            candidacy.setMotivation(motivation);
+            candidacy.setCandidacyStatus(CandidacyStatus.valueOf("Pending"));
 
-        candidacy.setStudentId(studentId);
-        candidacy.setOfferId(offerId);
-        candidacy.setGithubUsername(githubUsername);
-        candidacy.setStudentCV(uploadCV(cvPart, studentId, offerId));
-        candidacy.setMotivation(motivation);
-        candidacy.setCandidacyStatus(CandidacyStatus.valueOf("Pending"));
+            candidacyDao.addCandidacy(candidacy);
 
-        candidacyDao.addCandidacy(candidacy);
-
-        response.sendRedirect("/home-student");
-
+            response.sendRedirect("/home-student");
+        }
     }
 
     private String uploadCV(Part cv, int studentId, int offerId) throws IOException {

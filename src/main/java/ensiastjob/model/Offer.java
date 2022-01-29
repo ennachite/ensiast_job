@@ -3,6 +3,7 @@ package ensiastjob.model;
 public class Offer {
     private int offerId, companyId;
     private String offerName, offerLocation, offerDomain, jobType, offerDescription, postTime, companyPicture, companyName;
+    private boolean approvedOffer;
     private int offerSalary;
 
     public int getOfferId() {
@@ -83,6 +84,14 @@ public class Offer {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public boolean isApprovedOffer() {
+        return approvedOffer;
+    }
+
+    public void setApprovedOffer(boolean approvedOffer) {
+        this.approvedOffer = approvedOffer;
     }
 
     public int getOfferSalary() {

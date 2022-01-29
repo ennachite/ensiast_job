@@ -35,13 +35,16 @@ public class OfferCandidaciesServlet extends HttpServlet {
                     Offer offer = offerDao.getOfferById(offerId);
 
                     if (offer.getCompanyId() == company.getCompanyId()) {
+                        if (offer.isApprovedOffer()) {
+                            CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
 
-                        CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
+                            List<Candidacy> candidacies = candidacyDao.getCandidaciesByOffer(offerId);
 
-                        List<Candidacy> candidacies = candidacyDao.getCandidaciesByOffer(offerId);
-
-                        request.setAttribute("candidacies", candidacies);
-                        request.getRequestDispatcher("view/company/offer/candidacies.jsp").forward(request, response);
+                            request.setAttribute("candidacies", candidacies);
+                            request.getRequestDispatcher("view/company/offer/candidacies.jsp").forward(request, response);
+                        } else {
+                            response.sendRedirect("/home-company");
+                        }
                     }
                 } else {
                     response.sendRedirect("/not-approved");

@@ -11,10 +11,10 @@ Generated using nucleoapp.com
   font-family: 'LineIcons';
   src: url('#{$lni-font-path}/LineIcons.eot');
   src: url('#{$lni-font-path}/LineIcons.eot') format('embedded-opentype'),
-    url('#{$lni-font-path}/LineIcons.woff2') format('woff2'),
-    url('#{$lni-font-path}/LineIcons.woff') format('woff'),
-    url('#{$lni-font-path}/LineIcons.ttf') format('truetype'),
-    url('#{$lni-font-path}/LineIcons.svg') format('svg');
+  url('#{$lni-font-path}/LineIcons.woff2') format('woff2'),
+  url('#{$lni-font-path}/LineIcons.woff') format('woff'),
+  url('#{$lni-font-path}/LineIcons.ttf') format('truetype'),
+  url('#{$lni-font-path}/LineIcons.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -41,13 +41,16 @@ Generated using nucleoapp.com
 .lni-sm {
   font-size: 0.8em;
 }
+
 .lni-lg {
   font-size: 1.2em;
 }
+
 /* absolute units */
 .lni-16 {
   font-size: 16px;
 }
+
 .lni-32 {
   font-size: 32px;
 }
@@ -104,6 +107,7 @@ Generated using nucleoapp.com
     -webkit-transform: rotate(360deg);
   }
 }
+
 @-moz-keyframes lni-spin {
   0% {
     -moz-transform: rotate(0deg);
@@ -112,6 +116,7 @@ Generated using nucleoapp.com
     -moz-transform: rotate(360deg);
   }
 }
+
 @keyframes lni-spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -133,23 +138,24 @@ Generated using nucleoapp.com
   rotated/flipped icons
 -------------------------*/
 
-.lni-rotate-90  {
-	@include lni-rotate(90deg, 1);
+.lni-rotate-90 {
+  @include lni-rotate(90deg, 1);
 }
 
 .lni-rotate-180 {
-	@include lni-rotate(180deg, 2);
+  @include lni-rotate(180deg, 2);
 }
 
 .lni-rotate-270 {
-	@include lni-rotate(270deg, 3);
+  @include lni-rotate(270deg, 3);
 }
 
 .lni-flip-y {
-	@include lni-flip(-1, 1, 0);
+  @include lni-flip(-1, 1, 0);
 }
+
 .lni-flip-x {
-	@include lni-flip(1, -1, 2);
+  @include lni-flip(1, -1, 2);
 }
 
 @import "icons";

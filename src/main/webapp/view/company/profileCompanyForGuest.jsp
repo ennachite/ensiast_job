@@ -1,16 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/taglibs.jsp" />
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/taglibs.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp"/>
 
 <!-- Title -->
 <title> ${ requestScope.company.companyName }'s Profile</title>
 </head>
 <body>
 <%--Preloader--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/preloader.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/preloader.jsp"/>
 
 <%--Navbar--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/navbar.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/navbar.jsp"/>
 
 <!--====== PROFILE PART START ======-->
 
@@ -23,10 +23,12 @@
                 <div class="team_image overflow-hidden relative">
                     <c:choose>
                         <c:when test="${ requestScope.member.picture != null }">
-                            <img src="http://localhost/${ requestScope.member.picture }" alt="company-logo" class="h-auto w-full mx-auto">
+                            <img src="http://localhost/${ requestScope.member.picture }" alt="company-logo"
+                                 class="h-auto w-full mx-auto">
                         </c:when>
                         <c:otherwise>
-                            <img src="${pageContext.request.contextPath}/assets/img/person.jpg" alt="Pdp" class="h-auto w-full mx-auto">
+                            <img src="${pageContext.request.contextPath}/assets/img/person.jpg" alt="Pdp"
+                                 class="h-auto w-full mx-auto">
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -44,28 +46,43 @@
                             <span class="ml-auto">
                                 <ul class="flex justify-center">
                                     <li>
-                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-ensias-red mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
+                                             class="w-4 text-ensias-red mr-1" role="img"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                            <path fill="currentColor"
+                                                  d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
                                         </svg>
                                     </li>
                                     <li>
-                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-ensias-red mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
+                                             class="w-4 text-ensias-red mr-1" role="img"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                            <path fill="currentColor"
+                                                  d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
                                         </svg>
                                     </li>
                                     <li>
-                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-ensias-red mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
+                                             class="w-4 text-ensias-red mr-1" role="img"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                            <path fill="currentColor"
+                                                  d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
                                         </svg>
                                     </li>
                                     <li>
-                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-ensias-red mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
+                                             class="w-4 text-ensias-red mr-1" role="img"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                            <path fill="currentColor"
+                                                  d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
                                         </svg>
                                     </li>
                                     <li>
-                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-ensias-red mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
+                                             class="w-4 text-ensias-red mr-1" role="img"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                            <path fill="currentColor"
+                                                  d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
                                         </svg>
                                     </li>
                                 </ul>
@@ -155,8 +172,10 @@
                     <!-- Card -->
                     <div class="flex items-center p-4 bg-white rounded-lg shadow-xs companyProfile-grid ">
                         <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full ">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path>
                             </svg>
                         </div>
                         <div>
@@ -171,7 +190,8 @@
                     <!-- Card -->
                     <div class="flex items-center p-4 bg-white rounded-lg shadow-xs companyProfile-grid ">
                         <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full ">
-                            <img src="https://img.icons8.com/ios/50/000000/find-matching-job.png" class="h-6 w-6" alt="job offer"/>
+                            <img src="https://img.icons8.com/ios/50/000000/find-matching-job.png" class="h-6 w-6"
+                                 alt="job offer"/>
                         </div>
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 ">
@@ -185,7 +205,8 @@
                     <!-- Card -->
                     <div class="flex items-center p-4 bg-white rounded-lg shadow-xs companyProfile-grid">
                         <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full ">
-                            <img src="https://img.icons8.com/ios/50/000000/internship.png" class="h-6 w-6" alt="Internship offer"/>
+                            <img src="https://img.icons8.com/ios/50/000000/internship.png" class="h-6 w-6"
+                                 alt="Internship offer"/>
                         </div>
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 ">
@@ -283,4 +304,4 @@
 <!--====== PROFILE PART ENDS ======-->
 
 <%--Footer--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/footer.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/footer.jsp"/>

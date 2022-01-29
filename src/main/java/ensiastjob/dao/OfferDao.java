@@ -11,7 +11,7 @@ public interface OfferDao {
 
     List<Offer> getAllOffersByCompany(int companyId);
 
-    List<Offer> getAllOffers();
+    List<Offer> getAllOffers(boolean approved);
 
     int updateOffer(Offer offer);
 
@@ -20,4 +20,6 @@ public interface OfferDao {
     int getTotalOffers();
 
     int getTotalInternships();
+
+    void approveOffer(int offerId);
 }

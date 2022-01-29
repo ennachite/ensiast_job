@@ -27,7 +27,7 @@ public class OfferDaoImpl implements OfferDao {
         LocalDateTime now = LocalDateTime.now();
         try {
             preparedStatement = connection.prepareStatement("INSERT INTO offer(company_id, offer_name, offer_salary, " +
-                    "offer_location, offer_domain, job_type, offer_description, post_time) VALUES (?,?,?,?,?,?,?,?)");
+                    "offer_location, offer_domain, job_type, offer_description, post_time, approvedOffer) VALUES (?,?,?,?,?,?,?,?,?)");
             preparedStatement.setInt(1, offer.getCompanyId());
             preparedStatement.setString(2, offer.getOfferName());
             preparedStatement.setInt(3, offer.getOfferSalary());
@@ -36,6 +36,7 @@ public class OfferDaoImpl implements OfferDao {
             preparedStatement.setString(6, offer.getJobType());
             preparedStatement.setString(7, offer.getOfferDescription());
             preparedStatement.setString(8, dateFormatter.format(now));
+            preparedStatement.setString(9, String.valueOf(offer.isApprovedOffer()));
 
             if (preparedStatement.executeUpdate() > 0) {
                 return 1;
@@ -86,11 +87,13 @@ public class OfferDaoImpl implements OfferDao {
         return null;
     }
 
+    //    true for approved offers and false for Unapproved offers
     @Override
-    public List<Offer> getAllOffers() {
+    public List<Offer> getAllOffers(boolean approved) {
         List<Offer> offers = new ArrayList<>();
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM offer");
+            preparedStatement = connection.prepareStatement("SELECT * FROM offer WHERE approvedOffer=?");
+            preparedStatement.setString(1, String.valueOf(approved));
 
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -116,6 +119,7 @@ public class OfferDaoImpl implements OfferDao {
         offer.setJobType(resultSet.getString("job_type"));
         offer.setOfferDescription(resultSet.getString("offer_description"));
         offer.setPostTime(resultSet.getString("post_time"));
+        offer.setApprovedOffer(Boolean.parseBoolean(resultSet.getString("approvedOffer")));
         return offer;
     }
 
@@ -190,5 +194,16 @@ public class OfferDaoImpl implements OfferDao {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public void approveOffer(int offerId) {
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE offer SET approvedOffer='true' WHERE offer_id=?");
+            preparedStatement.setInt(1, offerId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

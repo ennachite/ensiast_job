@@ -57,6 +57,7 @@ public class AddOfferServlet extends HttpServlet {
         offer.setOfferDomain(offerDomain);
         offer.setJobType(jobType);
         offer.setOfferDescription(description);
+        offer.setApprovedOffer(false);
 
         int status = offerDao.addOffer(offer);
 

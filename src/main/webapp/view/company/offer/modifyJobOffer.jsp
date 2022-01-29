@@ -1,16 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/taglibs.jsp" />
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/taglibs.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp"/>
 
 <!-- Title -->
 <title>Modify ${ requestScope.offer.offerNamee }</title>
 </head>
 <body>
 <%--Preloader--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/preloader.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/preloader.jsp"/>
 
 <%--Navbar--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/navbar.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/navbar.jsp"/>
 
 <!--====== JOB POSTS PART STARTS ======-->
 <section class="pt-120 pb-120">
@@ -36,28 +36,37 @@
                         <form method="post">
                             <label class="block text-sm">
                                 <span class="text-black">Offer name</span>
-                                <input name="offer-name" type="text" value="${ requestScope.offer.offerName }" class="block w-full mt-1 h-8 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input" placeholder="Platform Engineer"/>
+                                <input name="offer-name" type="text" value="${ requestScope.offer.offerName }"
+                                       class="block w-full mt-1 h-8 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input"
+                                       placeholder="Platform Engineer"/>
                             </label>
 
                             <label class="block text-sm my-4">
                                 <span class="text-black">Salary/Month (MAD)</span>
-                                <input name="offer-salary" type="number" value="${ requestScope.offer.offerSalary }" class="block w-full mt-1 h-8 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input" placeholder="Ex: 10000"
+                                <input name="offer-salary" type="number" value="${ requestScope.offer.offerSalary }"
+                                       class="block w-full mt-1 h-8 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input"
+                                       placeholder="Ex: 10000"
                                 />
                             </label>
 
                             <label class="block text-sm my-4">
                                 <span class="text-black">Location</span>
-                                <input name="offer-location" type="text" value="${ requestScope.offer.offerLocation }" class="block w-full mt-1 h-8 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input" placeholder="Country,City"/>
+                                <input name="offer-location" type="text" value="${ requestScope.offer.offerLocation }"
+                                       class="block w-full mt-1 h-8 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input"
+                                       placeholder="Country,City"/>
                             </label>
 
                             <label class="block text-sm my-4">
                                 <span class="text-black">Domain</span>
-                                <input name="offer-domain" type="text" value="${ requestScope.offer.offerDomain }" class="block w-full mt-1 h-8 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input" placeholder="Web development, Mobile development..."/>
+                                <input name="offer-domain" type="text" value="${ requestScope.offer.offerDomain }"
+                                       class="block w-full mt-1 h-8 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input"
+                                       placeholder="Web development, Mobile development..."/>
                             </label>
 
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700"> Types of employees </span>
-                                <select name="job-type" value="${ requestScope.offer.jobType }" class="block w-full mt-1 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input h-8">
+                                <select name="job-type" value="${ requestScope.offer.jobType }"
+                                        class="block w-full mt-1 text-sm pl-2 focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input h-8">
                                     <option value="Full-time">Full-time</option>
                                     <option value="Part-time">Part-time</option>
                                     <option value="Internship">Internship</option>
@@ -73,10 +82,14 @@
 
                             <label class="block mt-4 text-sm">
                                 <span class="text-gray-700">Description</span>
-                                <textarea name="description" class="block w-full mt-1 text-sm focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input p-2 h-260 pb-5" rows="3" placeholder="Enter the description of the offer" >${ requestScope.offer.offerDescription }</textarea>
+                                <textarea name="description"
+                                          class="block w-full mt-1 text-sm focus:border-ensias-red focus:border-2 border-2 border-gray-400 rounded-md form-input p-2 h-260 pb-5"
+                                          rows="3"
+                                          placeholder="Enter the description of the offer">${ requestScope.offer.offerDescription }</textarea>
                             </label>
 
-                            <a class="flex items-center justify-center p-4 mb-8 text-sm font-semibold text-white bg-ensias-red rounded-lg shadow-md focus:outline-none mt-3" href="companyProfile.html">
+                            <a class="flex items-center justify-center p-4 mb-8 text-sm font-semibold text-white bg-ensias-red rounded-lg shadow-md focus:outline-none mt-3"
+                               href="companyProfile.html">
                                 <button type="submit">Submit</button>
                                 <div class="flex items-center">
                                     <span></span>
@@ -93,4 +106,4 @@
 <!--====== JOB POSTS PART END ======-->
 
 <%--Footer--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/footer.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/footer.jsp"/>

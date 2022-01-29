@@ -12,10 +12,12 @@
                 <div class="w-full md:w-1/2 lg:w-5/12">
                     <div class="footer_about mt-12 mx-3">
                         <div class="footer_logo">
-                            <a href="#"><img src="${pageContext.request.contextPath}/assets/img/footer_logo.png" alt="Logo"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/assets/img/footer_logo.png"
+                                             alt="Logo"></a>
                         </div>
                         <div class="footer_content mt-8">
-                            <p class="text-white">Lorem ipsum dolor sitco nsetetu nonumy eirmod tempor invidunt ut labore et dolore magna uyam erat, sed diam.</p>
+                            <p class="text-white">Lorem ipsum dolor sitco nsetetu nonumy eirmod tempor invidunt ut
+                                labore et dolore magna uyam erat, sed diam.</p>
                         </div>
                     </div>
                     <!-- footer about -->

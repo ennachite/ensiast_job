@@ -17,13 +17,14 @@ public class DeleteOfferServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
+        String role = (String) session.getAttribute("role");
 
         if (session.getAttribute("member") == null) {
             response.sendRedirect("/");
         } else {
-            if (session.getAttribute("role").equals("STUDENT")) {
+            if (role.equals("STUDENT")) {
                 response.sendRedirect("/home-student");
-            } else if (session.getAttribute("role").equals("COMPANY")) {
+            } else if (role.equals("COMPANY") || role.equals("ADMIN")) {
                 Company company = (Company) session.getAttribute("company");
                 if (company.isApproved()) {
                     OfferDaoImpl offerDao = new OfferDaoImpl();
@@ -40,6 +41,9 @@ public class DeleteOfferServlet extends HttpServlet {
                         offerDao.deleteOffer(offerIdDeleted);
 
                         response.sendRedirect("/home-company");
+                    } else if (role.equals("ADMIN")) {
+                        offerDao.deleteOffer(offerIdDeleted);
+                        response.sendRedirect("/not-approved-offers");
                     }
                 } else {
                     response.sendRedirect("/not-approved");
