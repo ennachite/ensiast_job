@@ -220,8 +220,8 @@
                 <div class="section_title text-center pb-6">
                     <h5 class="sub_title ">About</h5>
                     <h4 class="main_title">ENSIAS</h4>
-                    <p class="text-black text-xl">Welcome to ENSIAST JOB, the Morocco's largest professional network
-                        with more than +4000 members in territories worldwide.</p>
+                    <p class="text-black text-xl">Welcome to ENSIAST JOB, Morocco's largest professional network
+                        with more than 4000 members in territories worldwide.</p>
                 </div>
                 <!-- section title -->
             </div>
