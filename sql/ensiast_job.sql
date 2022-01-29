@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2022 at 05:52 PM
+-- Generation Time: Jan 29, 2022 at 04:47 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -109,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `certification` (
 CREATE TABLE IF NOT EXISTS `company` (
                                          `company_id` int(11) NOT NULL AUTO_INCREMENT,
                                          `member_id` int(11) NOT NULL,
+                                         `approved` varchar(8) NOT NULL,
                                          `company_name` varchar(64) NOT NULL,
                                          `ceo_name` varchar(64) DEFAULT NULL,
                                          `company_size` int(5) NOT NULL,
