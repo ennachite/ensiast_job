@@ -22,5 +22,3 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: SonarCloud Scan9
-      uses: SonarSource/sonarcloud-github-action@v1.6
