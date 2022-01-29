@@ -4,6 +4,7 @@ import ensiastjob.dao.student.CertificationDaoImpl;
 import ensiastjob.dao.student.EducationDaoImpl;
 import ensiastjob.dao.student.ExperienceDaoImpl;
 import ensiastjob.dao.student.LanguageDaoImpl;
+import ensiastjob.model.Company;
 import ensiastjob.model.StudentProfile;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,12 @@ public class ProfileServlet extends HttpServlet {
             response.sendRedirect("/");
         } else {
             if (session.getAttribute("role").equals("COMPANY")) {
-                request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
+                Company company = (Company) session.getAttribute("company");
+                if (company.isApproved()) {
+                    request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("/not-approved");
+                }
             } else if (session.getAttribute("role").equals("STUDENT")) {
                 CertificationDaoImpl certificationDao = new CertificationDaoImpl();
                 EducationDaoImpl educationDao = new EducationDaoImpl();

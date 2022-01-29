@@ -20,5 +20,7 @@ public interface CompanyDao {
 
     int getTotalCompanies();
 
-    List<Company> getAllCompanies();
+    List<Company> getAllCompanies(boolean approved);
+
+    void approveCompany(int companyId);
 }

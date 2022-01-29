@@ -28,7 +28,13 @@ public class ModifyProfileCompanyServlet extends HttpServlet {
             if (session.getAttribute("role").equals("STUDENT")) {
                 response.sendRedirect("/profile");
             } else if (session.getAttribute("role").equals("COMPANY")) {
-                request.getRequestDispatcher("view/company/modifyProfileCompany.jsp").forward(request, response);
+                Company company = (Company) session.getAttribute("company");
+
+                if (company.isApproved()) {
+                    request.getRequestDispatcher("view/company/modifyProfileCompany.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("/not-approved");
+                }
             }
         }
     }

@@ -30,16 +30,17 @@ public class CompanyDaoImpl implements CompanyDao {
         memberDao.addMember(member);
         company.setMemberId(memberDao.getMemberByEmail(member.getEmail()).getMemberId());
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO company(member_id, company_name, ceo_name, " +
-                    "company_size, company_fix, company_tif, founded, description) VALUES (?,?,?,?,?,?,?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO company(member_id, approved,company_name, ceo_name, " +
+                    "company_size, company_fix, company_tif, founded, description) VALUES (?,?,?,?,?,?,?,?,?)");
             preparedStatement.setInt(1, company.getMemberId());
-            preparedStatement.setString(2, company.getCompanyName());
-            preparedStatement.setString(3, company.getCeoName());
-            preparedStatement.setInt(4, company.getCompanySize());
-            preparedStatement.setString(5, company.getCompanyFix());
-            preparedStatement.setString(6, company.getCompanyTif());
-            preparedStatement.setInt(7, company.getFounded());
-            preparedStatement.setString(8, company.getDescription());
+            preparedStatement.setString(2, String.valueOf(company.isApproved()));
+            preparedStatement.setString(3, company.getCompanyName());
+            preparedStatement.setString(4, company.getCeoName());
+            preparedStatement.setInt(5, company.getCompanySize());
+            preparedStatement.setString(6, company.getCompanyFix());
+            preparedStatement.setString(7, company.getCompanyTif());
+            preparedStatement.setInt(8, company.getFounded());
+            preparedStatement.setString(9, company.getDescription());
 
             if (preparedStatement.executeUpdate() > 0) {
                 return 1;
@@ -149,11 +150,14 @@ public class CompanyDaoImpl implements CompanyDao {
         return 0;
     }
 
+
+    //    True for approved companies and false for Unapproved companies
     @Override
-    public List<Company> getAllCompanies() {
+    public List<Company> getAllCompanies(boolean approved) {
         List<Company> companies = new ArrayList<>();
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM company ");
+            preparedStatement = connection.prepareStatement("SELECT * FROM company WHERE approved=?");
+            preparedStatement.setString(1, String.valueOf(approved));
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -173,6 +177,17 @@ public class CompanyDaoImpl implements CompanyDao {
         return null;
     }
 
+    @Override
+    public void approveCompany(int companyId) {
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE company SET approved='true' WHERE company_id=?");
+            preparedStatement.setInt(1, companyId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Company getCompany() throws SQLException {
         resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
@@ -186,6 +201,7 @@ public class CompanyDaoImpl implements CompanyDao {
         Company company = new Company();
         company.setCompanyId(resultSet.getInt("company_id"));
         company.setMemberId(resultSet.getInt("member_id"));
+        company.setApproved(Boolean.parseBoolean(resultSet.getString("approved")));
         company.setCompanyName(resultSet.getString("company_name"));
         company.setCeoName(resultSet.getString("ceo_name"));
         company.setCompanyFix(resultSet.getString("company_fix"));

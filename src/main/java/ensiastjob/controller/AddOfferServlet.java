@@ -1,5 +1,6 @@
 package ensiastjob.controller;
 
+import ensiastjob.dao.CompanyDaoImpl;
 import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.model.Company;
 import ensiastjob.model.Offer;
@@ -24,7 +25,13 @@ public class AddOfferServlet extends HttpServlet {
             if (session.getAttribute("role").equals("STUDENT")) {
                 response.sendRedirect("/home-student");
             } else if (session.getAttribute("role").equals("COMPANY")) {
-                request.getRequestDispatcher("view/company/addOfferCompany.jsp").forward(request, response);
+                CompanyDaoImpl companyDao = new CompanyDaoImpl();
+                Company company = (Company) session.getAttribute("company");
+                if (company.isApproved())
+                    request.getRequestDispatcher("view/company/addOfferCompany.jsp").forward(request, response);
+                else {
+                    response.sendRedirect("/not-approved");
+                }
             }
         }
     }

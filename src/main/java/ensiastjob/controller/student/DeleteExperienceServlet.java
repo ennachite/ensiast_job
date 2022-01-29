@@ -2,7 +2,6 @@ package ensiastjob.controller.student;
 
 import ensiastjob.dao.student.ExperienceDaoImpl;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,7 @@ import java.io.IOException;
 @WebServlet(name = "DeleteExperience", value = "/profile/delete-experience")
 public class DeleteExperienceServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
 
         if (session.getAttribute("member") == null) {

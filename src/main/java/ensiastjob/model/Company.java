@@ -2,6 +2,7 @@ package ensiastjob.model;
 
 public class Company {
     private int companyId, memberId;
+    private boolean approved;
     private String companyName, ceoName, companyFix, companyTif, description, companySizeWord, emailCompany, pictureCompany;
     private int companySize, founded;
 
@@ -19,6 +20,14 @@ public class Company {
 
     public void setMemberId(int memberId) {
         this.memberId = memberId;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public String getCompanyName() {

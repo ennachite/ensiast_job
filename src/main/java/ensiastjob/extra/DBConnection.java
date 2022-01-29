@@ -6,13 +6,12 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
+    public static final String dataBaseHost = Strings.DB_HOST;
+    public static final String dataBasePort = Strings.DB_PORT;
+    public static final String dataBaseName = Strings.DB_NAME;
+    public static final String dataBaseUser = Strings.DB_USER;
+    public static final String dataBasePassword = Strings.DB_PASSWORD;
     public static String url;
-    public static String dataBaseHost = Strings.DB_HOST;
-    public static String dataBasePort = Strings.DB_PORT;
-    public static String dataBaseName = Strings.DB_NAME;
-    public static String dataBaseUser = Strings.DB_USER;
-    public static String dataBasePassword = Strings.DB_PASSWORD;
-
     public static Connection connection;
     String query;
 

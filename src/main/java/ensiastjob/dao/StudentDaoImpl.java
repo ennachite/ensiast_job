@@ -103,7 +103,7 @@ public class StudentDaoImpl implements StudentDao {
     public Student getStudentById(int id) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM student WHERE student_id=?");
-            return getStudent(preparedStatement ,id);
+            return getStudent(preparedStatement, id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -114,7 +114,7 @@ public class StudentDaoImpl implements StudentDao {
     public Student getStudentByMemberId(int memberId) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM student WHERE member_id=?");
-            return getStudent(preparedStatement ,memberId);
+            return getStudent(preparedStatement, memberId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -160,7 +160,7 @@ public class StudentDaoImpl implements StudentDao {
         return null;
     }
 
-    private Student getStudent(PreparedStatement preparedStatement ,int id) throws SQLException {
+    private Student getStudent(PreparedStatement preparedStatement, int id) throws SQLException {
         preparedStatement.setInt(1, id);
         resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {

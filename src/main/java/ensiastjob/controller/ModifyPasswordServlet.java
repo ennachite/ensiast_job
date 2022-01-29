@@ -15,6 +15,7 @@ import java.io.IOException;
 @WebServlet(name = "ModifyPassword", value = "/modify-password")
 public class ModifyPasswordServlet extends HttpServlet {
     private static final String MEMBER = "member";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);

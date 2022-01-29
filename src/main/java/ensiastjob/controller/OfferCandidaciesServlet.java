@@ -1,7 +1,10 @@
 package ensiastjob.controller;
 
 import ensiastjob.dao.CandidacyDaoImpl;
+import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.model.Candidacy;
+import ensiastjob.model.Company;
+import ensiastjob.model.Offer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,14 +27,26 @@ public class OfferCandidaciesServlet extends HttpServlet {
             if (session.getAttribute("role").equals("STUDENT")) {
                 response.sendRedirect("/profile");
             } else if (session.getAttribute("role").equals("COMPANY")) {
-                int offerId = Integer.parseInt(request.getParameter("offerId"));
+                Company company = (Company) session.getAttribute("company");
 
-                CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
+                if (company.isApproved()) {
+                    int offerId = Integer.parseInt(request.getParameter("offerId"));
+                    OfferDaoImpl offerDao = new OfferDaoImpl();
+                    Offer offer = offerDao.getOfferById(offerId);
 
-                List<Candidacy> candidacies = candidacyDao.getCandidaciesByOffer(offerId);
+                    if (offer.getCompanyId() == company.getCompanyId()) {
 
-                request.setAttribute("candidacies", candidacies);
-                request.getRequestDispatcher("view/company/offer/candidacies.jsp").forward(request, response);
+                        CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
+
+                        List<Candidacy> candidacies = candidacyDao.getCandidaciesByOffer(offerId);
+
+                        request.setAttribute("candidacies", candidacies);
+                        request.getRequestDispatcher("view/company/offer/candidacies.jsp").forward(request, response);
+                    }
+                } else {
+                    response.sendRedirect("/not-approved");
+                }
+
             }
         }
     }

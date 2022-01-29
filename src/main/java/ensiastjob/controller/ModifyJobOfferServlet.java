@@ -1,6 +1,7 @@
 package ensiastjob.controller;
 
 import ensiastjob.dao.OfferDaoImpl;
+import ensiastjob.model.Company;
 import ensiastjob.model.Offer;
 
 import javax.servlet.ServletException;
@@ -21,19 +22,27 @@ public class ModifyJobOfferServlet extends HttpServlet {
             response.sendRedirect("/");
         } else if (session.getAttribute("role").equals("STUDENT")) {
             response.sendRedirect("/home-student");
-        } else {
-            int offerId = Integer.parseInt(request.getParameter("offerId"));
-            OfferDaoImpl offerDao = new OfferDaoImpl();
-            Offer offer = offerDao.getOfferById(offerId);
+        } else if (session.getAttribute("role").equals("COMPANY")) {
+            Company company = (Company) session.getAttribute("company");
 
-            request.setAttribute("offer", offer);
+            if (company.isApproved()) {
+                int offerId = Integer.parseInt(request.getParameter("offerId"));
+                OfferDaoImpl offerDao = new OfferDaoImpl();
+                Offer offer = offerDao.getOfferById(offerId);
 
-            request.getRequestDispatcher("view/company/offer/modifyJobOffer.jsp").forward(request, response);
+                if (offer.getCompanyId() == company.getCompanyId()) {
+                    request.setAttribute("offer", offer);
+                }
+
+                request.getRequestDispatcher("view/company/offer/modifyJobOffer.jsp").forward(request, response);
+            } else {
+                response.sendRedirect("/not-approved");
+            }
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int offerId = Integer.parseInt(request.getParameter("offerId"));
         String offerName = request.getParameter("offer-name");
         int offerSalary = Integer.parseInt(request.getParameter("offer-salary"));

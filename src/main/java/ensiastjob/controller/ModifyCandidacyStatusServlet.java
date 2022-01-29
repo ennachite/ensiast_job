@@ -2,8 +2,8 @@ package ensiastjob.controller;
 
 import ensiastjob.dao.CandidacyDaoImpl;
 import ensiastjob.model.Candidacy;
+import ensiastjob.model.Company;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebServlet(name = "ModifyCandidacyStatus", value = "/modify-candidacy-status")
 public class ModifyCandidacyStatusServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
 
         if (session.getAttribute("member") == null) {
@@ -23,19 +23,25 @@ public class ModifyCandidacyStatusServlet extends HttpServlet {
             if (session.getAttribute("role").equals("STUDENT")) {
                 response.sendRedirect("/home-student");
             } else if (session.getAttribute("role").equals("COMPANY")) {
+                Company company = (Company) session.getAttribute("company");
 
-                CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
+                if (company.isApproved()) {
 
-                int candidacyId = Integer.parseInt(request.getParameter("candidacyId"));
-                int candidacyStatus = Integer.parseInt(request.getParameter("candidacyStatus"));
+                    CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
 
-                String status = candidacyStatus == 1 ? "Accepted" : "Rejected";
+                    int candidacyId = Integer.parseInt(request.getParameter("candidacyId"));
+                    int candidacyStatus = Integer.parseInt(request.getParameter("candidacyStatus"));
+
+                    String status = candidacyStatus == 1 ? "Accepted" : "Rejected";
 
 
-                candidacyDao.modifyCandidacyStatus(candidacyId, status);
-                Candidacy candidacy = candidacyDao.getCandidacyById(candidacyId);
+                    candidacyDao.modifyCandidacyStatus(candidacyId, status);
+                    Candidacy candidacy = candidacyDao.getCandidacyById(candidacyId);
 
-                response.sendRedirect("/offer-candidacies?offerId=" + candidacy.getOfferId());
+                    response.sendRedirect("/offer-candidacies?offerId=" + candidacy.getOfferId());
+                } else {
+                    response.sendRedirect("/not-approved");
+                }
             }
         }
     }

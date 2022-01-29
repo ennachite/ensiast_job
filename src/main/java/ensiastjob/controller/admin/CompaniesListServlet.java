@@ -27,7 +27,7 @@ public class CompaniesListServlet extends HttpServlet {
                 response.sendRedirect("/home-student");
             } else if (session.getAttribute("role").equals("ADMIN")) {
                 CompanyDaoImpl companyDao = new CompanyDaoImpl();
-                List<Company> companies = companyDao.getAllCompanies();
+                List<Company> companies = companyDao.getAllCompanies(true);
                 request.setAttribute("companies", companies);
                 request.getRequestDispatcher("/view/admin/companiesList.jsp").forward(request, response);
             }

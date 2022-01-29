@@ -66,8 +66,9 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute(MEMBER, member);
                     session.setAttribute("company", company);
                     session.setAttribute("role", role);
-
-                    response.sendRedirect("/home-company");
+                    if (company.isApproved()) {
+                        response.sendRedirect("/home-company");
+                    }
 
                     break;
                 }
