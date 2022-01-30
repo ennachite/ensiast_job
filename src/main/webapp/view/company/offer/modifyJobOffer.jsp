@@ -3,7 +3,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/head.jsp"/>
 
 <!-- Title -->
-<title>Modify ${ requestScope.offer.offerNamee }</title>
+<title>Modify ${ requestScope.offer.offerName }</title>
 </head>
 <body>
 <%--Preloader--%>

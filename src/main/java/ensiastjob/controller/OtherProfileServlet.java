@@ -1,9 +1,6 @@
 package ensiastjob.controller;
 
-import ensiastjob.dao.CompanyDaoImpl;
-import ensiastjob.dao.MemberDaoImpl;
-import ensiastjob.dao.StudentDaoImpl;
-import ensiastjob.dao.StudentProfileDaoImpl;
+import ensiastjob.dao.*;
 import ensiastjob.dao.student.CertificationDaoImpl;
 import ensiastjob.dao.student.EducationDaoImpl;
 import ensiastjob.dao.student.ExperienceDaoImpl;
@@ -40,6 +37,17 @@ public class OtherProfileServlet extends HttpServlet {
 
                 MemberDaoImpl memberDao = new MemberDaoImpl();
                 Member member = memberDao.getMemberByIdForGuest(company.getMemberId());
+
+                OfferDaoImpl offerDao = new OfferDaoImpl();
+                CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
+
+                int totalOffers = offerDao.getTotalOffersByCompany(companyId);
+                int totalInternships = offerDao.getTotalInternshipsByCompany(companyId);
+                int totalCandidacies = candidacyDao.totalCandidaciesByCompany(companyId);
+
+                request.setAttribute("totalOffers", totalOffers);
+                request.setAttribute("totalInternships", totalInternships);
+                request.setAttribute("totalCandidacies", totalCandidacies);
 
                 request.setAttribute(MEMBER, member);
                 request.setAttribute("company", company);

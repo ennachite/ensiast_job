@@ -39,7 +39,7 @@
                                                      width="130px" height="100px">
                                             </c:when>
                                             <c:otherwise>
-                                                <img src="${pageContext.request.contextPath}/assets/img/company.png"
+                                                <img src="${pageContext.request.contextPath}/assets/img/person.jpg"
                                                      alt="company-logo"
                                                      class="border-gray-200 border-2 rounded-lg mr-4 text-center"
                                                      width="130px" height="100px">

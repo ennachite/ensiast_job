@@ -16,4 +16,6 @@ public interface CandidacyDao {
     List<Candidacy> getCandidaciesByStudent(int studentId);
 
     void modifyCandidacyStatus(int candidacyId, String candidacyStatus);
+
+    int totalCandidaciesByCompany (int companyId);
 }

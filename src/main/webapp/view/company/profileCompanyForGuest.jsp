@@ -165,7 +165,7 @@
                                 Total candidatures
                             </p>
                             <p class="text-lg font-semibold text-gray-700 ">
-                                6389
+                                ${ requestScope.totalCandidacies }
                             </p>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                                 Job Offers
                             </p>
                             <p class="text-lg font-semibold text-gray-700 ">
-                                376
+                                ${ requestScope.totalOffers }
                             </p>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                                 Internship Offers
                             </p>
                             <p class="text-lg font-semibold text-gray-700 ">
-                                35
+                                ${ requestScope.totalInternships }
                             </p>
                         </div>
                     </div>

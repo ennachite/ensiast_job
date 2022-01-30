@@ -1,5 +1,7 @@
 package ensiastjob.controller;
 
+import ensiastjob.dao.CandidacyDaoImpl;
+import ensiastjob.dao.OfferDaoImpl;
 import ensiastjob.dao.student.CertificationDaoImpl;
 import ensiastjob.dao.student.EducationDaoImpl;
 import ensiastjob.dao.student.ExperienceDaoImpl;
@@ -27,6 +29,18 @@ public class ProfileServlet extends HttpServlet {
             if (session.getAttribute("role").equals("COMPANY")) {
                 Company company = (Company) session.getAttribute("company");
                 if (company.isApproved()) {
+                    OfferDaoImpl offerDao = new OfferDaoImpl();
+                    CandidacyDaoImpl candidacyDao = new CandidacyDaoImpl();
+
+                    int id = company.getCompanyId();
+                    int totalOffers = offerDao.getTotalOffersByCompany(id);
+                    int totalInternships = offerDao.getTotalInternshipsByCompany(id);
+                    int totalCandidacies = candidacyDao.totalCandidaciesByCompany(id);
+
+                    request.setAttribute("totalOffers", totalOffers);
+                    request.setAttribute("totalInternships", totalInternships);
+                    request.setAttribute("totalCandidacies", totalCandidacies);
+
                     request.getRequestDispatcher("view/company/profileCompany.jsp").forward(request, response);
                 } else {
                     response.sendRedirect("/not-approved");

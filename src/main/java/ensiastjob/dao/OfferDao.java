@@ -13,13 +13,15 @@ public interface OfferDao {
 
     List<Offer> getAllOffers(boolean approved);
 
-    int updateOffer(Offer offer);
+    void updateOffer(Offer offer);
 
-    int deleteOffer(int offerId);
+    void deleteOffer(int offerId);
 
     int getTotalOffers();
+    int getTotalOffersByCompany(int companyId);
 
     int getTotalInternships();
+    int getTotalInternshipsByCompany(int companyID);
 
     void approveOffer(int offerId);
 }

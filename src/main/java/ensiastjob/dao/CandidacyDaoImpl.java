@@ -155,6 +155,25 @@ public class CandidacyDaoImpl implements CandidacyDao {
         }
     }
 
+    @Override
+    public int totalCandidaciesByCompany(int companyId) {
+        try {
+            preparedStatement = connection.prepareStatement("SELECT COUNT(candidacy_id) as total FROM candidacy INNER JOIN offer " +
+                    "ON candidacy.offer_id=offer.offer_id WHERE offer.company_id=?");
+            preparedStatement.setInt(1, companyId);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                return resultSet.getInt("total");
+            } else {
+                return 0;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     private Candidacy getCandidacy() throws SQLException {
         Candidacy candidacy = new Candidacy();
         candidacy.setCandidacyId(resultSet.getInt("candidacy_id"));

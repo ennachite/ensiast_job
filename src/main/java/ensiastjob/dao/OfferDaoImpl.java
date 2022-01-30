@@ -124,7 +124,7 @@ public class OfferDaoImpl implements OfferDao {
     }
 
     @Override
-    public int updateOffer(Offer offer) {
+    public void updateOffer(Offer offer) {
         try {
             preparedStatement = connection.prepareStatement("UPDATE offer set offer_name=?, offer_salary=?, " +
                     "offer_location=?, offer_domain=?, job_type=?, offer_description=? WHERE offer_id=?");
@@ -137,41 +137,49 @@ public class OfferDaoImpl implements OfferDao {
             preparedStatement.setInt(7, offer.getOfferId());
 
             if (preparedStatement.executeUpdate() > 0) {
-                return 1;
             } else {
-                return 0;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return -1;
     }
 
     @Override
-    public int deleteOffer(int offerId) {
+    public void deleteOffer(int offerId) {
         try {
             preparedStatement = connection.prepareStatement("DELETE FROM offer WHERE offer_id=?");
             preparedStatement.setInt(1, offerId);
 
             if (preparedStatement.executeUpdate() > 0) {
-                return 1;
             } else {
-                return 0;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return -1;
     }
 
     @Override
     public int getTotalOffers() {
         try {
-            preparedStatement = connection.prepareStatement("SELECT count(*) as total from offer");
+            preparedStatement = connection.prepareStatement("SELECT count(*) AS total FROM offer");
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    @Override
+    public int getTotalOffersByCompany(int companyId) {
+        try {
+            preparedStatement = connection.prepareStatement("SELECT count(*) AS total FROM offer WHERE company_id=?");
+            preparedStatement.setInt(1, companyId);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getInt("total");
@@ -185,7 +193,21 @@ public class OfferDaoImpl implements OfferDao {
     @Override
     public int getTotalInternships() {
         try {
-            preparedStatement = connection.prepareStatement("SELECT count(*) as total from offer where job_type ='Internship'");
+            preparedStatement = connection.prepareStatement("SELECT count(*) AS total FROM offer WHERE job_type ='Internship'");
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    @Override
+    public int getTotalInternshipsByCompany(int companyId) {
+        try {
+            preparedStatement = connection.prepareStatement("SELECT count(*) AS total FROM offer WHERE job_type ='Internship' AND company_id=?");
+            preparedStatement.setInt(1, companyId);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getInt("total");

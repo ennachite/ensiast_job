@@ -44,7 +44,9 @@
                         </c:choose>
                         <%--                        <img src="${  }" alt="" class="border-gray-200 border-2 rounded-lg mr-4 text-center" width="130px" height="100px">--%>
                         <div class=" grid grid-cols-1 justify-center">
+                            <a href="<c:url value="/other-profile?companyId=${ requestScope.offer.companyId }" />">
                             <h2 class="text-red-900 font-semibold pt-6 pb-0 ">${ requestScope.offer.offerName }</h2>
+                            </a>
                             <div class="flex justify-center text-gray-400 text-lg pb-3">
 
                                 <div class="flex items-center mr-12 ">
