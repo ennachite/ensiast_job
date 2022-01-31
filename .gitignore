@@ -4,4 +4,4 @@ target/
 src/main/webapp/node_modules/
 src/main/webapp/package-lock.json
 files/
-out/ensiast_job_war_exploded/
+out/artifacts/ensiast_job_war_exploded/
