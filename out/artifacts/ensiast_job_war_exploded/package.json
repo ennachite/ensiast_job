@@ -1,0 +1,15 @@
+{
+  "name": "ensiajob_tailwind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss build -i src/tailwindcss.css -o assets/css/tailwind.css"
+  },
+  "keywords": [],
+  "author": "Oussama Ennachite",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.0.13"
+  }
+}
